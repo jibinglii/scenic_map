@@ -97,6 +97,7 @@ export default {
       letter-spacing: 2px;
       h3 {
         font-weight: 100;
+        color: white;
       }
       p {
         font-size: 12px;
@@ -128,11 +129,11 @@ export default {
     .intro_title,
     .intro_con {
       padding: 0.3rem 0.8rem;
-      border-top: 1px solid #ebebef;
+      border-top: 1px solid #f1f1f1;
     }
 
     .intro_con {
-      border-top: 1px solid #cdcdcf;
+      border-top: 1px solid #f1f1f1;
       text-indent: 0.6rem;
       text-align: justify;
       font-size: 12px;
@@ -146,7 +147,7 @@ export default {
     position: fixed;
     bottom: 0;
     width: 100%;
-    border-top: 1px solid #ebebef;
+    border-top: 1px solid #f1f1f1;
     color: #808080;
     font-size: 16px;
 

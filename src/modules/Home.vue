@@ -39,8 +39,8 @@
       </div>
       <div class="list">
         <div v-for="(item,index) in list" :key="index">
-          <router-link :to="{name:'videoDetails',params:{id:item.id}}">
-            <div class="item"  :style="{'backgroundImage':'url('+item.bg+')'}">
+          <router-link :to="{name:'videoDetails',query:{id:item.id}}">
+            <div class="item" :style="{'backgroundImage':'url('+item.bg+')'}">
               <p>{{item.title}}</p>
             </div>
           </router-link>
@@ -64,7 +64,7 @@ export default {
         {
           imgUrl: require("../assets/images/dz.png"),
           title: "电子导图",
-          name: ""
+          name: "electronicMap"
         },
         {
           imgUrl: require("../assets/images/zn.png"),
@@ -147,6 +147,7 @@ export default {
   p {
     color: #333;
     font-size: 0.28rem;
+    margin-top: 5px;
   }
 }
 .near {
@@ -169,6 +170,7 @@ export default {
     p {
       font-size: 0.24rem;
       color: #333;
+      margin-top: 5px;
     }
   }
 }
@@ -187,15 +189,15 @@ export default {
 }
 .list {
   .item {
-    width: 88%;
-    height: 1.8rem;
+    width: 100%;
+    height: 2.3rem;
     background-size: 100% 100%;
     margin: 15px auto;
     padding: 20px;
     p {
       text-align: left;
       color: #fff;
-      font-size: 0.36rem;
+      font-size: 0.32rem;
     }
   }
 }

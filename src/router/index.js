@@ -4,9 +4,9 @@ import Router from 'vue-router'
 import Home from '@/modules/Home'
 import VData from '@/modules/VData'
 import Me from '@/modules/Me'
-import Vlogin from '@/components/Vlogin'
-import Login from '@/components/Login'
-import Register from '@/components/Register'
+import Vlogin from '@/modules/Vlogin'
+import Login from '@/modules/Login'
+import Register from '@/modules/Register'
 import DataDetails from '@/modules/DataDetails'
 import Integral from '@/modules/Integral'
 import TicketData from '@/modules/TicketData'
@@ -17,6 +17,7 @@ import PackData from '@/modules/PackData'
 import VideoList from '@/modules/VideoList'
 import VideoDetails from '@/modules/VideoDetails'
 import SignIn from '@/modules/SignIn'
+import ElectronicMap from '@/modules/ElectronicMap'
 
 Vue.use(Router)
 
@@ -38,18 +39,18 @@ export default new Router({
       component: Me
     },
     {
-      path: '/Vlogin',
-      name: 'Vlogin',
+      path: '/vlogin',
+      name: 'vlogin',
       component: Vlogin
     },
     {
       path: '/login',
-      name: 'Login',
+      name: 'login',
       component: Login
     },
     {
       path: '/register',
-      name: 'Register',
+      name: 'register',
       component: Register
     },
     {
@@ -93,7 +94,7 @@ export default new Router({
       component: VideoList
     },
     {
-      path: '/videodetails',
+      path: '/videodetails/:id',
       name: 'videoDetails',
       component: VideoDetails
     },
@@ -101,6 +102,11 @@ export default new Router({
       path: '/signin',
       name: 'signIn',
       component: SignIn
+    },
+    {
+      path: '/electronicmap',
+      name: 'electronicMap',
+      component: ElectronicMap
     },
   ]
 })

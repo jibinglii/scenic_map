@@ -1,5 +1,5 @@
 <template>
-  <div class="data">
+  <div class="vdata">
     <div class="weather_div">
         <v-weather></v-weather>
         <router-link to="/datadetails" class="more">
@@ -138,7 +138,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-.data {
+.vdata {
   background: #eee;
   .weather_div {
       .more {

@@ -1,12 +1,20 @@
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+p {
+  margin-bottom: 0;
+}
 $bgColor: #77d2f7;
 .form_div {
   $color: #78d2f7 !global;
   .van-tab {
     color: $color;
-  }
-
-  .van-hairline--top-bottom::after {
-    border-width: 0px 0;
   }
   .van-tabs--line .van-tabs__wrap {
     position: relative;
@@ -54,13 +62,14 @@ $bgColor: #77d2f7;
     }
   }
   .row_div .van-row {
-    width: 90%;
+    // width: 90%;
     margin: 3% auto;
     padding: 0 5%;
     align-items: center;
   }
 }
 ._div {
+  
   .van-tab--active {
     color: $color;
   }
@@ -94,6 +103,7 @@ $bgColor: #77d2f7;
       display: none;
     }
   }
+
 }
 .top_bg {
   background: #e2f6fe;
@@ -110,6 +120,9 @@ $bgColor: #77d2f7;
     color: #fff;
     background: #77d2f7;
     position: relative;
+    h3{
+      color: #fff;
+    }
     .waveBg {
       width: 100%;
       height: 2.3rem;
@@ -120,7 +133,14 @@ $bgColor: #77d2f7;
     }
   }
   .bottom {
-    margin-top: -.5rem;
+    margin-top: -0.5rem;
     color: #333;
   }
+}
+.van-hairline--top-bottom::after,
+.van-hairline-unset--top-bottom::after {
+  border-width: 0px 0;
+}
+.van-cell {
+  width: auto;
 }

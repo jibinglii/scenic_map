@@ -89,7 +89,7 @@ export default {
   }
   .bottom {
     width: 100%;
-    height: 2.3rem;
+    height: 3.3rem;
     margin-top: -1rem;
     background-size: 100% 100%;
     padding-top: 0.8rem;
@@ -102,7 +102,7 @@ export default {
         color: #808080;
       }
       img {
-        width: 0.5rem;
+        width: 0.8rem;
         padding: 0.2rem;
       }
     }

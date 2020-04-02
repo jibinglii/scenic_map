@@ -19,40 +19,40 @@
       <!-- 搜索框为酒店时 -->
       <div v-if="shopList==''?false:true">
         <div v-for="(item, index) in shopList" :key="index">
-        <router-link :to="{name: item.url}">
-          <div class="search_title">
-            <h3>{{(index+1)+"." +item.name}}</h3>
-            <van-rate
-              v-model="item.rateNum"
-              size="14px"
-              gutter="2px"
-              readonly
-              void-color="#ffd21e"
-            />
-            <span>评分:{{item.score}}</span>
-            <div>{{item.distance}}m</div>
-            <div class="clear"></div>
-          </div>
-          <div class="search_info">
-            <van-card :thumb="item.shopImg">
-              <template slot="title">
-                <div class="card_info">
-                  <p>
-                    营业时间:
-                    <span>{{item.time}}</span>
-                  </p>
-                  <p>
-                    酒店地址:
-                    <span>{{item.address}}</span>
-                  </p>
-                  <p>
-                    联系电话:
-                    <span>{{item.telephone}}</span>
-                  </p>
-                </div>
-              </template>
-            </van-card>
-          </div>
+          <router-link :to="{name: item.url}">
+            <div class="search_title">
+              <h3>{{(index+1)+"." +item.name}}</h3>
+              <van-rate
+                v-model="item.rateNum"
+                size="14px"
+                gutter="2px"
+                readonly
+                void-color="#ffd21e"
+              />
+              <span>评分:{{item.score}}</span>
+              <div>{{item.distance}}m</div>
+              <div class="clear"></div>
+            </div>
+            <div class="search_info">
+              <van-card :thumb="item.shopImg">
+                <template slot="title">
+                  <div class="card_info">
+                    <p>
+                      营业时间:
+                      <span>{{item.time}}</span>
+                    </p>
+                    <p>
+                      酒店地址:
+                      <span>{{item.address}}</span>
+                    </p>
+                    <p>
+                      联系电话:
+                      <span>{{item.telephone}}</span>
+                    </p>
+                  </div>
+                </template>
+              </van-card>
+            </div>
           </router-link>
         </div>
       </div>
@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import { Search, Rate, Card ,Button} from "vant";
+import { Search, Rate, Card, Button } from "vant";
 export default {
   name: "search",
   data() {
@@ -78,7 +78,7 @@ export default {
           address: "西安市新城区东新街139号",
           telephone: "029-34343434",
           shopImg: require("../assets/images/shop.png"),
-          url:"hotelDetails"
+          url: "hotelDetails"
         },
         {
           name: "西安国际大酒店",
@@ -89,7 +89,7 @@ export default {
           address: "西安市新城区东新街139号",
           telephone: "029-34343434",
           shopImg: require("../assets/images/shop.png"),
-          url:""
+          url: ""
         },
         {
           name: "西安国际大酒店",
@@ -100,7 +100,7 @@ export default {
           address: "西安市新城区东新街139号",
           telephone: "029-34343434",
           shopImg: require("../assets/images/shop.png"),
-          url:""
+          url: ""
         }
       ]
     };
@@ -109,17 +109,17 @@ export default {
     "van-search": Search,
     "van-rate": Rate,
     "van-card": Card,
-    "van-button":Button
+    "van-button": Button
   }
 };
 </script>
 
 <style lang="scss" scoped>
-$spaceColor: #b3a7a9;
+$spaceColor: #d2d2d2;
 $fontColor: #dbdbdc;
 $boxSpace: #f3f3f5;
 .search_input {
-  border-bottom: solid 2px $boxSpace;
+  // border-bottom: solid 2px $boxSpace;
   padding-bottom: 0.3rem;
   .van-search {
     .van-icon-search {
@@ -127,10 +127,10 @@ $boxSpace: #f3f3f5;
     }
 
     .van-search__content {
-      box-shadow: 2px 2px 3px $spaceColor;
+      box-shadow: 7px 3px 10px $spaceColor;
       border-radius: 5px;
       height: 0.8rem !important;
-      border: solid 0.01rem $spaceColor;
+      border: solid 1px #f1f1f1;
       background-color: white !important;
     }
     .van-field__body .van-field__control::-webkit-input-placeholder {
@@ -140,26 +140,26 @@ $boxSpace: #f3f3f5;
 }
 .search-list {
   // 搜索框为空 start
-  .space_content{
-    margin-top: .5rem;
-    color:#808080;
-    p{
+  .space_content {
+    margin-top: 0.5rem;
+    color: #808080;
+    p {
       font-size: 12px;
     }
-  .btn_groups{
-    font-size: 14px;
-    button{
-      width:17%;
-      border: none;
+    .btn_groups {
+      font-size: 14px;
+      button {
+        width: 17%;
+        border: none;
+      }
     }
   }
-  }
 
-// 搜索框为空 end
+  // 搜索框为空 end
 
-// 搜索框为酒店 start
+  // 搜索框为酒店 start
   .search_title {
-    padding: 0.3rem 0.3rem 0.1rem;
+    padding: 0.3rem 0.3rem 0.5rem;
     border-bottom: solid 2px $boxSpace;
     height: 0.5rem;
 
@@ -171,6 +171,7 @@ $boxSpace: #f3f3f5;
     }
     h3 {
       font-weight: normal;
+      font-size: 0.26rem;
     }
     span {
       font-size: 12px;
@@ -182,7 +183,7 @@ $boxSpace: #f3f3f5;
     }
     div {
       float: right;
-      color: #67c7f5;
+      color: #00c8b0;
     }
     .clear {
       clear: both;

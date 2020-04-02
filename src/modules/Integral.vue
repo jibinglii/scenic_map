@@ -165,6 +165,7 @@ $fontColor: #808080;
     justify-content: center;
     height: 5rem;
     h3 {
+       color: white;
       font-size: 0.8rem;
       font-weight: 200;
       margin-bottom: 13px;

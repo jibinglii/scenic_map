@@ -6,10 +6,12 @@
           <div class="user_img">
             <img :src="userImg" />
           </div>
-          <div class="message">
-            <h4>{{username}}</h4>
-            <p>简介：{{introduce}}</p>
-          </div>
+          <router-link :to="{name:'vlogin'}">
+            <div class="message">
+              <h4>{{username}}</h4>
+              <p>简介：{{introduce}}</p>
+            </div>
+          </router-link>
         </div>
         <div class="user_right">
           <div class="sign">每日签到</div>
@@ -130,6 +132,7 @@ export default {
           font-weight: 100;
           text-align: left;
           margin-bottom: 0.1rem;
+          color: #fff;
         }
         p {
           display: -webkit-box;
@@ -137,6 +140,7 @@ export default {
           -webkit-line-clamp: 1;
           overflow: hidden;
           font-size: 0.24rem;
+          color: #fff;
         }
       }
     }
@@ -157,6 +161,9 @@ export default {
   .van-cell__title {
     text-align: left;
   }
+}
+.van-icon__image {
+  vertical-align: inherit;
 }
 .loginOut {
   width: 60%;

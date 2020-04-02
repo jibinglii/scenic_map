@@ -6,7 +6,7 @@
       :key="index"
       :style="{backgroundImage:'url('+item.videoBg+')'}"
     >
-      <router-link :to="{name:'videoDetails',params:{id:item.id}}">
+      <router-link :to="{name:'videoDetails',query:{id:item.id}}">
         <span class="title">{{item.title}}</span>
         <img src="../assets/images/play.png" alt class="play" />
         <div class="viewed">
@@ -45,14 +45,12 @@ export default {
   .list_item {
     display: flex;
     flex-direction: column;
-    width: 94%;
-    height: 3.3rem;
+    width: 100%;
+    height: 3.8rem;
     background-size: 100%;
     background-repeat: no-repeat;
     margin-bottom: 0.1rem;
     padding: 3%;
-    
-
     span.title {
       display: block;
       text-align: left;

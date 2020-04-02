@@ -3,12 +3,15 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-
-Vue.config.productionTip = false
-
+import VueiClient from '@supermap/vue-iclient-leaflet';
+Vue.use(VueiClient);
 // 引入自定义样式
 import './assets/scss/resetVant.scss'
 import './assets/js/size.js'
+
+Vue.config.productionTip = false
+
+
 
 // 引入echarts
 // import echarts from 'echarts'
