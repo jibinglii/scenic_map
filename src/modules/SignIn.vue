@@ -17,7 +17,6 @@
       <div class="steps">
         <div class="step" v-for="(item,index) in steps" :key="index">
           <div class="left">
-
             <img v-if="isIntegral" :src="item.img" alt class="integral_img" />
             <img v-else :src="item.activeImg" alt class="integral_img" />
 
@@ -43,8 +42,8 @@ export default {
       waveBg: require("../assets/images/wave2.png"),
       active: 0,
       day_click_able: false,
-      isIntegral:true,
-      isLine:true,
+      isIntegral: true,
+      isLine: true,
       steps: [
         {
           img: require("../assets/images/integral_h.png"),
@@ -52,7 +51,7 @@ export default {
           day: 1,
           number: "+5",
           line: require("../assets/images/line_h.png"),
-          activeLine: require("../assets/images/line.png"),
+          activeLine: require("../assets/images/line.png")
         },
         {
           img: require("../assets/images/integral_h.png"),
@@ -60,7 +59,7 @@ export default {
           day: 2,
           number: "+5",
           line: require("../assets/images/line_h.png"),
-          activeLine: require("../assets/images/line.png"),
+          activeLine: require("../assets/images/line.png")
         },
         {
           img: require("../assets/images/integral_h.png"),
@@ -68,7 +67,7 @@ export default {
           day: 3,
           number: "+5",
           line: require("../assets/images/line_h.png"),
-          activeLine: require("../assets/images/line.png"),
+          activeLine: require("../assets/images/line.png")
         },
         {
           img: require("../assets/images/integral_h.png"),
@@ -76,7 +75,7 @@ export default {
           day: 4,
           number: "+5",
           line: require("../assets/images/line2_h.png"),
-          activeLine: require("../assets/images/line2.png"),
+          activeLine: require("../assets/images/line2.png")
         },
         {
           img: require("../assets/images/integral_h.png"),
@@ -84,7 +83,7 @@ export default {
           day: 5,
           number: "+10",
           line: require("../assets/images/line_h.png"),
-          activeLine: require("../assets/images/line.png"),
+          activeLine: require("../assets/images/line.png")
         },
         {
           img: require("../assets/images/integral_h.png"),
@@ -92,7 +91,7 @@ export default {
           day: 6,
           number: "+5",
           line: require("../assets/images/line_h.png"),
-          activeLine: require("../assets/images/line.png"),
+          activeLine: require("../assets/images/line.png")
         },
         {
           img: require("../assets/images/integral_h.png"),
@@ -100,7 +99,7 @@ export default {
           day: 7,
           number: "+5",
           line: require("../assets/images/line2_h.png"),
-          activeLine: require("../assets/images/line2.png"),
+          activeLine: require("../assets/images/line2.png")
         },
         {
           img: require("../assets/images/integral_h.png"),
@@ -108,7 +107,7 @@ export default {
           day: 8,
           number: "+5",
           line: require("../assets/images/line_h.png"),
-          activeLine: require("../assets/images/line.png"),
+          activeLine: require("../assets/images/line.png")
         },
         {
           img: require("../assets/images/integral_h.png"),
@@ -116,7 +115,7 @@ export default {
           day: 9,
           number: "+5",
           line: require("../assets/images/line_h.png"),
-          activeLine: require("../assets/images/line.png"),
+          activeLine: require("../assets/images/line.png")
         },
         {
           img: require("../assets/images/integral_h.png"),
@@ -124,7 +123,7 @@ export default {
           day: 10,
           number: "+50",
           line: require("../assets/images/line_h.png"),
-          activeLine: require("../assets/images/line.png"),
+          activeLine: require("../assets/images/line.png")
         },
         {
           img: "",
@@ -204,7 +203,7 @@ $fontColor: #0088ff;
   }
   .bottom {
     padding: 5% 2%;
-    height: 9rem;
+    height: 9.3rem;
     p {
       color: #666;
       line-height: 0.5rem;
@@ -249,8 +248,8 @@ $fontColor: #0088ff;
           }
         }
         img.line {
-          width: 84%;
-          margin: 10% 0 0 -5%;
+          width: 86%;
+          margin: 5% 0 0 -6%;
           z-index: -1;
         }
       }
@@ -258,14 +257,14 @@ $fontColor: #0088ff;
         img.line {
           width: 100%;
           position: absolute;
-          top: 40%;
+          top: 42%;
           right: -16px;
         }
       }
       .step:nth-of-type(5) {
         position: absolute;
         right: 0;
-        top: 140%;
+        top: 139%;
         right: 11px;
         img.line {
           position: absolute;
@@ -276,7 +275,7 @@ $fontColor: #0088ff;
       .step:nth-of-type(6) {
         position: absolute;
         right: 28%;
-        top: 140%;
+        top: 139%;
         img.line {
           position: absolute;
           left: -77%;
@@ -286,7 +285,7 @@ $fontColor: #0088ff;
       .step:nth-of-type(7) {
         position: absolute;
         right: 53%;
-        top: 140%;
+        top: 139%;
         img.line {
           width: 100%;
           position: absolute;
@@ -300,7 +299,7 @@ $fontColor: #0088ff;
       .step:nth-of-type(10),
       .step:nth-of-type(11) {
         position: absolute;
-        top: 265%;
+        top: 263%;
       }
       .step:nth-of-type(8) {
         left: 21%;
@@ -314,7 +313,7 @@ $fontColor: #0088ff;
       .step:nth-of-type(11) {
         width: 20px;
         left: 93%;
-        top: 272%;
+        top: 267%;
       }
       @media screen and (min-width: 376px) and (max-width: 414px) {
         .step:nth-of-type(4),
@@ -328,12 +327,47 @@ $fontColor: #0088ff;
         .step:nth-of-type(4),
         .step:nth-of-type(7) {
           img.line {
-            width: 109%;
+            width: 113%;
           }
         }
         .step:nth-of-type(7) {
           img.line {
             left: -92%;
+          }
+        }
+        .step:nth-of-type(11) {
+          top: 263%;
+        }
+      }
+      @media screen and (min-width: 767px) {
+        .step:nth-of-type(5),
+        .step:nth-of-type(6),
+        .step:nth-of-type(7) {
+          top: 157%;
+        }
+        .step:nth-of-type(5),
+        .step:nth-of-type(6),
+        .step:nth-of-type(8),
+        .step:nth-of-type(9),
+        .step:nth-of-type(10) {
+          width: 26.5%;
+        }
+        .step:nth-of-type(8),
+        .step:nth-of-type(9),
+        .step:nth-of-type(10),
+        .step:nth-of-type(11) {
+          top: 301%;
+        }
+        .step {
+          img.line {
+            width: 100%;
+            margin: 5% 0 0 -10%;
+            padding: 0 5%;
+          }
+        }
+        .step:nth-of-type(7) {
+          img.line {
+            left: -82%;
           }
         }
       }

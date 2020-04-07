@@ -15,14 +15,14 @@
     <div class="near">
       <div class="top">
         <span>景点周边</span>
-        <router-link :to="{}">
+        <router-link :to="{name:'scenicSpot'}">
           <img src="../assets/images/more.png" alt />
         </router-link>
       </div>
       <div class="row_Div">
         <van-row type="flex" justify="space-around">
           <van-col v-for="(mear,index) in nearLists" :key="index">
-            <router-link :to="{}">
+            <router-link :to="{name:'scenicSpot'}">
               <img :src="mear.imgUrl" />
               <p>{{mear.name}}</p>
             </router-link>
@@ -39,7 +39,7 @@
       </div>
       <div class="list">
         <div v-for="(item,index) in list" :key="index">
-          <router-link :to="{name:'videoDetails',query:{id:item.id}}">
+          <router-link :to="{path:'/videodetails',query:{id:item.id}}">
             <div class="item" :style="{'backgroundImage':'url('+item.bg+')'}">
               <p>{{item.title}}</p>
             </div>
@@ -74,7 +74,7 @@ export default {
         {
           imgUrl: require("../assets/images/xr.png"),
           title: "寻人寻物",
-          name: "search"
+          name: "searchList"
         },
         {
           imgUrl: require("../assets/images/jf.png"),
@@ -116,9 +116,21 @@ export default {
           bg: require("../assets/images/bmy.png"),
           title: "秦岭兵马俑"
         }
-      ]
+      ],
+      flow:[]
     };
   },
+  // methods: {
+  //   async flowInfo() {
+  //     await this.$http.get("/api_xcx/home/index").then(data => {
+  //       this.flow = data;
+  //       console.log(data)
+  //     });
+  //   }
+  // },
+  // created(){
+  //   this.flowInfo()
+  // },
   components: {
     tabbar: tabbar,
     "van-col": Col,

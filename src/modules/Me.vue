@@ -62,12 +62,12 @@ export default {
           value: "138 9000 0000",
           toPath: ""
         },
-        {
-          icon: require("../assets/images/me/scjl@2x.png"),
-          title: "收藏记录",
-          value: "",
-          toPath: ""
-        },
+        // {
+        //   icon: require("../assets/images/me/scjl@2x.png"),
+        //   title: "收藏记录",
+        //   value: "",
+        //   toPath: ""
+        // },
         {
           icon: require("../assets/images/me/wdzj@2x.png"),
           title: "我的足迹",

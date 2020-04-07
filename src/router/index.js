@@ -11,13 +11,15 @@ import DataDetails from '@/modules/DataDetails'
 import Integral from '@/modules/Integral'
 import TicketData from '@/modules/TicketData'
 import Monitors from '@/modules/Monitors'
-import Search from '@/modules/Search'
+import SearchList from '@/modules/SearchList'
 import HotelDetails from '@/modules/HotelDetails'
 import PackData from '@/modules/PackData'
 import VideoList from '@/modules/VideoList'
 import VideoDetails from '@/modules/VideoDetails'
 import SignIn from '@/modules/SignIn'
 import ElectronicMap from '@/modules/ElectronicMap'
+import ScenicSpot from '@/modules/ScenicSpot'
+import Navigation from '@/modules/Navigation'
 
 Vue.use(Router)
 
@@ -25,7 +27,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
+      name:'home',
       component: Home
     },
     {
@@ -74,9 +76,9 @@ export default new Router({
       component: Monitors
     },
     {
-      path: '/search',
-      name: 'search',
-      component: Search
+      path: '/searchlist',
+      name: 'searchList',
+      component: SearchList
     },
     {
       path: '/hoteldetails',
@@ -94,7 +96,7 @@ export default new Router({
       component: VideoList
     },
     {
-      path: '/videodetails/:id',
+      path: '/videodetails',
       name: 'videoDetails',
       component: VideoDetails
     },
@@ -107,6 +109,16 @@ export default new Router({
       path: '/electronicmap',
       name: 'electronicMap',
       component: ElectronicMap
+    },
+    {
+      path: '/scenicspot',
+      name: 'scenicSpot',
+      component: ScenicSpot
+    },
+    {
+      path: '/navigation',
+      name: 'navigation',
+      component: Navigation
     },
   ]
 })

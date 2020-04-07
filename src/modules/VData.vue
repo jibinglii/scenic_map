@@ -1,11 +1,11 @@
 <template>
   <div class="vdata">
     <div class="weather_div">
-        <v-weather></v-weather>
-        <router-link to="/datadetails" class="more">
-          <p>查看更多</p>
-          <van-icon name="arrow-down" />
-        </router-link>
+      <v-weather></v-weather>
+      <router-link to="/datadetails" class="more">
+        <p>查看更多</p>
+        <van-icon name="arrow-down" />
+      </router-link>
     </div>
     <div class="list_div">
       <div class="top">
@@ -21,7 +21,7 @@
             <p class="name">车辆统计</p>
           </van-col>
           <van-col>
-            <v-circle ></v-circle>
+            <v-circle></v-circle>
           </van-col>
           <van-col>
             <p class="data2">10472</p>
@@ -78,8 +78,6 @@ export default {
   name: "vData",
   data() {
     return {
-      
-      
       ticketData: [
         {
           data: 2222,
@@ -126,12 +124,11 @@ export default {
   },
   components: {
     tabbar: tabbar,
-    'v-circle': vcircle,
-    'v-weather': weather,
+    "v-circle": vcircle,
+    "v-weather": weather,
     "van-col": Col,
     "van-row": Row,
     "van-icon": Icon
-  
   }
 };
 </script>
@@ -141,13 +138,17 @@ export default {
 .vdata {
   background: #eee;
   .weather_div {
-      .more {
-        display: block;
-        font-size: 0.24rem;
-        padding: 0.2rem 0 0.1rem;
-        background: #e3f6fe;
+    .more {
+      display: block;
+      font-size: 0.24rem;
+      padding: 0.2rem 0 0.1rem;
+      background: #e3f6fe;
+      color: #808080;
+      p {
+        color: #808080;
       }
     }
+  }
 }
 .list_div {
   margin-top: 0.15rem;
@@ -162,7 +163,7 @@ export default {
   }
   .row_Div {
     padding: 20px 0;
-    .van-row{
+    .van-row {
       align-items: center;
     }
     p.data2 {
