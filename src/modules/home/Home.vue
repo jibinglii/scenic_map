@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <img src="../assets/images/home_banner.png" alt class="banner" />
+    <img src="../../assets/images/home_banner.png" alt class="banner" />
     <div class="row_div">
       <van-row type="flex" justify="space-around">
         <van-col v-for="(menu,index) in menus" :key="index">
@@ -16,7 +16,7 @@
       <div class="top">
         <span>景点周边</span>
         <router-link :to="{name:'scenicSpot'}">
-          <img src="../assets/images/more.png" alt />
+          <img src="../../assets/images/more.png" alt />
         </router-link>
       </div>
       <div class="row_Div">
@@ -34,7 +34,7 @@
       <div class="top">
         <span>实时视频展示</span>
         <router-link :to="{name:'videoList'}">
-          <img src="../assets/images/more.png" alt />
+          <img src="../../assets/images/more.png" alt />
         </router-link>
       </div>
       <div class="list">
@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import tabbar from "../components/tabbar.vue";
+import tabbar from "../../components/tabbar.vue";
 import { Col, Row } from "vant";
 
 export default {
@@ -62,58 +62,58 @@ export default {
     return {
       menus: [
         {
-          imgUrl: require("../assets/images/dz.png"),
+          imgUrl: require("../../assets/images/dz.png"),
           title: "电子导图",
           name: "electronicMap"
         },
         {
-          imgUrl: require("../assets/images/zn.png"),
+          imgUrl: require("../../assets/images/zn.png"),
           title: "智能报警 ",
           name: ""
         },
         {
-          imgUrl: require("../assets/images/xr.png"),
+          imgUrl: require("../../assets/images/xr.png"),
           title: "寻人寻物",
           name: "searchList"
         },
         {
-          imgUrl: require("../assets/images/jf.png"),
+          imgUrl: require("../../assets/images/jf.png"),
           title: "积分",
           name: "integral"
         },
         {
-          imgUrl: require("../assets/images/qd.png"),
+          imgUrl: require("../../assets/images/qd.png"),
           title: "签到打卡",
           name: "signIn"
         }
       ],
       nearLists: [
         {
-          imgUrl: require("../assets/images/cs.png"),
+          imgUrl: require("../../assets/images/cs.png"),
           name: "厕所 "
         },
         {
-          imgUrl: require("../assets/images/cz.png"),
+          imgUrl: require("../../assets/images/cz.png"),
           name: "车站"
         },
         {
-          imgUrl: require("../assets/images/jd.png"),
+          imgUrl: require("../../assets/images/jd.png"),
           name: "酒店"
         },
         {
-          imgUrl: require("../assets/images/fd.png"),
+          imgUrl: require("../../assets/images/fd.png"),
           name: "饭店"
         }
       ],
       list: [
         {
           id: 1,
-          bg: require("../assets/images/hqc.png"),
+          bg: require("../../assets/images/hqc.png"),
           title: "华清池"
         },
         {
           id: 2,
-          bg: require("../assets/images/bmy.png"),
+          bg: require("../../assets/images/bmy.png"),
           title: "秦岭兵马俑"
         }
       ],

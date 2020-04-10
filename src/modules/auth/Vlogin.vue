@@ -1,6 +1,6 @@
 <template>
   <div class="form_div">
-    <img src="../assets/images/login_top.png" class="login_top_img" alt="">
+    <img src="../../assets/images/login_top.png" class="login_top_img" alt="">
     <!-- <van-button type="primary">默认按钮</van-button> -->
     <h3>{{title}}</h3>
     <van-tabs v-model="active">

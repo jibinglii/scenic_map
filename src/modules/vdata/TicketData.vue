@@ -32,7 +32,7 @@ export default {
   name: "ticketData",
   data() {
     return {
-      waveBg: require("../assets/images/wave.png"),
+      waveBg: require("../../assets/images/wave.png"),
       weavs: [],
       active: 1,
       ticketData: [

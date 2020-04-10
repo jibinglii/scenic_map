@@ -25,13 +25,13 @@
 
 <script>
 import { Button, Tab, Tabs } from "vant";
-import Integral from "../components/Points";
+import Integral from "../../components/Points";
 export default {
   name: "integral",
   data() {
     return {
-      integralBg: require("../assets/images/bg-integral.png"),
-      waveBg: require("../assets/images/wave2.png"),
+      integralBg: require("../../assets/images/bg-integral.png"),
+      waveBg: require("../../assets/images/wave2.png"),
       integralNumber: 5662552, //当前可用积分
       active: 0,
       allPoints: [

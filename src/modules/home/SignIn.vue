@@ -38,92 +38,92 @@ export default {
   name: "signIn",
   data() {
     return {
-      integralBg: require("../assets/images/bg-integral.png"),
-      waveBg: require("../assets/images/wave2.png"),
+      integralBg: require("../../assets/images/bg-integral.png"),
+      waveBg: require("../../assets/images/wave2.png"),
       active: 0,
       day_click_able: false,
       isIntegral: true,
       isLine: true,
       steps: [
         {
-          img: require("../assets/images/integral_h.png"),
-          activeImg: require("../assets/images/integral.png"),
+          img: require("../../assets/images/integral_h.png"),
+          activeImg: require("../../assets/images/integral.png"),
           day: 1,
           number: "+5",
-          line: require("../assets/images/line_h.png"),
-          activeLine: require("../assets/images/line.png")
+          line: require("../../assets/images/line_h.png"),
+          activeLine: require("../../assets/images/line.png")
         },
         {
-          img: require("../assets/images/integral_h.png"),
-          activeImg: require("../assets/images/integral.png"),
+          img: require("../../assets/images/integral_h.png"),
+          activeImg: require("../../assets/images/integral.png"),
           day: 2,
           number: "+5",
-          line: require("../assets/images/line_h.png"),
-          activeLine: require("../assets/images/line.png")
+          line: require("../../assets/images/line_h.png"),
+          activeLine: require("../../assets/images/line.png")
         },
         {
-          img: require("../assets/images/integral_h.png"),
-          activeImg: require("../assets/images/integral.png"),
+          img: require("../../assets/images/integral_h.png"),
+          activeImg: require("../../assets/images/integral.png"),
           day: 3,
           number: "+5",
-          line: require("../assets/images/line_h.png"),
-          activeLine: require("../assets/images/line.png")
+          line: require("../../assets/images/line_h.png"),
+          activeLine: require("../../assets/images/line.png")
         },
         {
-          img: require("../assets/images/integral_h.png"),
-          activeImg: require("../assets/images/integral.png"),
+          img: require("../../assets/images/integral_h.png"),
+          activeImg: require("../../assets/images/integral.png"),
           day: 4,
           number: "+5",
-          line: require("../assets/images/line2_h.png"),
-          activeLine: require("../assets/images/line2.png")
+          line: require("../../assets/images/line2_h.png"),
+          activeLine: require("../../assets/images/line2.png")
         },
         {
-          img: require("../assets/images/integral_h.png"),
-          activeImg: require("../assets/images/integral.png"),
+          img: require("../../assets/images/integral_h.png"),
+          activeImg: require("../../assets/images/integral.png"),
           day: 5,
           number: "+10",
-          line: require("../assets/images/line_h.png"),
-          activeLine: require("../assets/images/line.png")
+          line: require("../../assets/images/line_h.png"),
+          activeLine: require("../../assets/images/line.png")
         },
         {
-          img: require("../assets/images/integral_h.png"),
-          activeImg: require("../assets/images/integral.png"),
+          img: require("../../assets/images/integral_h.png"),
+          activeImg: require("../../assets/images/integral.png"),
           day: 6,
           number: "+5",
-          line: require("../assets/images/line_h.png"),
-          activeLine: require("../assets/images/line.png")
+          line: require("../../assets/images/line_h.png"),
+          activeLine: require("../../assets/images/line.png")
         },
         {
-          img: require("../assets/images/integral_h.png"),
-          activeImg: require("../assets/images/integral.png"),
+          img: require("../../assets/images/integral_h.png"),
+          activeImg: require("../../assets/images/integral.png"),
           day: 7,
           number: "+5",
-          line: require("../assets/images/line2_h.png"),
-          activeLine: require("../assets/images/line2.png")
+          line: require("../../assets/images/line2_h.png"),
+          activeLine: require("../../assets/images/line2.png")
         },
         {
-          img: require("../assets/images/integral_h.png"),
-          activeImg: require("../assets/images/integral.png"),
+          img: require("../../assets/images/integral_h.png"),
+          activeImg: require("../../assets/images/integral.png"),
           day: 8,
           number: "+5",
-          line: require("../assets/images/line_h.png"),
-          activeLine: require("../assets/images/line.png")
+          line: require("../../assets/images/line_h.png"),
+          activeLine: require("../../assets/images/line.png")
         },
         {
-          img: require("../assets/images/integral_h.png"),
-          activeImg: require("../assets/images/integral.png"),
+          img: require("../../assets/images/integral_h.png"),
+          activeImg: require("../../assets/images/integral.png"),
           day: 9,
           number: "+5",
-          line: require("../assets/images/line_h.png"),
-          activeLine: require("../assets/images/line.png")
+          line: require("../../assets/images/line_h.png"),
+          activeLine: require("../../assets/images/line.png")
         },
         {
-          img: require("../assets/images/integral_h.png"),
-          activeImg: require("../assets/images/integral.png"),
+          img: require("../../assets/images/integral_h.png"),
+          activeImg: require("../../assets/images/integral.png"),
           day: 10,
           number: "+50",
-          line: require("../assets/images/line_h.png"),
-          activeLine: require("../assets/images/line.png")
+          line: require("../../assets/images/line_h.png"),
+          activeLine: require("../../assets/images/line.png")
         },
         {
           img: "",

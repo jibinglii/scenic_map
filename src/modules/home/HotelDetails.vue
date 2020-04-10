@@ -47,12 +47,12 @@ export default {
       current: 0,
       swipeData: [
         {
-          images: require("../assets/images/shop_img.png"),
+          images: require("../../assets/images/shop_img.png"),
           name: "西安国际大酒店",
           xj: "5星级"
         },
         {
-          images: require("../assets/images/shop_img.png"),
+          images: require("../../assets/images/shop_img.png"),
           name: "西安国际大酒店",
           xj: "5星级"
         }
@@ -150,7 +150,7 @@ export default {
     border-top: 1px solid #f1f1f1;
     color: #808080;
     font-size: 16px;
-
+    background: #fff;
     button {
       width: 48%;
       border: none;

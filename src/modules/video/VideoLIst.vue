@@ -8,9 +8,9 @@
     >
       <router-link :to="{name:'videoDetails',query:{id:item.id}}">
         <span class="title">{{item.title}}</span>
-        <img src="../assets/images/play.png" alt class="play" />
+        <img src="../../assets/images/play.png" alt class="play" />
         <div class="viewed">
-          <img src="../assets/images/person.png" alt />
+          <img src="../../assets/images/person.png" alt />
           <span>{{item.view}}</span>
         </div>
       </router-link>
@@ -27,13 +27,13 @@ export default {
           id: 1,
           title: "华清池-唐代封建帝王游幸的别宫",
           view: 45,
-          videoBg: require("../assets/images/timg.png")
+          videoBg: require("../../assets/images/timg.png")
         },
         {
           id: 2,
           title: "兵马俑-秦始皇兵马俑陪葬坑",
           view: 45,
-          videoBg: require("../assets/images/timg.png")
+          videoBg: require("../../assets/images/timg.png")
         }
       ]
     };

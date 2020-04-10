@@ -9,10 +9,10 @@
     </ul>
     <div class="dw_div">
       <div class="bj">
-        <img src="../assets/images/bj.png" alt srcset />
+        <img src="../../assets/images/bj.png" alt srcset />
       </div>
       <div class="dw">
-        <img src="../assets/images/dw.png" alt srcset />
+        <img src="../../assets/images/dw.png" alt srcset />
       </div>
     </div>
     <van-tabbar v-model="active" active-color="#00c8b0">
@@ -49,8 +49,8 @@
 </template>
 
 <script>
-import VMap from "../components/VMap";
-import Search from "../components/Search";
+import VMap from "../../components/VMap";
+import Search from "../../components/Search";
 import { Tabbar, TabbarItem, Popup, Rate } from "vant";
 export default {
   name: "scenicSpot",
@@ -83,23 +83,23 @@ export default {
       tabs: [
         {
           text: "厕所",
-          normal: require("../assets/images/cs_h.png"),
-          active: require("../assets/images/cs.png")
+          normal: require("../../assets/images/cs_h.png"),
+          active: require("../../assets/images/cs.png")
         },
         {
           text: "车站",
-          normal: require("../assets/images/cz_h.png"),
-          active: require("../assets/images/cz.png")
+          normal: require("../../assets/images/cz_h.png"),
+          active: require("../../assets/images/cz.png")
         },
         {
           text: "酒店",
-          normal: require("../assets/images/jd_h.png"),
-          active: require("../assets/images/jd.png")
+          normal: require("../../assets/images/jd_h.png"),
+          active: require("../../assets/images/jd.png")
         },
         {
           text: "饭店",
-          normal: require("../assets/images/fd_h.png"),
-          active: require("../assets/images/fd.png")
+          normal: require("../../assets/images/fd_h.png"),
+          active: require("../../assets/images/fd.png")
         }
       ],
       shopList: [

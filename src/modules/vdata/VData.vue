@@ -11,7 +11,7 @@
       <div class="top">
         <span>停车场数据</span>
         <router-link to="/packdata">
-          <img src="../assets/images/more.png" alt />
+          <img src="../../assets/images/more.png" alt />
         </router-link>
       </div>
       <div class="row_Div packData">
@@ -34,7 +34,7 @@
       <div class="top">
         <span>票务数据</span>
         <router-link :to="{name:'ticketData'}">
-          <img src="../assets/images/more.png" alt />
+          <img src="../../assets/images/more.png" alt />
         </router-link>
       </div>
       <div class="row_Div">
@@ -51,7 +51,7 @@
       <div class="top">
         <span>环境监测</span>
         <router-link :to="{name:'monitors'}">
-          <img src="../assets/images/more.png" alt />
+          <img src="../../assets/images/more.png" alt />
         </router-link>
       </div>
       <div class="row_Div">
@@ -69,13 +69,13 @@
 </template>
 
 <script>
-import tabbar from "../components/tabbar.vue";
-import vcircle from "../components/vcircle.vue";
-import weather from "../components/weather.vue";
+import tabbar from "../../components/tabbar.vue";
+import vcircle from "../../components/vcircle.vue";
+import weather from "../../components/weather.vue";
 import { Col, Row, Icon } from "vant";
 
 export default {
-  name: "vData",
+  name: "vdata",
   data() {
     return {
       ticketData: [

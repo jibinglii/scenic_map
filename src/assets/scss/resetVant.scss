@@ -111,6 +111,8 @@ $bgColor: #77d2f7;
   position: fixed;
   width: 100%;
   height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
   .top {
     display: flex;
     flex-direction: column;

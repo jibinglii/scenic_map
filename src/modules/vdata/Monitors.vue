@@ -32,7 +32,7 @@ export default {
   name: "monitors",
   data() {
     return {
-      waveBg: require("../assets/images/wave.png"),
+      waveBg: require("../../assets/images/wave.png"),
       weavs: [],
       active: 1,
       monitorData: [

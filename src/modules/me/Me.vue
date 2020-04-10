@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import tabbar from "../components/tabbar.vue";
+import tabbar from "../../components/tabbar.vue";
 import { Cell, CellGroup, Button } from "vant";
 export default {
   name: "me",
@@ -47,17 +47,17 @@ export default {
     return {
       username: "李笑笑",
       introduce: "我，挺好的我，挺好的我，挺好的我，挺好的我，挺好的我，挺好的",
-      userImg: require("../assets/images/me/user.jpg"),
-      waveBg: require("../assets/images/wave.png"),
+      userImg: require("../../assets/images/me/user.jpg"),
+      waveBg: require("../../assets/images/wave.png"),
       msgList: [
         {
-          icon: require("../assets/images/me/smrz@2x.png"),
+          icon: require("../../assets/images/me/smrz@2x.png"),
           title: "实名认证",
           value: "李笑笑",
           toPath: ""
         },
         {
-          icon: require("../assets/images/me/sjhm@2x.png"),
+          icon: require("../../assets/images/me/sjhm@2x.png"),
           title: "手机号码",
           value: "138 9000 0000",
           toPath: ""
@@ -69,19 +69,19 @@ export default {
         //   toPath: ""
         // },
         {
-          icon: require("../assets/images/me/wdzj@2x.png"),
+          icon: require("../../assets/images/me/wdzj@2x.png"),
           title: "我的足迹",
           value: "",
           toPath: ""
         },
         {
-          icon: require("../assets/images/me/xgmm@2x.png"),
+          icon: require("../../assets/images/me/xgmm@2x.png"),
           title: "修改密码",
           value: "",
           toPath: ""
         },
         {
-          icon: require("../assets/images/me/wdkf@2x.png"),
+          icon: require("../../assets/images/me/wdkf@2x.png"),
           title: "我的客服",
           value: "",
           toPath: ""

@@ -11,6 +11,11 @@
 </template>
 <script>
 // import 'videojs-flash'
+import { videoPlayer } from "vue-video-player";
+import "video.js/dist/video-js.css";
+// import VideoPlayer from "vue-video-player";
+// require("video.js/dist/video-js.css");
+// require("vue-video-player/src/custom-theme.css");
 
 export default {
   name: "videoPlyer",
@@ -29,9 +34,8 @@ export default {
         sources: [
           {
             type: "",
-            src:"../assets/images/aaa.mp4"
-            //src:
-              //"http://vfx.mtime.cn/Video/2019/03/19/mp4/190319222227698228.mp4" //url地址
+            // src: "../assets/images/aaa.mp4"
+            src:"http://vfx.mtime.cn/Video/2019/03/19/mp4/190319222227698228.mp4" //url地址
           }
         ],
         poster: "http://pic37.nipic.com/20140113/8800276_184927469000_2.png", //你的封面地址
@@ -45,6 +49,9 @@ export default {
         }
       }
     };
+  },
+  components: {
+    "video-player": videoPlayer
   }
 };
 </script>

@@ -52,9 +52,9 @@ export default {
       code: "",
       pwd: "",
       confirmPwd: "",
-      phoneImg: require("../assets/images/phone.png"),
-      codeImg: require("../assets/images/code.png"),
-      pwdImg: require("../assets/images/pwd.png")
+      phoneImg: require("../../assets/images/phone.png"),
+      codeImg: require("../../assets/images/code.png"),
+      pwdImg: require("../../assets/images/pwd.png")
     };
   },
   methods: {

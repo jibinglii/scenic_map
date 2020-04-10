@@ -3,10 +3,10 @@
     <v-map></v-map>
     <div class="dw_div">
       <div class="bj">
-        <img src="../assets/images/bj.png" alt srcset />
+        <img src="../../assets/images/bj.png" alt srcset />
       </div>
       <div class="dw">
-        <img src="../assets/images/dw.png" alt srcset />
+        <img src="../../assets/images/dw.png" alt srcset />
       </div>
     </div>
     <van-tabbar v-model="active" active-color="#00c8b0">
@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import VMap from "../components/VMap";
+import VMap from "../../components/VMap";
 import { Tabbar, TabbarItem, Button, Popup } from "vant";
 export default {
   name: "navigation",
@@ -57,23 +57,23 @@ export default {
       tabs: [
         {
           text: "驾车",
-          normal: require("../assets/images/jc_h.png"),
-          active: require("../assets/images/jc.png")
+          normal: require("../../assets/images/jc_h.png"),
+          active: require("../../assets/images/jc.png")
         },
         {
           text: "公交",
-          normal: require("../assets/images/gj_h.png"),
-          active: require("../assets/images/gj.png")
+          normal: require("../../assets/images/gj_h.png"),
+          active: require("../../assets/images/gj.png")
         },
         {
           text: "步行",
-          normal: require("../assets/images/bx_h.png"),
-          active: require("../assets/images/bx.png")
+          normal: require("../../assets/images/bx_h.png"),
+          active: require("../../assets/images/bx.png")
         },
         {
           text: "骑行",
-          normal: require("../assets/images/qx_h.png"),
-          active: require("../assets/images/qx.png")
+          normal: require("../../assets/images/qx_h.png"),
+          active: require("../../assets/images/qx.png")
         }
       ],
       shopList: [

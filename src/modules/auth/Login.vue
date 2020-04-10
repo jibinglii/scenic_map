@@ -34,13 +34,13 @@
             </router-link>
         </van-col>-->
         <van-col span="8">
-          <img src="../assets/images/wx.png" alt @click="wechat" />
+          <img src="../../assets/images/wx.png" alt @click="wechat" />
         </van-col>
         <van-col span="8">
-          <img src="../assets/images/qq.png" alt @click="qq" />
+          <img src="../../assets/images/qq.png" alt @click="qq" />
         </van-col>
         <van-col span="8">
-          <img src="../assets/images/wb.png" alt @click="wb" />
+          <img src="../../assets/images/wb.png" alt @click="wb" />
         </van-col>
       </van-row>
     </div>
@@ -56,8 +56,8 @@ export default {
     return {
       tel: "",
       pwd: "",
-      userImg: require("../assets/images/user.png"),
-      pwdImg: require("../assets/images/password.png")
+      userImg: require("../../assets/images/user.png"),
+      pwdImg: require("../../assets/images/password.png")
       // cols:[
       //   {
       //     imgUrl:require('../assets/images/wx.png')

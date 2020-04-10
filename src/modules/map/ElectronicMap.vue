@@ -4,10 +4,10 @@
     <v-map></v-map>
     <div class="dw_div">
       <div class="bj">
-        <img src="../assets/images/bj.png" alt srcset />
+        <img src="../../assets/images/bj.png" alt srcset />
       </div>
       <div class="dw">
-        <img src="../assets/images/dw.png" alt srcset />
+        <img src="../../assets/images/dw.png" alt srcset />
       </div>
     </div>
     <van-tabbar v-model="active" active-color="#00c8b0">
@@ -38,11 +38,11 @@
 </template>
 
 <script>
-import VMap from "../components/VMap";
-import Search from "../components/Search";
+import VMap from "../../components/VMap";
+import Search from "../../components/Search";
 import { Tabbar, TabbarItem, Popup, Button } from "vant";
 export default {
-  name: "scenicSpot",
+  name: "electronicMap",
   data() {
     return {
       active: "",
@@ -50,18 +50,18 @@ export default {
       tabs: [
         {
           text: "推荐路线",
-          normal: require("../assets/images/lx_h.png"),
-          active: require("../assets/images/lx.png")
+          normal: require("../../assets/images/lx_h.png"),
+          active: require("../../assets/images/lx.png")
         },
         {
           text: "景区列表",
-          normal: require("../assets/images/jq_h.png"),
-          active: require("../assets/images/jq.png")
+          normal: require("../../assets/images/jq_h.png"),
+          active: require("../../assets/images/jq.png")
         },
         {
           text: "语言类型",
-          normal: require("../assets/images/yy_h.png"),
-          active: require("../assets/images/yy.png")
+          normal: require("../../assets/images/yy_h.png"),
+          active: require("../../assets/images/yy.png")
         }
       ],
       shopList: [

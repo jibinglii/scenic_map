@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import weather from "../components/weather.vue";
+import weather from "../../components/weather.vue";
 import { Col, Row, Tab, Tabs, Icon } from "vant";
 // 引入基本模板
 let echarts = require("echarts/lib/echarts");

@@ -31,7 +31,7 @@
 </template>
 <script>
 import { Col, Row, Tab, Tabs } from "vant";
-import vcircle from "../components/vcircle.vue";
+import vcircle from "../../components/vcircle.vue";
 
 // 引入基本模板
 let echarts = require("echarts/lib/echarts");
@@ -43,7 +43,7 @@ export default {
   name: "packData",
   data() {
     return {
-      waveBg: require("../assets/images/wave.png"),
+      waveBg: require("../../assets/images/wave.png"),
       weavs: [],
       active: 1,
       tabs: [

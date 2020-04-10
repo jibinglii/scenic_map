@@ -11,7 +11,7 @@
 </template>
 <script>
 import { Tab, Tabs } from "vant";
-import VideoPlyer from '../components/VideoPlyer'
+import VideoPlyer from '../../components/VideoPlyer'
 export default {
   name: "videoDetails",
   data() {

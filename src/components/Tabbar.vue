@@ -23,7 +23,7 @@ export default {
           active: require("../assets/images/home.png")
         },
         {
-          name: "vData",
+          name: "vdata",
           title: "数据",
           normal: require("../assets/images/data_h.png"),
           active: require("../assets/images/data.png")
@@ -42,7 +42,7 @@ export default {
   created() {
     if (this.$route.name == "home") {
       this.active = 0;
-    } else if (this.$route.name == "vData") {
+    } else if (this.$route.name == "vdata") {
       this.active = 1;
     } else if (this.$route.name == "me") {
       this.active = 2;
