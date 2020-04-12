@@ -6,10 +6,7 @@
   </div>
 </template>
 <script>
-// import L from "leaflet";
-// import { WebMap } from "@supermap/vue-iclient-leaflet";
-// import { SmTileLayer } from "@supermap/vue-iclient-leaflet";
-// import { tiledMapLayer } from "@supermap/vue-iclient-leaflet";
+
 export default {
   name: "vmap",
   data() {
@@ -23,10 +20,6 @@ export default {
       }
     };
   },
-  // components: {
-  //   "sm-web-map": WebMap,
-  //   "sm-tile-layer": SmTileLayer
-  // }
 };
 </script>
 <style lang="scss" scoped>
