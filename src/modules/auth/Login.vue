@@ -57,7 +57,7 @@
 
 <script>
 import { Field, Cell, CellGroup, Button, Divider, Col, Row } from "vant";
-import { mapState } from 'vuex'
+import { mapActions } from 'vuex'
 export default {
 
   name: "login",
@@ -82,6 +82,7 @@ export default {
     };
   },
   methods: {
+     ...mapActions(['loginAction']),
     login () {
       if (this.tel === '') {
         this.$toast('请输入手机号')
@@ -113,13 +114,15 @@ export default {
         if (res.data.code === 200) {
           this.$toast('登录成功')
           const userId = res.data.data.token
+          console.log(userId)
           //将用户名和token存放在sessionStorage中
-          sessionStorage.setItem('userName', res.data.data.account)
-          sessionStorage.setItem('userToken', res.data.data.token)
+          // sessionStorage.setItem('userName', res.data.data.account)
+          localStorage.setItem('Authorization', res.data.data.token)
           // 将用户名放入vuex
+          this.loginAction()
           console.log(this.$store.state)
-          this.$store.dispatch('setUser', res.data.data.account)
-          this.$store.dispatch('setToken', res.data.data.token)
+          // this.$store.dispatch('setUser', res.data.data.account)
+          // this.$store.dispatch('setToken', res.data.data.token)
           this.$router.push({
             // name:'home'
           })

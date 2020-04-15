@@ -1,6 +1,5 @@
 // 应用mutation
-export const setUser = ({
-  commit
-}, user) => {
-  commit('userStatus', user)
+export const loginAction = ({commit}) => {
+  commit('changeLogin',true);
 }
+

@@ -4,6 +4,7 @@ import http from './utils/http'
 import Vue from 'vue'
 import Root from './root'
 import router from './router'
+import store from './vuex/store'
 import Toast from 'vant/lib/toast'
 import 'vant/lib/toast/style'
 import VueiClient from '@supermap/vue-iclient-leaflet'
@@ -19,6 +20,7 @@ Vue.prototype.$toast = Toast
 
 setTimeout(() => {
   new Vue({
+    store,
     router,
     render: h => h(Root)
   }).$mount('#app')
