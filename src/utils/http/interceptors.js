@@ -15,7 +15,7 @@ export default http => {
   // https://github.com/mzabriskie/axios#interceptors
   http.interceptors.response.use(
     response => {
-      return response.data
+      return response
     },
     /**
      * This is a central point to handle all

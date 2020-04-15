@@ -27,13 +27,13 @@ export default {
           id: 1,
           title: "华清池-唐代封建帝王游幸的别宫",
           view: 45,
-          videoBg: require("../../assets/images/timg.png")
+          videoBg: require("../../assets/images/timg.jpg")
         },
         {
           id: 2,
           title: "兵马俑-秦始皇兵马俑陪葬坑",
           view: 45,
-          videoBg: require("../../assets/images/timg.png")
+          videoBg: require("../../assets/images/timg.jpg")
         }
       ]
     };
@@ -70,8 +70,9 @@ export default {
         width: 0.4rem;
         padding-right: 5px;
       }
-      span{
-          color: #fff;
+      span {
+        color: #fff;
+        padding-top: 3px;
       }
     }
   }

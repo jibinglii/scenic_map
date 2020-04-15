@@ -77,7 +77,7 @@ export default {
           time: "24小时",
           address: "西安市新城区东新街139号",
           telephone: "029-34343434",
-          shopImg: require("../../assets/images/shop.png"),
+          shopImg: require("../../assets/images/shop.jpg"),
           url: "hotelDetails"
         },
         {
@@ -88,7 +88,7 @@ export default {
           time: "24小时",
           address: "西安市新城区东新街139号",
           telephone: "029-34343434",
-          shopImg: require("../../assets/images/shop.png"),
+          shopImg: require("../../assets/images/shop.jpg"),
           url: ""
         },
         {
@@ -99,7 +99,7 @@ export default {
           time: "24小时",
           address: "西安市新城区东新街139号",
           telephone: "029-34343434",
-          shopImg: require("../../assets/images/shop.png"),
+          shopImg: require("../../assets/images/shop.jpg"),
           url: ""
         }
       ]

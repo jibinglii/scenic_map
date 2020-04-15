@@ -6,25 +6,31 @@ h5,
 h6 {
   margin: 0;
 }
+
 p {
   margin-bottom: 0;
 }
 
 $bgColor: #77d2f7;
+$color: #78d2f7;
+
 .form_div {
-  $color: #78d2f7 !global;
   .van-tab {
     color: $color;
   }
+
   .van-tabs--line .van-tabs__wrap {
     position: relative;
+
     .van-tabs__nav {
       background-color: inherit;
+
       .van-tabs__line {
         background-color: $color;
       }
     }
   }
+
   .van-tabs--line .van-tabs__wrap::before {
     content: "";
     position: absolute;
@@ -35,6 +41,7 @@ $bgColor: #77d2f7;
     border: solid 0px $color;
     background: $color;
   }
+
   .van-button {
     background: linear-gradient(to right, #3fc6ab, #1583e3);
     background: -webkit-linear-gradient(to right, #3fc6ab, #1583e3);
@@ -42,18 +49,22 @@ $bgColor: #77d2f7;
     border: none;
     // border-radius: 44px;
   }
+
   ._btn {
     width: 88%;
     margin: 0.35rem auto;
     box-shadow: 3px 4px 14px #b8e6dd;
   }
+
   .van-tabs__content {
     margin-top: 30px;
+
     .van-cell-group {
       width: 88%;
       margin: 15px auto;
       border: solid 1px #78d2f7;
       border-radius: 44px;
+
       .van-cell {
         width: 88%;
         margin: auto;
@@ -61,51 +72,62 @@ $bgColor: #77d2f7;
       }
     }
   }
+
   .row_div .van-row {
     // width: 90%;
     margin: 3% auto;
     padding: 0 5%;
     align-items: center;
   }
+
   img {
     vertical-align: inherit;
   }
 }
+
 ._div {
   .van-tab--active {
     color: $color;
   }
+
   .van-tabs__line {
     background-color: $color;
   }
 }
+
 .oDiv {
   width: 100%;
   height: 50px;
 }
+
 .weather_div,
 .top_bg {
   .van-tabs__nav {
     background-color: #e2f6fe;
   }
+
   .van-tabs--line .van-tabs__wrap {
     width: 70%;
     height: 36px;
     line-height: 36px;
     margin: 0.5rem auto;
     border: solid 1px #808080;
+
     .van-tab {
       line-height: 36px;
     }
+
     .van-tab--active {
       background: #7a7b7b;
       color: #fff;
     }
+
     .van-tabs__line {
       display: none;
     }
   }
 }
+
 .top_bg {
   background: #e2f6fe;
   position: fixed;
@@ -113,6 +135,7 @@ $bgColor: #77d2f7;
   height: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
+
   .top {
     display: flex;
     flex-direction: column;
@@ -123,9 +146,11 @@ $bgColor: #77d2f7;
     color: #fff;
     background: #77d2f7;
     position: relative;
+
     h3 {
       color: #fff;
     }
+
     .waveBg {
       width: 100%;
       height: 2.3rem;
@@ -135,46 +160,56 @@ $bgColor: #77d2f7;
       bottom: 0;
     }
   }
+
   .bottom {
     margin-top: -0.5rem;
     color: #333;
   }
 }
+
 .van-hairline--top-bottom::after,
 .van-hairline-unset--top-bottom::after {
   border-width: 0px 0;
 }
+
 .van-cell {
   width: auto;
 }
+
 .videoDetails {
   .van-tabs__wrap {
     border-bottom: solid 1px #f2f2f2;
   }
 }
+
 .search {
   .van-search {
     background-color: transparent;
   }
 }
+
 // 地图放大缩小按钮位置
 .leaflet-top.leaflet-left {
   top: 15% !important;
 }
+
 .navigator {
   .content {
     .van-tabbar--fixed {
       bottom: 8%;
       border-bottom: solid 1px #f1f1f1;
       padding-bottom: 19px;
+
       .van-tabbar-item__text {
         line-height: 1.5;
         font-weight: 200;
         color: #bcbcbc;
       }
+
       .van-tabbar-item--active {
         .van-tabbar-item__text {
           color: #00c8b0;
+
           .time {
             span {
               color: #00c8b0;
@@ -185,24 +220,30 @@ $bgColor: #77d2f7;
     }
   }
 }
+
 .van-overlay {
   background-color: rgba(0, 0, 0, 0.1);
 }
+
 .electronicMap {
   .van-button {
     background: #00d4c1;
     border: solid 1px #00d4c1;
   }
+
   .van-tabbar {
     border-top: solid 1px #f2f2f2;
+
     .van-tabbar-item {
       flex-direction: inherit;
       font-size: 14px;
       position: relative;
+
       .van-tabbar-item__icon {
         margin-right: 5px;
       }
     }
+
     .van-tabbar-item::after {
       content: "";
       width: 1px;
@@ -212,13 +253,15 @@ $bgColor: #77d2f7;
       right: 0;
       top: 5px;
     }
+
     .van-tabbar-item:nth-of-type(3)::after {
       border: none;
     }
   }
 }
-.search_input{
-  .van-icon__image{
+
+.search_input {
+  .van-icon__image {
     vertical-align: inherit;
   }
 }

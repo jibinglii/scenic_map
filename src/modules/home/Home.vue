@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <img src="../../assets/images/home_banner.png" alt class="banner" />
+    <img src="../../assets/images/home_banner.jpg" alt class="banner" />
     <div class="row_div">
       <van-row type="flex" justify="space-around">
         <van-col v-for="(menu,index) in menus" :key="index">
@@ -108,29 +108,29 @@ export default {
       list: [
         {
           id: 1,
-          bg: require("../../assets/images/hqc.png"),
+          bg: require("../../assets/images/hqc.jpg"),
           title: "华清池"
         },
         {
           id: 2,
-          bg: require("../../assets/images/bmy.png"),
+          bg: require("../../assets/images/bmy.jpg"),
           title: "秦岭兵马俑"
         }
       ],
-      flow:[]
+      flow: []
     };
   },
-  // methods: {
-  //   async flowInfo() {
-  //     await this.$http.get("/api_xcx/home/index").then(data => {
-  //       this.flow = data;
-  //       console.log(data)
-  //     });
-  //   }
-  // },
-  // created(){
-  //   this.flowInfo()
-  // },
+  methods: {
+    // async flowInfo() {
+    //   await this.$http.get("/api_xcx/home/index").then(data => {
+    //     this.flow = data;
+    //     console.log(data)
+    //   });
+    // }
+  },
+  created(){
+    // this.flowInfo()
+  },
   components: {
     tabbar: tabbar,
     "van-col": Col,
@@ -146,7 +146,7 @@ export default {
 }
 .banner {
   width: 100%;
-  height: 4rem;
+  height: 4.64rem;
 }
 .row_div {
   background: #fff;

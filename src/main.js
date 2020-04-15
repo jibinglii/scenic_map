@@ -6,8 +6,8 @@ import Root from './root'
 import router from './router'
 import Toast from 'vant/lib/toast'
 import 'vant/lib/toast/style'
-import VueiClient from '@supermap/vue-iclient-leaflet';
-Vue.use(VueiClient);
+import VueiClient from '@supermap/vue-iclient-leaflet'
+Vue.use(VueiClient)
 // 引入自定义样式
 import './assets/scss/resetVant.scss'
 import './assets/js/size.js'

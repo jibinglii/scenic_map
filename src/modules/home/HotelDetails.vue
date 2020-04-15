@@ -47,12 +47,12 @@ export default {
       current: 0,
       swipeData: [
         {
-          images: require("../../assets/images/shop_img.png"),
+          images: require("../../assets/images/shop_img.jpg"),
           name: "西安国际大酒店",
           xj: "5星级"
         },
         {
-          images: require("../../assets/images/shop_img.png"),
+          images: require("../../assets/images/shop_img.jpg"),
           name: "西安国际大酒店",
           xj: "5星级"
         }

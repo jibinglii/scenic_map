@@ -1,46 +1,54 @@
 <template>
   <div>
     <van-cell-group>
-      <van-field
-        v-model="tel"
-        center
-        clearable
-        :left-icon="userImg"
-        placeholder="请输入用户名"
-        type="tel"
-      ></van-field>
+      <van-field v-model="tel"
+                 center
+                 clearable
+                 :left-icon="userImg"
+                 placeholder="请输入用户名"
+                 type="tel"></van-field>
     </van-cell-group>
     <van-cell-group>
-      <van-field
-        v-model="pwd"
-        center
-        clearable
-        :left-icon="pwdImg"
-        placeholder="请输入密码"
-        type="password"
-      ></van-field>
+      <van-field v-model="pwd"
+                 center
+                 clearable
+                 :left-icon="pwdImg"
+                 placeholder="请输入密码"
+                 type="password"></van-field>
     </van-cell-group>
-    <van-button round type="primary" class="login_btn _btn">登录</van-button>
+    <van-button round
+                type="primary"
+                class="login_btn _btn"
+                @click="login()"
+                :loading="loading"
+                loading-text="登录...">登录</van-button>
 
     <div class="pwd_text">
       <router-link to>忘记密码?</router-link>
     </div>
     <div class="row_div">
       <van-divider :style="{ color: '#78D2F7', borderColor: '#78D2F7', padding: '0 16px' }">第三方登录</van-divider>
-      <van-row gutter="20" :style="{marginLeft: 0,marginRight:0}">
+      <van-row gutter="20"
+               :style="{marginLeft: 0,marginRight:0}">
         <!-- <van-col span="8" v-for="(col,index) in cols" :key="index">
           <router-link :to={}>
             <img :src="col.imgUrl" />
             </router-link>
         </van-col>-->
         <van-col span="8">
-          <img src="../../assets/images/wx.png" alt @click="wechat" />
+          <img src="../../assets/images/wx.png"
+               alt
+               @click="wechat" />
         </van-col>
         <van-col span="8">
-          <img src="../../assets/images/qq.png" alt @click="qq" />
+          <img src="../../assets/images/qq.png"
+               alt
+               @click="qq" />
         </van-col>
         <van-col span="8">
-          <img src="../../assets/images/wb.png" alt @click="wb" />
+          <img src="../../assets/images/wb.png"
+               alt
+               @click="wb" />
         </van-col>
       </van-row>
     </div>
@@ -49,13 +57,15 @@
 
 <script>
 import { Field, Cell, CellGroup, Button, Divider, Col, Row } from "vant";
-
+import { mapState } from 'vuex'
 export default {
+
   name: "login",
-  data() {
+  data () {
     return {
-      tel: "",
-      pwd: "",
+      tel: "15706086571",
+      pwd: "123456",
+      loading: false,
       userImg: require("../../assets/images/user.png"),
       pwdImg: require("../../assets/images/password.png")
       // cols:[
@@ -72,15 +82,61 @@ export default {
     };
   },
   methods: {
+    login () {
+      if (this.tel === '') {
+        this.$toast('请输入手机号')
+        return
+      } else if (!/^[1][3,4,5,7,8][0-9]{9}$/.test(this.tel)) {
+        this.$toast('请输入正确的手机号')
+        return
+      }
+
+      if (this.pwd === '') {
+        this.$toast('请输入密码')
+        return
+      } else if (this.pwd.length < 6) {
+        this.$toast('请输入6-12位密码')
+        return
+      }
+
+      this.reallR()
+    },
+    async reallR () {
+      await this.$http.post('/userinfo/login', {
+        "data": JSON.stringify({
+          "username": this.tel,
+          "password": this.pwd
+        })
+      }).then(res => {
+        this.loading = false
+        console.log(res)
+        if (res.data.code === 200) {
+          this.$toast('登录成功')
+          const userId = res.data.data.token
+          //将用户名和token存放在sessionStorage中
+          sessionStorage.setItem('userName', res.data.data.account)
+          sessionStorage.setItem('userToken', res.data.data.token)
+          // 将用户名放入vuex
+          console.log(this.$store.state)
+          this.$store.dispatch('setUser', res.data.data.account)
+          this.$store.dispatch('setToken', res.data.data.token)
+          this.$router.push({
+            // name:'home'
+          })
+        } else {
+          this.$toast(res.data.info)
+        }
+      })
+    },
     // 第三方登录
-    wechat() {
+    wechat () {
       // location.href =
       //   window.API_ROOT + "/api/v2/oauth/wechat/" + window.STORE_ID;
     },
-    qq() {
+    qq () {
       // location.href = window.API_ROOT + "/api/v2/oauth/qq/" + window.STORE_ID;
     },
-    wb() {}
+    wb () { }
   },
   components: {
     "van-field": Field,

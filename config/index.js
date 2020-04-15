@@ -10,15 +10,15 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {
-      '/api': {  //使用"/api"来代替"http://f.apiplus.c" 
-        target: 'http://eaeducation.net', //源地址 
-        changeOrigin: true, //改变源 
-        pathRewrite: {
-          '^/api': 'http://eaeducation.net' //路径重写 
-        }
-      }
-    },
+    // proxyTable: {
+    // '/api': { //使用"/api"来代替"http://f.apiplus.c" 
+    //   target: 'http://119.3.248.197:8084', //源地址 
+    //   changeOrigin: true, //改变源 
+    //   pathRewrite: {
+    //     '^/api': 'http://119.3.248.197:8084' //路径重写 
+    //   }
+    //   }
+    // },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
@@ -57,7 +57,7 @@ module.exports = {
      * Source Maps
      */
 
-    productionSourceMap: true,
+    productionSourceMap: false,
     // https://webpack.js.org/configuration/devtool/#production
     devtool: '#source-map',
 
