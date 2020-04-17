@@ -57,7 +57,7 @@
 
 <script>
 import { Field, Cell, CellGroup, Button, Divider, Col, Row } from "vant";
-import { mapActions } from 'vuex'
+// import { mapActions } from 'vuex'
 export default {
 
   name: "login",
@@ -82,7 +82,7 @@ export default {
     };
   },
   methods: {
-     ...mapActions(['loginAction']),
+    // ...mapActions(['loginAction']),
     login () {
       if (this.tel === '') {
         this.$toast('请输入手机号')
@@ -104,30 +104,25 @@ export default {
     },
     async reallR () {
       await this.$http.post('/userinfo/login', {
-        "data": JSON.stringify({
-          "username": this.tel,
-          "password": this.pwd
-        })
+        "username": this.tel,
+        "password": this.pwd
       }).then(res => {
         this.loading = false
         console.log(res)
         if (res.data.code === 200) {
           this.$toast('登录成功')
-          const userId = res.data.data.token
-          console.log(userId)
           //将用户名和token存放在sessionStorage中
-          // sessionStorage.setItem('userName', res.data.data.account)
-          localStorage.setItem('Authorization', res.data.data.token)
+          localStorage.setItem('setToken', res.data.data.token)
+          localStorage.setItem('setUser', res.data.data.loginMark)
+          // localStorage.setItem('userId', res.data.data.userId)
           // 将用户名放入vuex
-          this.loginAction()
-          console.log(this.$store.state)
-          // this.$store.dispatch('setUser', res.data.data.account)
-          // this.$store.dispatch('setToken', res.data.data.token)
-          this.$router.push({
-            // name:'home'
-          })
+          this.$store.dispatch('setUser', res.data.data.loginMark)
+          this.$store.dispatch('setToken', res.data.data.token)
+          this.$store.dispatch('loginAction', true)
+          this.$router.back()
         } else {
           this.$toast(res.data.info)
+
         }
       })
     },

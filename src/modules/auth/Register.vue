@@ -21,8 +21,7 @@
                  center
                  clearable
                  :left-icon="codeImg"
-                 placeholder="验证码"
-                 ></van-field>
+                 placeholder="验证码"></van-field>
     </van-cell-group>
     <van-cell-group>
       <van-field v-model="pwd"
@@ -30,8 +29,7 @@
                  clearable
                  :left-icon="pwdImg"
                  placeholder="请输入6-12位密码"
-                 type="password"
-                 ></van-field>
+                 type="password"></van-field>
     </van-cell-group>
     <van-cell-group>
       <van-field v-model="confirmPwd"
@@ -71,7 +69,7 @@ export default {
     };
   },
   computed: {
-  
+
   },
   methods: {
     sendCode () {
@@ -111,7 +109,7 @@ export default {
       if (this.tel === '') {
         this.$toast('请输入手机号')
         return
-      }else if(!/^[1][3,4,5,7,8][0-9]{9}$/.test(this.tel)){
+      } else if (!/^[1][3,4,5,7,8][0-9]{9}$/.test(this.tel)) {
         this.$toast('请输入正确的手机号')
         return
       }
@@ -119,38 +117,36 @@ export default {
       if (this.pwd === '') {
         this.$toast('请输入密码')
         return
-      }else if(this.pwd.length<6){
-         this.$toast('请输入6-12位密码')
+      } else if (this.pwd.length < 6) {
+        this.$toast('请输入6-12位密码')
         return
       }
 
-      if(this.confirmPwd ===''){
+      if (this.confirmPwd === '') {
         this.$toast('请再次输入密码')
-      }else if(this.confirmPwd !== this.pwd){
-         this.$toast('两次密码不一致')
-         this.confirmPwd = ''
+      } else if (this.confirmPwd !== this.pwd) {
+        this.$toast('两次密码不一致')
+        this.confirmPwd = ''
       }
-      if (this.sms === '' ) {
-          this.$toast('请输入验证码')
-          return
+      if (this.sms === '') {
+        this.$toast('请输入验证码')
+        return
       }
       this.reallR()
     },
     async reallR () {
       this.zhud = true;
       await this.$http.post('/userinfo/register', {
-        "data": JSON.stringify({
-          "username": this.tel, 
-          "password": this.pwd
-          }) 
+        "username": "15706086571",
+        "password": "123456"
       }).then(res => {
         this.zhud = false
         this.loading = false
         console.log(res)
         if (res.code === 200) {
-          this.$toast('注册成功,请登录')
+          this.$toast(res.data.info)
         } else {
-        this.$toast(res.data.info)
+          this.$toast(res.data.info)
         }
       })
     }

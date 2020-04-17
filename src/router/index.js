@@ -1,11 +1,23 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import { routes as auth } from '../modules/auth'
-import { routes as home } from '../modules/home'
-import { routes as vdata } from '../modules/vdata'
-import { routes as me } from '../modules/me'
-import { routes as map } from '../modules/map'
-import { routes as video } from '../modules/video'
+import {
+  routes as auth
+} from '../modules/auth'
+import {
+  routes as home
+} from '../modules/home'
+import {
+  routes as vdata
+} from '../modules/vdata'
+import {
+  routes as me
+} from '../modules/me'
+import {
+  routes as map
+} from '../modules/map'
+import {
+  routes as video
+} from '../modules/video'
 
 Vue.use(Router)
 
@@ -26,34 +38,22 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  console.log(to.meta.requiresAuth)
-  // if (to.path === '/login') {
-  //   next();
-  // } else {
-  //   let token = localStorage.getItem('Authorization');
-
-  //   if (token === 'null' || token === '') {
-  //     next('/login');
-  //   } else {
-  //     next();
-  //   }
-  // }
-  if (to.meta.requiresAuth) {
-    console.log(to.meta.requiresAuth)
-    //这里判断用户是否登录，验证本地存储是否有token
-    let token = localStorage.getItem('Authorization');
-    console.log(token)
-    if (!token) { // 判断当前的token是否存在
-      
-      next({
-        path: '/login',
-        query: { redirect: to.fullPath }
+  console.log(to)
+  if (to.meta.requiresAuth === true) {
+    let token = localStorage.getItem('setToken');
+    // var token = this.$store.state.token
+    if (token == null || token == '') { // 判断当前的token是否存在
+      return next({
+        path: '/vlogin',
+        // query: {
+        //   redirect: to.fullPath
+        // }
       })
     } else {
       next()
     }
   } else {
-    next() // 确保一定要调用 next()
+    next()
   }
 
 });

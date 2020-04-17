@@ -1,6 +1,8 @@
 <template>
   <div class="form_div">
-    <img src="../../assets/images/login_top.jpg" class="login_top_img" alt />
+    <img src="../../assets/images/login_top.jpg"
+         class="login_top_img"
+         alt />
     <!-- <van-button type="primary">默认按钮</van-button> -->
     <h3>{{title}}</h3>
     <van-tabs v-model="active">
@@ -20,9 +22,9 @@ import Login from "./Login";
 import Register from "./Register";
 export default {
   name: "vlogin",
-  data() {
+  data () {
     return {
-      active: 1,
+      active: 0,
       title: "景区一张图"
     };
   },

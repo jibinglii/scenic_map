@@ -1,8 +1,19 @@
-export default [
-  {
+export default [{
     path: 'me',
     name: 'me',
-    component: () => import('./Me'),
-    meta: { requiresAuth: false } // 添加表示需要验证
-  }
+    meta: {
+      requiresAuth: false
+    }, // 添加表示需要验证
+    component: () => import('./Me')
+
+  },
+  {
+    path: 'modifypwd',
+    name: 'modifypwd',
+    meta: {
+      requiresAuth: true
+    },
+    component: () => import('./Modifypwd')
+
+  },
 ]

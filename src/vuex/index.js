@@ -3,14 +3,12 @@ import Vuex from 'vuex'
 import * as getters from './getters'
 import * as mutations from './mutations'
 import * as actions from './actions'
-
+import state from './state'
+// import plugin from './plugin'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
-  // 定义状态
-  state: {
-    isLogin: false,
-  },
+  state,
   getters,
   mutations,
   actions,

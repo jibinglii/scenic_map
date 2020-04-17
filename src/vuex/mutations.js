@@ -2,3 +2,9 @@
 export const changeLogin = (state, status) => {
   state.isLogin = status
 }
+export const setUser = (state, data) => {
+  state.user = data
+}
+export const setToken = (state, data) => {
+  state.token = data
+}
