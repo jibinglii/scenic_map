@@ -8,3 +8,6 @@ export const setUser = (state, data) => {
 export const setToken = (state, data) => {
   state.token = data
 }
+export const setfId = (state, data) => {
+  state.fId = data
+}

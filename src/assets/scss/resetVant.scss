@@ -265,3 +265,59 @@ $color: #78d2f7;
     vertical-align: inherit;
   }
 }
+
+// 音频处理
+.aplayer {
+  .aplayer-info {
+
+    .aplayer-controller {
+      flex-direction: column;
+
+      .aplayer-bar-wrap {
+        width: 100%;
+        padding: 10px 0;
+
+        .aplayer-bar {
+          height: 5px;
+
+          .aplayer-loaded,
+          .aplayer-played {
+            height: 5px;
+          }
+
+          .aplayer-loaded {
+            background: #dedede !important;
+          }
+
+          .aplayer-played {
+            background: #01d4c1 !important;
+          }
+
+          .aplayer-thumb {
+            top: 1px;
+            background: #01d4c1;
+            border-color: #01d4c1 !important;
+          }
+        }
+
+
+      }
+
+      .aplayer-time {
+        width: 100%;
+      }
+
+      .aplayer-time-inner {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+
+    .aplayer-music,
+    .aplayer-icon {
+      display: none;
+    }
+  }
+
+
+}

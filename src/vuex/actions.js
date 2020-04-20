@@ -15,3 +15,8 @@ export const setToken = ({
 }, data) => {
   commit('setToken', data)
 }
+export const setfId = ({
+  commit
+}, data) => {
+  commit('setfId', data)
+}

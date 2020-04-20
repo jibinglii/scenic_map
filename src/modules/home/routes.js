@@ -36,4 +36,12 @@ export default [{
     },
     component: () => import('./HotelDetails')
   },
+  {
+    path: 'scenicDetails',
+    name: 'scenicDetails',
+    meta: {
+      requiresAuth: true
+    },
+    component: () => import('./ScenicDetails')
+  },
 ]

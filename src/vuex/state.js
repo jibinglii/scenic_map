@@ -1,5 +1,6 @@
 export default {
   user: '',
   isLogin: false,
-  token: null
+  token: null,
+  fId: 0
 }
