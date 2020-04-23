@@ -16,7 +16,11 @@
               </router-link>
             </h4>
             <h4 v-else>{{username}}</h4>
-            <p>简介：{{introduce}}</p>
+            <router-link :to="{name:'userupdata'}"
+                         v-if="!$store.state.isLogin">
+              <p>简介：{{introDefault}}</p>
+            </router-link>
+            <p v-else>简介：{{introduce}}</p>
           </div>
         </div>
         <div class="user_right">
@@ -54,7 +58,8 @@ export default {
   data () {
     return {
       username: "",
-      introduce: "我，挺好的我，挺好的我，挺好的我，挺好的我，挺好的我，挺好的",
+      introDefault: "点击添加简介",
+      introduce: "",
       defaultAvatar: require("../../assets/images/me/user.jpg"),
       userImg: '',
       waveBg: require("../../assets/images/wave.png"),
@@ -62,16 +67,16 @@ export default {
         {
           icon: require("../../assets/images/me/smrz@2x.png"),
           title: "实名认证",
-          value: "李笑笑",
+          value: "",
           toPath: "",
-          name: ''
+          name: 'userupdata'
         },
         {
           icon: require("../../assets/images/me/sjhm@2x.png"),
           title: "手机号码",
-          value: this.$store.state.user,
+          value: '',
           toPath: "",
-          name: ''
+          name: 'userupdata'
         },
         // {
         //   icon: require("../assets/images/me/scjl@2x.png"),
@@ -120,7 +125,10 @@ export default {
         }
       }).then(res => {
         console.log(res)
-        this.username = res.data.data.loginMark
+        this.username = res.data.data.F_RealName
+        this.introduce = res.data.data.F_Description
+        this.msgList[0].value = res.data.data.F_RealName
+        this.msgList[1].value = res.data.data.F_Account
       })
     },
     async avatar () {
@@ -150,6 +158,8 @@ export default {
         this.$store.dispatch('setUser', '')
         this.$store.dispatch('setToken', '')
         this.$store.state.isLogin = false
+        this.msgList[0].value = ''
+        this.msgList[1].value = ''
         this.$toast(res.data.info)
       })
     }
@@ -210,6 +220,8 @@ export default {
           overflow: hidden;
           font-size: 0.24rem;
           color: #fff;
+          text-align: left;
+          padding-left: 4px;
         }
       }
     }

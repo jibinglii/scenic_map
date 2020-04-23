@@ -1,9 +1,13 @@
 <template>
   <div class="main">
-    <img src="../../assets/images/home_banner.jpg" alt class="banner" />
+    <img src="../../assets/images/home_banner.jpg"
+         alt
+         class="banner" />
     <div class="row_div">
-      <van-row type="flex" justify="space-around">
-        <van-col v-for="(menu,index) in menus" :key="index">
+      <van-row type="flex"
+               justify="space-around">
+        <van-col v-for="(menu,index) in menus"
+                 :key="index">
           <router-link :to="{name: menu.name}">
             {{menu.url}}
             <img :src="menu.imgUrl" />
@@ -16,12 +20,15 @@
       <div class="top">
         <span>景点周边</span>
         <router-link :to="{name:'scenicSpot'}">
-          <img src="../../assets/images/more.png" alt />
+          <img src="../../assets/images/more.png"
+               alt />
         </router-link>
       </div>
       <div class="row_Div">
-        <van-row type="flex" justify="space-around">
-          <van-col v-for="(mear,index) in nearLists" :key="index">
+        <van-row type="flex"
+                 justify="space-around">
+          <van-col v-for="(mear,index) in nearLists"
+                   :key="index">
             <router-link :to="{name:'scenicSpot'}">
               <img :src="mear.imgUrl" />
               <p>{{mear.name}}</p>
@@ -33,15 +40,18 @@
     <div class="video">
       <div class="top">
         <span>实时视频展示</span>
-        <router-link :to="{name:'videoList'}">
-          <img src="../../assets/images/more.png" alt />
+        <router-link :to="{name:'videoList',params:{id:item_Id}}">
+          <img src="../../assets/images/more.png"
+               alt />
         </router-link>
       </div>
       <div class="list">
-        <div v-for="(item,index) in list" :key="index">
-          <router-link :to="{path:'/videodetails',query:{id:item.id}}">
-            <div class="item" :style="{'backgroundImage':'url('+item.bg+')'}">
-              <p>{{item.title}}</p>
+        <div v-for="(item,index) in list"
+             :key="index">
+          <router-link :to="{path:'/videodetails',query:{id:item.F_Id}}">
+            <div class="item"
+                 :style="{'backgroundImage':'url('+item.F_Image+')'}">
+              <p>{{item.F_Name}}</p>
             </div>
           </router-link>
         </div>
@@ -58,7 +68,7 @@ import { Col, Row } from "vant";
 
 export default {
   name: "home",
-  data() {
+  data () {
     return {
       menus: [
         {
@@ -106,31 +116,79 @@ export default {
         }
       ],
       list: [
-        {
-          id: 1,
-          bg: require("../../assets/images/hqc.jpg"),
-          title: "华清池"
-        },
-        {
-          id: 2,
-          bg: require("../../assets/images/bmy.jpg"),
-          title: "秦岭兵马俑"
-        }
+        // {
+        //   id: 1,
+        //   bg: require("../../assets/images/hqc.jpg"),
+        //   title: "华清池"
+        // },
+        // {
+        //   id: 2,
+        //   bg: require("../../assets/images/bmy.jpg"),
+        //   title: "秦岭兵马俑"
+        // }
       ],
-      flow: []
+      item_Id: 0
     };
   },
+  created () {
+    this.gissetting2d()
+    // this.scenicList()
+    // this.videolist()
+  },
   methods: {
-    // async flowInfo() {
-    //   await this.$http.get("/api_xcx/home/index").then(data => {
-    //     this.flow = data;
-    //     console.log(data)
-    //   });
-    // }
+    async gissetting2d () {
+      this.$toast.loading({
+        message: '加载中...',
+      });
+      var token = this.$store.state.token
+      var loginmark = this.$store.state.user
+      await this.$http.get('/gissetting/2d', {
+        params: {
+          token: token,
+          loginMark: loginmark
+        }
+
+      }).then(res => {
+        console.log(res)
+        this.$toast.clear()
+        let result = res.data.data
+        console.log(res.data.data)
+        this.fId = result.F_Id
+        this.$store.dispatch('setfId', this.fId)
+        this.scenicList()
+      })
+    },
+    async scenicList () {
+      var token = this.$store.state.token
+      var loginmark = this.$store.state.user
+      await this.$http.get('/gisscenicarea/getlist/' + this.fId, {
+        params: {
+          token: token,
+          loginMark: loginmark
+        }
+      }).then(res => {
+        console.log(res)
+        this.item_Id = res.data.data[0].F_Id
+        console.log(this.item_Id)
+        this.videolist()
+      })
+    },
+    async videolist () {
+      var token = this.$store.state.token
+      var loginmark = this.$store.state.user
+      var id = this.item_Id
+      await this.$http.get("/gisscenicarea/getimageslist/" + id, {
+        params: {
+          token: token,
+          loginMark: loginmark
+        }
+      }).then(res => {
+        console.log(res)
+        this.list = res.data.data
+      });
+    }
   },
-  created(){
-    // this.flowInfo()
-  },
+
   components: {
     tabbar: tabbar,
     "van-col": Col,

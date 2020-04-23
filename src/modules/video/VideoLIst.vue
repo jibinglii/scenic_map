@@ -1,17 +1,18 @@
 <template>
   <div class="list">
-    <div
-      class="list_item"
-      v-for="(item,index) in videoList"
-      :key="index"
-      :style="{backgroundImage:'url('+item.videoBg+')'}"
-    >
-      <router-link :to="{name:'videoDetails',query:{id:item.id}}">
-        <span class="title">{{item.title}}</span>
-        <img src="../../assets/images/play.png" alt class="play" />
+    <div class="list_item"
+         v-for="(item,index) in videoList"
+         :key="index"
+         :style="{backgroundImage:'url('+item.F_DefaultImage+')'}">
+      <router-link :to="{name:'videoDetails',query:{id:item.F_Id}}">
+        <span class="title">{{item.F_Name}}-{{item.F_Remarks}}</span>
+        <img src="../../assets/images/play.png"
+             alt
+             class="play" />
         <div class="viewed">
-          <img src="../../assets/images/person.png" alt />
-          <span>{{item.view}}</span>
+          <img src="../../assets/images/person.png"
+               alt />
+          <span>{{item.F_Clicks}}</span>
         </div>
       </router-link>
     </div>
@@ -20,23 +21,48 @@
 <script>
 export default {
   name: "videoList",
-  data() {
+  data () {
     return {
       videoList: [
-        {
-          id: 1,
-          title: "华清池-唐代封建帝王游幸的别宫",
-          view: 45,
-          videoBg: require("../../assets/images/timg.jpg")
-        },
-        {
-          id: 2,
-          title: "兵马俑-秦始皇兵马俑陪葬坑",
-          view: 45,
-          videoBg: require("../../assets/images/timg.jpg")
-        }
+        // {
+        //   id: 1,
+        //   title: "华清池-唐代封建帝王游幸的别宫",
+        //   view: 45,
+        //   videoBg: require("../../assets/images/timg.jpg")
+        // },
+        // {
+        //   id: 2,
+        //   title: "兵马俑-秦始皇兵马俑陪葬坑",
+        //   view: 45,
+        //   videoBg: require("../../assets/images/timg.jpg")
+        // }
       ]
     };
+  },
+  created () {
+    this.videoLists()
+  },
+  methods: {
+    async videoLists () {
+      this.$toast.loading({
+        message: '加载中...',
+      });
+      var token = this.$store.state.token
+      var loginmark = this.$store.state.user
+      var fId = this.$route.params.id
+      console.log(fId)
+      await this.$http.get('gisscenicarea/getvideolist/' + fId, {
+        params: {
+          token: token,
+          loginMark: loginmark
+        }
+      }).then(res => {
+        console.log(res)
+        this.$toast.clear()
+        this.videoList = res.data.data
+
+      })
+    }
   }
 };
 </script>

@@ -40,9 +40,9 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   console.log(to)
   if (to.meta.requiresAuth === true) {
-    let token = localStorage.getItem('setToken');
+    let token = sessionStorage.getItem('setToken');
     // var token = this.$store.state.token
-    if (token == null || token == '') { // 判断当前的token是否存在
+    if (token === null || token === '') { // 判断当前的token是否存在
       return next({
         path: '/vlogin',
         // query: {

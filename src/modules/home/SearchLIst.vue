@@ -2,60 +2,64 @@
   <div>
     <div class="search_input">
       <form action="/">
-        <van-search v-model="searchText" :placeholder="searchText" :right-icon="rightIcon"></van-search>
+        <van-search v-model="searchText"
+                    placeholder="搜索"
+                    @search="onSearch()"
+                    :right-icon="rightIcon"></van-search>
       </form>
     </div>
     <div class="search-list">
       <!-- 当搜索框为空时 -->
-      <div v-if="searchText==''?true :false" class="space_content">
+      <div v-if="searchText==''?true :false"
+           class="space_content">
         <p>搜索指定内容</p>
         <div class="btn_groups">
-          <van-button type="default" url>厕所</van-button>|
-          <van-button type="default" url>车站</van-button>|
-          <van-button type="default" url>酒店</van-button>|
-          <van-button type="default" url>饭店</van-button>
+          <van-button v-for="(item,index) in tabs"
+                      :key="index"
+                      @click="tabClick(item.F_Name)">
+            {{item.F_Name}} <span class="line">|</span>
+          </van-button>
         </div>
       </div>
       <!-- 搜索框为酒店时 -->
-      <div v-if="shopList==''?false:true">
-        <div v-for="(item, index) in shopList" :key="index">
-          <router-link :to="{name: item.url}">
-            <div class="search_title">
-              <h3>{{(index+1)+"." +item.name}}</h3>
-              <van-rate
-                v-model="item.rateNum"
-                size="14px"
-                gutter="2px"
-                readonly
-                void-color="#ffd21e"
-              />
-              <span>评分:{{item.score}}</span>
-              <div>{{item.distance}}m</div>
-              <div class="clear"></div>
-            </div>
-            <div class="search_info">
-              <van-card :thumb="item.shopImg">
-                <template slot="title">
-                  <div class="card_info">
-                    <p>
-                      营业时间:
-                      <span>{{item.time}}</span>
-                    </p>
-                    <p>
-                      酒店地址:
-                      <span>{{item.address}}</span>
-                    </p>
-                    <p>
-                      联系电话:
-                      <span>{{item.telephone}}</span>
-                    </p>
-                  </div>
-                </template>
-              </van-card>
-            </div>
-          </router-link>
-        </div>
+      <div v-for="(item, index) in searchList"
+           :key="index"
+           v-show="searchText">
+        <router-link :to="{name: item.url}">
+          <div class="search_title">
+            <h3>{{(index+1)+"." +item.F_Name}}</h3>
+            <van-rate v-model="item.F_Score"
+                      size="14px"
+                      gutter="2px"
+                      readonly
+                      void-color="#ffd21e" />
+            <span>评分:{{item.F_Score}}</span>
+            <div>0m</div>
+            <div class="clear"></div>
+          </div>
+          <div class="search_info">
+            <van-card :thumb="item.shopImg">
+              <template slot="title">
+                <div class="card_info">
+                  <p>
+                    营业时间:
+                    <span>{{item.F_Hours}}</span>
+                  </p>
+                  <p>
+                    酒店地址:
+                    <span>{{item.F_Address}}</span>
+                  </p>
+                  <p>
+                    联系电话:
+                    <span>{{item.F_Phone}}</span>
+                  </p>
+                </div>
+              </template>
+            </van-card>
+          </div>
+        </router-link>
       </div>
+      <div v-show="isShow">未搜索到指定内容</div>
     </div>
   </div>
 </template>
@@ -64,46 +68,97 @@
 import { Search, Rate, Card, Button } from "vant";
 export default {
   name: "searchList",
-  data() {
+  data () {
     return {
       searchText: "",
       rightIcon: require("../../assets/images/mike.png"),
-      shopList: [
-        {
-          name: "西安国际大酒店",
-          rateNum: 4,
-          score: 9.4,
-          distance: 1999,
-          time: "24小时",
-          address: "西安市新城区东新街139号",
-          telephone: "029-34343434",
-          shopImg: require("../../assets/images/shop.jpg"),
-          url: "hotelDetails"
-        },
-        {
-          name: "西安国际大酒店",
-          rateNum: 4,
-          score: 9.4,
-          distance: 1999,
-          time: "24小时",
-          address: "西安市新城区东新街139号",
-          telephone: "029-34343434",
-          shopImg: require("../../assets/images/shop.jpg"),
-          url: ""
-        },
-        {
-          name: "西安国际大酒店",
-          rateNum: 4,
-          score: 9.4,
-          distance: 1999,
-          time: "24小时",
-          address: "西安市新城区东新街139号",
-          telephone: "029-34343434",
-          shopImg: require("../../assets/images/shop.jpg"),
-          url: ""
-        }
-      ]
+      tabs: [],
+      searchList: [
+        // {
+        //   name: "西安国际大酒店",
+        //   rateNum: 4,
+        //   score: 9.4,
+        //   distance: 1999,
+        //   time: "24小时",
+        //   address: "西安市新城区东新街139号",
+        //   telephone: "029-34343434",
+        //   shopImg: require("../../assets/images/shop.jpg"),
+        //   url: "hotelDetails"
+        // },
+        // {
+        //   name: "西安国际大酒店",
+        //   rateNum: 4,
+        //   score: 9.4,
+        //   distance: 1999,
+        //   time: "24小时",
+        //   address: "西安市新城区东新街139号",
+        //   telephone: "029-34343434",
+        //   shopImg: require("../../assets/images/shop.jpg"),
+        //   url: ""
+        // },
+        // {
+        //   name: "西安国际大酒店",
+        //   rateNum: 4,
+        //   score: 9.4,
+        //   distance: 1999,
+        //   time: "24小时",
+        //   address: "西安市新城区东新街139号",
+        //   telephone: "029-34343434",
+        //   shopImg: require("../../assets/images/shop.jpg"),
+        //   url: ""
+        // }
+      ],
+      isShow: false
     };
+  },
+  created () {
+    this.tabList()
+    // this.getListSearch()
+  },
+  methods: {
+    async tabList () {
+      var token = this.$store.state.token
+      var loginmark = this.$store.state.user
+      await this.$http.get("/scenicareaaround/gettypelist", {
+        params: {
+          token: token,
+          loginMark: loginmark
+        }
+      }).then(res => {
+        console.log(res)
+        this.tabs = res.data.data
+      });
+    },
+    onSearch () {
+      var searchText = this.searchText;
+      if (searchText) {
+        this.getListSearch()
+      }
+    },
+    tabClick (F_Name) {
+      console.log(F_Name)
+      this.searchText = F_Name
+      this.getListSearch()
+    },
+    async getListSearch () {
+      var token = this.$store.state.token
+      var loginmark = this.$store.state.user
+
+      await this.$http.get("/scenicareaaround/getlistforsearch/searchText", {
+        params: {
+          token: token,
+          loginMark: loginmark
+        }
+      }).then(res => {
+        console.log(res)
+        this.searchList = res.data.data
+        if (res.data.data.length === 0) {
+          this.isShow = true
+        } else {
+          this.isShow = false
+        }
+      });
+    }
   },
   components: {
     "van-search": Search,
@@ -119,7 +174,6 @@ $spaceColor: #d2d2d2;
 $fontColor: #dbdbdc;
 $boxSpace: #f3f3f5;
 .search_input {
-  // border-bottom: solid 2px $boxSpace;
   padding-bottom: 0.3rem;
   .van-search {
     .van-icon-search {
@@ -129,7 +183,7 @@ $boxSpace: #f3f3f5;
     .van-search__content {
       box-shadow: 7px 3px 10px $spaceColor;
       border-radius: 5px;
-      height: 0.8rem !important;
+      padding: 4px 14px;
       border: solid 1px #f1f1f1;
       background-color: white !important;
     }
@@ -151,6 +205,17 @@ $boxSpace: #f3f3f5;
       button {
         width: 17%;
         border: none;
+        position: relative;
+        .line {
+          position: absolute;
+          right: 0px;
+          top: 0;
+        }
+      }
+      button:nth-last-of-type(1) {
+        .line {
+          display: none;
+        }
       }
     }
   }

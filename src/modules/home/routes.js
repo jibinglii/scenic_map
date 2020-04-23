@@ -1,6 +1,9 @@
 export default [{
     path: '/',
     name: 'home',
+    meta: {
+      requiresAuth: true
+    },
     component: () => import('./Home')
   },
   {

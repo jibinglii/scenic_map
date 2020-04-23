@@ -17,11 +17,11 @@ export default {
         zoom: 18,
         crs: L.CRS.EPSG4326
       },
-      fId: 0
     };
   },
-  created () {
+  mounted () {
     this.gissetting2d()
+    console.log(this.url)
   },
   methods: {
     async gissetting2d () {
@@ -34,9 +34,7 @@ export default {
         }
 
       }).then(res => {
-        console.log(res)
         let result = res.data.data
-
         this.url = result.F_URL
         // this.mapOptions.center = result.F_Center.split(',')
         // this.mapOptions.zoom = result.F_Zoom
@@ -44,8 +42,8 @@ export default {
         // this.$set(this.mapOptions, 'zoom', result.F_Zoom)
         // this.mapOptions.crs = result.F_Coordinate
 
-        this.fId = result.F_Id
-        this.$store.dispatch('setfId', this.fId)
+        // this.fId = result.F_Id
+        // this.$store.dispatch('setfId', this.fId)
         // console.log(this.fId)
       })
     }

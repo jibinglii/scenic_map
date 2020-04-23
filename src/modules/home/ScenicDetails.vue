@@ -39,7 +39,7 @@ export default {
       title: '',
       intro: '',
       address: '',
-      openTime: '8:30-21:30',
+      openTime: '',
       videoUpload: {
         progress: false,
         progressPercent: 0,
@@ -58,10 +58,10 @@ export default {
     aplayer: aplayer
   },
   created () {
-    this.scenicList();
+    this.scenicList()
+    this.oauthToken()
   },
   methods: {
-
     async scenicList () {
       var token = this.$store.state.token
       var loginmark = this.$store.state.user
@@ -75,8 +75,20 @@ export default {
         this.title = res.data.data.F_Name
         this.intro = res.data.data.F_Remarks
         this.address = res.data.data.F_Address
+        this.openTime = res.data.data.F_OpenHours
       })
     },
+    async oauthToken () {
+      await this.$http.post('https://openapi.baidu.com/oauth/2.0/token', {
+        "data": JSON.stringify({
+          client_id: 'kVcnfD9iW2XVZSMaLMrtLYIz',
+          client_secret: 'O9o1O213UgG5LFn0bDGNtoRN3VWl2du6',
+          grant_type: 'client_credentials'
+        })
+      }).then(res => {
+        console.log(res)
+      })
+    }
   }
 }
 </script>

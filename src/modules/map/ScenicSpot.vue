@@ -3,46 +3,59 @@
     <v-search></v-search>
     <v-map></v-map>
     <ul class="lists">
-      <li v-for="(item,index) in lists" :key="index" :style="{'background':item.bgColor}">
-        <router-link :to="{}" :style="{'color':item.color}">{{item.text}}</router-link>
+      <li v-for="(item,index) in lists"
+          :key="index">
+        <router-link :to="{}">{{item.F_Name}}</router-link>
       </li>
     </ul>
     <div class="dw_div">
       <div class="bj">
-        <img src="../../assets/images/bj.png" alt srcset />
+        <img src="../../assets/images/bj.png"
+             alt
+             srcset />
       </div>
       <div class="dw">
-        <img src="../../assets/images/dw.png" alt srcset />
+        <img src="../../assets/images/dw.png"
+             alt
+             srcset />
       </div>
     </div>
-    <van-tabbar v-model="active" active-color="#00c8b0">
-      <van-tabbar-item v-for="(item,index) in tabs" :key="index" @click="tabClick(index)">
-        <img slot="icon" slot-scope="props" :src="props.active ? item.active : item.normal" />
-        <span>{{item.text}}</span>
+    <van-tabbar v-model="active"
+                active-color="#00c8b0">
+      <van-tabbar-item v-for="(item,index) in tabs"
+                       :key="index"
+                       @click="tabClick(index)">
+        <img slot="icon"
+             slot-scope="props"
+             :src="props.active ? item.F_HighlightImage : item.F_Image" />
+        <span>{{item.F_Name}}</span>
       </van-tabbar-item>
     </van-tabbar>
-    <van-popup v-model="show" position="bottom" :style="{ height: '53%' }">
+    <van-popup v-model="show"
+               position="bottom"
+               :style="{ height: '53%' }">
       <div class="content">
-        <div v-for="(item, index) in shopList" :key="index" class="list_item">
+        <div v-for="(item, index) in shopList"
+             :key="index"
+             class="list_item">
           <router-link :to="{name:'navigation'}">
             <div class="search_title">
               <div class="left">
-                <h3>{{(index+1)+"." +item.name}}</h3>
-                <p>{{item.intro}}</p>
-                <van-rate
-                  v-model="item.rateNum"
-                  size="14px"
-                  gutter="2px"
-                  readonly
-                  void-color="#ffd21e"
-                />
-                <span>评分:{{item.score}}</span>
+                <h3>{{(index+1)+"." +item.F_Name}}</h3>
+                <p>{{item.F_Remarks}}-{{item.F_Address}}</p>
+                <van-rate v-model="item.F_Score"
+                          size="14px"
+                          gutter="2px"
+                          readonly
+                          void-color="#ffd21e" />
+                <span>评分:{{item.F_Score}}</span>
               </div>
-              <div class="right">{{item.distance}}m</div>
+              <div class="right">0m</div>
             </div>
           </router-link>
         </div>
-        <router-link :to="{}" class="more">查看更多</router-link>
+        <router-link :to="{}"
+                     class="more">查看更多</router-link>
       </div>
     </van-popup>
   </div>
@@ -54,86 +67,77 @@ import Search from "../../components/Search";
 import { Tabbar, TabbarItem, Popup, Rate } from "vant";
 export default {
   name: "scenicSpot",
-  data() {
+  data () {
     return {
       active: "",
       show: false,
-      lists: [
-        {
-          text: "厕所",
-          bgColor: "#79d52c",
-          color: "#fff"
-        },
-        {
-          text: "车站",
-          bgColor: "#fff",
-          color: "#787878"
-        },
-        {
-          text: "酒店",
-          bgColor: "#00a0e9",
-          color: "#fff"
-        },
-        {
-          text: "饭店",
-          bgColor: "#fff",
-          color: "#787878"
-        }
-      ],
-      tabs: [
-        {
-          text: "厕所",
-          normal: require("../../assets/images/cs_h.png"),
-          active: require("../../assets/images/cs.png")
-        },
-        {
-          text: "车站",
-          normal: require("../../assets/images/cz_h.png"),
-          active: require("../../assets/images/cz.png")
-        },
-        {
-          text: "酒店",
-          normal: require("../../assets/images/jd_h.png"),
-          active: require("../../assets/images/jd.png")
-        },
-        {
-          text: "饭店",
-          normal: require("../../assets/images/fd_h.png"),
-          active: require("../../assets/images/fd.png")
-        }
-      ],
+      lists: [],
+      tabs: [],
       shopList: [
-        {
-          name: "西安国际大酒店",
-          intro: "高档型·西安市新城区东新街319号",
-          rateNum: 4,
-          score: 9.4,
-          distance: 1999
-        },
-        {
-          name: "西安国际大酒店",
-          intro: "高档型·西安市新城区东新街319号",
-          rateNum: 4,
-          score: 9.4,
-          distance: 1999
-        },
-        {
-          name: "西安国际大酒店",
-          intro: "高档型·西安市新城区东新街319号",
-          rateNum: 4,
-          score: 9.4,
-          distance: 1999
-        }
-      ]
+        // {
+        //   name: "西安国际大酒店",
+        //   intro: "高档型·西安市新城区东新街319号",
+        //   rateNum: 4,
+        //   score: 9.4,
+        //   distance: 1999
+        // },
+        // {
+        //   name: "西安国际大酒店",
+        //   intro: "高档型·西安市新城区东新街319号",
+        //   rateNum: 4,
+        //   score: 9.4,
+        //   distance: 1999
+        // },
+        // {
+        //   name: "西安国际大酒店",
+        //   intro: "高档型·西安市新城区东新街319号",
+        //   rateNum: 4,
+        //   score: 9.4,
+        //   distance: 1999
+        // }
+      ],
+      Fid: 0
     };
   },
+  created () {
+    this.tabList()
+  },
   methods: {
-    tabClick(index) {
-      console.log(index);
-      if (index) {
-        this.show = true;
-      }
-    }
+    async tabList () {
+      var token = this.$store.state.token
+      var loginmark = this.$store.state.user
+      await this.$http.get("/scenicareaaround/gettypelist", {
+        params: {
+          token: token,
+          loginMark: loginmark
+        }
+      }).then(res => {
+        console.log(res)
+        this.tabs = res.data.data
+        this.lists = res.data.data
+        this.Fid = res.data.data[0].F_Id
+        console.log(this.Fid)
+
+      });
+    },
+    tabClick (index) {
+      this.show = !this.show;
+      this.getTypeList()
+    },
+    async getTypeList () {
+      var token = this.$store.state.token
+      var loginmark = this.$store.state.user
+      console.log(this.Fid)
+      await this.$http.get("/scenicareaaround/getlist/" + this.Fid, {
+        params: {
+          token: token,
+          loginMark: loginmark
+        }
+      }).then(res => {
+        console.log(res)
+        this.shopList = res.data.data
+      });
+    },
   },
   components: {
     "v-map": VMap,
@@ -159,9 +163,33 @@ export default {
       width: 0.8rem;
       height: 0.8rem;
       text-align: center;
-      line-height: 0.8rem;
+      line-height: 0.85rem;
       margin-bottom: 10px;
       font-size: 0.24rem;
+    }
+  }
+  li:nth-of-type(1) {
+    background: #79d52c;
+    a {
+      color: #fff;
+    }
+  }
+  li:nth-of-type(2) {
+    background: #fff;
+    a {
+      color: #787878;
+    }
+  }
+  li:nth-of-type(3) {
+    background: #00a0e9;
+    a {
+      color: #fff;
+    }
+  }
+  li:nth-of-type(4) {
+    background: #fff;
+    a {
+      color: #787878;
     }
   }
 }

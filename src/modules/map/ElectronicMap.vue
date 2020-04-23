@@ -60,14 +60,8 @@
           <router-link :to="{name:'scenicDetails',query:{id:item.F_Id}}">
             <div class="search_title">
               <div class="left">
-                <div>
-                  <h3>{{index+1}}.{{item.F_Name}}</h3>
-                  <p>{{item.intro}}</p>
-                </div>
-                <div>
-                  <van-button v-for="(item,index) in tags"
-                              :key="index">{{item.tag}}</van-button>
-                </div>
+                <h3>{{index+1}}.{{item.F_Name}}</h3>
+                <span>{{item.F_Tags}}</span>
               </div>
               <div class="right">
                 <van-button round
@@ -130,17 +124,7 @@ export default {
           btnText: "自动导览"
         }
       ],
-      tags: [],
-      scenicList: [
-        {
-          intro: '大雁塔',
-          tag: '国家AAAAA级景区',
-        },
-        {
-          intro: '大雁塔',
-          tag: '国家AAAAA级景区'
-        }
-      ]
+      scenicList: []
     };
   },
   methods: {
@@ -152,6 +136,9 @@ export default {
         this.show = !this.show;
       }
       if (index === 1) {
+        this.$toast.loading({
+          message: '加载中...',
+        });
         var fId = this.$store.state.fId
         this.$http.get('/gisscenicarea/getlist/' + fId, {
           params: {
@@ -159,6 +146,7 @@ export default {
             loginMark: loginmark
           }
         }).then(res => {
+          this.$toast.clear()
           console.log(res)
           this.scenicList = res.data.data
         })

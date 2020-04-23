@@ -14,6 +14,13 @@ export default [{
       requiresAuth: true
     },
     component: () => import('./Modifypwd')
-
+  },
+  {
+    path: 'userupdata',
+    name: 'userupdata',
+    meta: {
+      requiresAuth: true
+    },
+    component: () => import('./UserUpdata')
   },
 ]

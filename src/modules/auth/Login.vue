@@ -103,6 +103,9 @@ export default {
       this.reallR()
     },
     async reallR () {
+      this.$toast.loading({
+        message: '加载中...',
+      });
       await this.$http.post('/userinfo/login', {
         "username": this.tel,
         "password": this.pwd
@@ -110,10 +113,11 @@ export default {
         this.loading = false
         console.log(res)
         if (res.data.code === 200) {
+          this.$toast.clear()
           this.$toast('登录成功')
           //将用户名和token存放在sessionStorage中
-          localStorage.setItem('setToken', res.data.data.token)
-          localStorage.setItem('setUser', res.data.data.loginMark)
+          sessionStorage.setItem('setToken', res.data.data.token)
+          sessionStorage.setItem('setUser', res.data.data.loginMark)
           // localStorage.setItem('userId', res.data.data.userId)
           // 将用户名放入vuex
           this.$store.dispatch('setUser', res.data.data.loginMark)

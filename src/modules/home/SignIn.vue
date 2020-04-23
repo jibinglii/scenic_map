@@ -1,12 +1,14 @@
 <template>
   <div class="_div">
-    <div class="top" :style="{'backgroundImage':'url('+integralBg+')'}">
+    <div class="top"
+         :style="{'backgroundImage':'url('+integralBg+')'}">
       <div class="sign">
         <p>签到</p>
         <span></span>
         <span></span>
       </div>
-      <div class="integral_bg" :style="{'backgroundImage':'url('+waveBg+')'}"></div>
+      <div class="integral_bg"
+           :style="{'backgroundImage':'url('+waveBg+')'}"></div>
     </div>
     <div class="bottom">
       <p>
@@ -15,18 +17,32 @@
         <br />坚持打卡签到也是考验一个人的毅力的一种表现哦！
       </p>
       <div class="steps">
-        <div class="step" v-for="(item,index) in steps" :key="index">
+        <div class="step"
+             v-for="(item,index) in steps"
+             :key="index">
           <div class="left">
-            <img v-if="isIntegral" :src="item.img" alt class="integral_img" />
-            <img v-else :src="item.activeImg" alt class="integral_img" />
+            <img v-if="isIntegral"
+                 :src="item.img"
+                 alt
+                 class="integral_img" />
+            <img v-else
+                 :src="item.activeImg"
+                 alt
+                 class="integral_img" />
 
             <div :class="[day_click_able?'day_clicked':'day']">{{item.day}}</div>
 
             <span>{{item.number}}</span>
           </div>
 
-          <img v-if="isLine" :src="item.line" alt class="line" />
-          <img v-else :src="item.activeLine" alt class="line" />
+          <img v-if="isLine"
+               :src="item.line"
+               alt
+               class="line" />
+          <img v-else
+               :src="item.activeLine"
+               alt
+               class="line" />
         </div>
       </div>
     </div>
@@ -36,7 +52,7 @@
 <script>
 export default {
   name: "signIn",
-  data() {
+  data () {
     return {
       integralBg: require("../../assets/images/bg-integral.png"),
       waveBg: require("../../assets/images/wave2.png"),
