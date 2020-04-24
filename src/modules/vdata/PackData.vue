@@ -79,14 +79,21 @@ export default {
   methods: {
     tabsClick (type) {
       console.log(type)
-      this.drawLine();
+      this.drawLine(type);
     },
-    drawLine () {
+    drawLine (type) {
       // 基于准备好的dom，初始化echarts实例
+      this.$toast.loading({
+        message: '加载中...',
+      });
       let myChart = echarts.init(document.getElementById("myChart"));
-      // this.lineData()
-      this.$http.get('http://119.3.248.197:8086/api/mobile/TingCheChangShiYongLv').then(res => {
+      this.$http.get('http://119.3.248.197:8086/api/mobile/TingCheChangShiYongLv', {
+        params: {
+          type: type
+        }
+      }).then(res => {
         console.log(res)
+        this.$toast.clear()
         // 绘制图表
         myChart.setOption({
           color: ["#58e7ff", "#febb05"],
