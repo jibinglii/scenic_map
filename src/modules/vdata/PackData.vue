@@ -3,28 +3,37 @@
     <div class="top">
       <h3>停车场数据</h3>
       <div class="row_Div packData">
-        <van-row type="flex" justify="space-around">
+        <van-row type="flex"
+                 justify="space-around">
           <van-col>
-            <p class="data">10472</p>
+            <p class="data">{{$route.params.cheliang}}</p>
             <p class="name">车辆统计</p>
           </van-col>
           <van-col>
             <v-circle></v-circle>
           </van-col>
           <van-col>
-            <p class="data">10472</p>
+            <p class="data">{{$route.params.shengyu}}</p>
             <p class="name">剩余车位数</p>
           </van-col>
         </van-row>
       </div>
-      <div class="waveBg" :style="{'backgroundImage':'url('+waveBg+')'}"></div>
+      <div class="waveBg"
+           :style="{'backgroundImage':'url('+waveBg+')'}"></div>
     </div>
     <div class="bottom">
       <div class="row_Div">
-        <van-tabs v-model="active">
-          <van-tab :title="item.title" v-for="(item,index) in tabs" :key="index"></van-tab>
-          <div id="myChart" :style="{width: '100%', height: '300px'}"></div>
+        <van-tabs v-model="active"
+                  @click="tabsClick(active)">
+          <van-tab v-for="(item,index) in tabs"
+                   :key="index"
+                   :title="item.title">
+            <div id="myChart"
+                 :style="{width: '100%', height: '300px'}"></div>
+          </van-tab>
+
         </van-tabs>
+
       </div>
     </div>
   </div>
@@ -41,109 +50,113 @@ require("echarts/lib/component/tooltip");
 require("echarts/lib/component/legend");
 export default {
   name: "packData",
-  data() {
+  data () {
     return {
       waveBg: require("../../assets/images/wave.png"),
       weavs: [],
       active: 1,
       tabs: [
         {
-          title: "周"
+          title: "周",
+          integer: 0
         },
         {
-          title: "月"
+          title: "月",
+          integer: 1
         },
         {
-          title: "年"
+          title: "年",
+          integer: 2
         }
       ]
     };
   },
-  mounted() {
+  mounted () {
     this.$nextTick(() => {
       this.drawLine();
     });
   },
   methods: {
-    drawLine() {
+    tabsClick (type) {
+      console.log(type)
+      this.drawLine();
+    },
+    drawLine () {
       // 基于准备好的dom，初始化echarts实例
       let myChart = echarts.init(document.getElementById("myChart"));
-      // 绘制图表
-      myChart.setOption({
-        color: ["#58e7ff", "#febb05"],
-        title: {
-          text: "停车场使用率（%）",
-          textStyle: {
-            fontSize: 16,
-            fontWeight: "500",
-            color: "#7a7b7b"
-          }
-        },
-        tooltip: {
-          trigger: "axis"
-        },
-        legend: {
-          y: "top",
-          x: "right",
-          itemGap: 10,
-          textStyle: {
-            color: "#9c9e9e" //---所有图例的字体颜色
-          },
-          data: ["停车数量", "环比（上周）"]
-        },
-
-        xAxis: {
-          type: "category",
-          boundaryGap: false,
-          axisTick: {
-            show: false,
-            lineStyle: {
-              color: "#808080"
+      // this.lineData()
+      this.$http.get('http://119.3.248.197:8086/api/mobile/TingCheChangShiYongLv').then(res => {
+        console.log(res)
+        // 绘制图表
+        myChart.setOption({
+          color: ["#58e7ff", "#febb05"],
+          title: {
+            text: "停车场使用率（%）",
+            textStyle: {
+              fontSize: 16,
+              fontWeight: "500",
+              color: "#7a7b7b"
             }
           },
-          data: [
-            "星期一",
-            "星期二",
-            "星期三",
-            "星期四",
-            "星期五",
-            "星期六",
-            "星期日"
-          ]
-        },
-        yAxis: {
-          type: "value",
-          axisLine: {
-            show: false
+          tooltip: {
+            trigger: "axis"
           },
-          axisTick: {
-            show: false
-          }
-        },
-        series: [
-          {
-            name: "停车数量",
-            type: "bar",
-            stack: "",
-            smooth: true,
-            barWidth: 10,
-            data: [20, 15, 30, 18, 24, 26, 28]
-          },
-          {
-            name: "环比（上周）",
-            type: "line",
-            stack: "",
-            smooth: true,
-            symbolSize: 0, //拐点图形大小
-            lineStyle: {
-              width: 2,
-              type: "dashed"
+          legend: {
+            y: "top",
+            x: "right",
+            itemGap: 10,
+            textStyle: {
+              color: "#9c9e9e" //---所有图例的字体颜色
             },
-            data: [18, 5, 25, 15, 16, 18, 23]
-          }
-        ]
-      });
-    }
+            data: ["停车数量", "环比（上周）"]
+          },
+
+          xAxis: {
+            type: "category",
+            boundaryGap: false,
+            axisTick: {
+              show: false,
+              lineStyle: {
+                color: "#808080"
+              }
+            },
+            data: res.data.data.weekdays
+          },
+          yAxis: {
+            type: "value",
+            axisLine: {
+              show: false
+            },
+            axisTick: {
+              show: false
+            }
+          },
+          series: [
+            {
+              name: "停车数量",
+              type: "bar",
+              stack: "",
+              smooth: true,
+              barWidth: 10,
+              data: res.data.data.shuliang
+            },
+            {
+              name: "环比（上周）",
+              type: "line",
+              stack: "",
+              smooth: true,
+              symbolSize: 0, //拐点图形大小
+              lineStyle: {
+                width: 2,
+                type: "dashed"
+              },
+              data: res.data.data.huanbi
+            }
+          ]
+        });
+      })
+
+    },
   },
   components: {
     "van-col": Col,
@@ -196,6 +209,7 @@ export default {
       }
       #myChart {
         margin: 20px auto;
+        padding: 0 10px;
       }
     }
   }

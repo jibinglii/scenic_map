@@ -52,7 +52,7 @@
     </van-popup>
     <van-popup v-model="show2"
                position="bottom"
-               :style="{ height: '53%' }">
+               :style="{ height: '40%' }">
       <div class="content">
         <div v-for="(item, index) in scenicList"
              :key="index"
@@ -75,6 +75,28 @@
                      class="more">查看更多</router-link>
       </div>
     </van-popup>
+    <van-popup v-model="show3"
+               position="bottom"
+               :style="{ height: '35%' }">
+      <div class="content">
+        <div v-for="(item, index) in audiotypes"
+             :key="index"
+             class="list_item">
+          <div class="search_title">
+            <div class="left">
+              <h3>{{index+1}}.{{item.name}}</h3>
+            </div>
+            <div class="right">
+              <van-button round
+                          type="info"
+                          size="small"
+                          @click="selectClick(item.audiotype)">选择</van-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </van-popup>
+
   </div>
 </template>
 
@@ -90,6 +112,7 @@ export default {
       active: "",
       show: false,
       show2: false,
+      show3: false,
       tabs: [
         {
           text: "推荐路线",
@@ -124,7 +147,19 @@ export default {
           btnText: "自动导览"
         }
       ],
-      scenicList: []
+      scenicList: [],
+      audiotypes: [
+        {
+          id: 0,
+          name: '度小美',
+          audiotype: 0
+        },
+        {
+          id: 1,
+          name: '度博文',
+          audiotype: 106
+        },
+      ]
     };
   },
   methods: {
@@ -152,6 +187,17 @@ export default {
         })
         this.show2 = !this.show2;
       }
+      if (index === 2) {
+        this.show3 = !this.show3;
+      }
+    },
+    selectClick (audiotype) {
+      console.log(audiotype)
+      this.$store.dispatch('setAudiotype', audiotype)
+      this.$toast({
+        message: '选择成功'
+      })
+      this.show3 = false
     }
   },
   components: {

@@ -1,91 +1,96 @@
-function deepCopy (obj) {
-    let newObj
-    // 如果不是数组对象，并且对象存在，直接返回就可以
-    if (obj && typeof obj !== 'object') {
-      newObj = obj
-      return newObj
+function deepCopy(obj) {
+  let newObj
+  // 如果不是数组对象，并且对象存在，直接返回就可以
+  if (obj && typeof obj !== 'object') {
+    newObj = obj
+    return newObj
+  }
+  var targetObj = obj.constructor === Array ? [] : {}
+  for (var keys in obj) {
+    if (obj.hasOwnProperty(keys)) {
+      if (obj[keys] && typeof obj[keys] === 'object') {
+        targetObj[keys] = obj[keys].constructor === Array ? [] : {}
+        targetObj[keys] = deepCopy(obj[keys])
+      } else {
+        targetObj[keys] = obj[keys]
+      }
     }
-    var targetObj = obj.constructor === Array ? [] : {}
-    for (var keys in obj) {
-      if (obj.hasOwnProperty(keys)) {
-        if (obj[keys] && typeof obj[keys] === 'object') {
-          targetObj[keys] = obj[keys].constructor === Array ? [] : {}
-          targetObj[keys] = deepCopy(obj[keys])
-        } else {
-          targetObj[keys] = obj[keys]
+  }
+  return targetObj
+  // return JSON.parse(JSON.stringify(obj));
+}
+
+
+const annulusOption = {
+  title: {
+    text: '',
+    subtext: '',
+    x: 'center',
+    y: 'center',
+    textStyle: {
+      fontSize: 26,
+      color: '#666',
+    },
+    subtextStyle: {
+      fontSize: 12,
+      color: '#666'
+    }
+  },
+  color: ["#00d4c1", "#dcf8fc"],
+  series: [{
+    type: 'pie',
+    radius: ['85%', '95%'],
+    avoidLabelOverlap: false,
+    label: {
+      normal: {
+        show: false,
+        position: 'center',
+        textStyle: {
+          marginTop: -100
         }
       }
-    }
-    return targetObj
-    // return JSON.parse(JSON.stringify(obj));
-  }
-  
-  
-  const annulusOption = {
-    title: {
-      text: '',
-      subtext: '',
-      x: 'center',
-      y: 'center',
-      textStyle: {
-        fontSize: 26,
-        color: '#666',
-      },
-      subtextStyle: {
-        fontSize: 12,
-        color: '#666'
-      }
     },
-    color: ["#00d4c1", "#dcf8fc"],
-    series: [
-      {
-        type: 'pie',
-        radius: ['85%', '95%'],
-        avoidLabelOverlap: false,
-        label: {
-          normal: {
-            show: false,
-            position: 'center',
-            textStyle: {
-              marginTop: -100
-            }
-          }
-        },
-        hoverAnimation: false,
-        startAngle: -45,
-        data: [{ value: 25 }, { value: 0 }, { value: 0 }]
-      }
-    ]
-  }
-  
-  
-  /*
-   * 获取环形图的data，这个图只用于半开环形图， 并且只能有两个数据输入
-   * @param {Number[2]} data 两个数据，环形从做到右的数据
-   * @param {string[2]} colors  两个数据的颜色
-   * @param {*} text 中心的主标题
-   * @param {*} subtext  中心的副标题
-   * @param {Number} textFontSize
-   * @param {Number} subTextFontSize
-   */
-  function getAnnulusOption (data, colors, text, subtext, textFontSize, subTextFontSize,marginTop) {
-    let resultOption = deepCopy(annulusOption)
-    let optionColor = ['rgba(0,0,0,0)']
-    optionColor = optionColor.concat(colors)
-    resultOption.color = optionColor
-    resultOption.title.text = text
-    resultOption.title.subtext = subtext
-    resultOption.title.textStyle.fontSize = textFontSize
-    resultOption.title.subtextStyle.fontSize = subTextFontSize
-    resultOption.title.textStyle.marginTop = marginTop
-    let firstData = data[0] || 0
-    let secondData = data[1] || 0
-    resultOption.series[0].data[1].value = 75 * firstData / (firstData + secondData)
-    resultOption.series[0].data[2].value = 75 * secondData / (firstData + secondData)
-    return resultOption
-  }
-  
-  
-  
-  export { getAnnulusOption }
-  
+    hoverAnimation: false,
+    startAngle: -45,
+    data: [{
+      value: 25
+    }, {
+      value: 0
+    }, {
+      value: 0
+    }]
+  }]
+}
+
+
+/*
+ * 获取环形图的data，这个图只用于半开环形图， 并且只能有两个数据输入
+ * @param {Number[2]} data 两个数据，环形从做到右的数据
+ * @param {string[2]} colors  两个数据的颜色
+ * @param {*} text 中心的主标题
+ * @param {*} subtext  中心的副标题
+ * @param {Number} textFontSize
+ * @param {Number} subTextFontSize
+ */
+function getAnnulusOption(data, colors, text, subtext, textFontSize, subTextFontSize, marginTop) {
+  let resultOption = deepCopy(annulusOption)
+  let optionColor = ['rgba(0,0,0,0)']
+  optionColor = optionColor.concat(colors)
+  resultOption.color = optionColor
+  resultOption.title.text = text
+  resultOption.title.subtext = subtext
+  resultOption.title.textStyle.fontSize = textFontSize
+  resultOption.title.subtextStyle.fontSize = subTextFontSize
+  resultOption.title.textStyle.marginTop = marginTop
+  let firstData = data[0] || 0
+  let secondData = data[1] || 0
+  resultOption.series[0].data[1].value = 75 * firstData / (firstData + secondData)
+  resultOption.series[0].data[2].value = 75 * secondData / (firstData + secondData)
+  return resultOption
+}
+
+
+
+export {
+  getAnnulusOption
+}

@@ -2,8 +2,9 @@
   <div class="_div">
     <div class="top"
          :style="{'backgroundImage':'url('+integralBg+')'}">
-      <div class="sign">
-        <p>签到</p>
+      <div class="sign"
+           @click="signInClick()">
+        <p>{{signText}}</p>
         <span></span>
         <span></span>
       </div>
@@ -147,10 +148,28 @@ export default {
           number: "",
           line: ""
         }
-      ]
+      ],
+      signText: '签到'
     };
   },
-  components: {}
+  methods: {
+    signInClick () {
+      this.signIn()
+    },
+    async signIn () {
+      var token = this.$store.state.token
+      var loginmark = this.$store.state.user
+      await this.$http.post('/userinfo/signin', {
+        token: token,
+        loginMark: loginmark,
+        source: this.signText,
+        integral: 10
+      }).then(res => {
+        console.log(res)
+        this.$toast.success(res.data.info)
+      })
+    }
+  }
 };
 </script>
 

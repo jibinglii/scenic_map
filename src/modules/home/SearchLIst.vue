@@ -38,7 +38,7 @@
             <div class="clear"></div>
           </div>
           <div class="search_info">
-            <van-card :thumb="item.shopImg">
+            <van-card :thumb="item.F_Image">
               <template slot="title">
                 <div class="card_info">
                   <p>
@@ -113,7 +113,6 @@ export default {
   },
   created () {
     this.tabList()
-    // this.getListSearch()
   },
   methods: {
     async tabList () {
@@ -130,8 +129,7 @@ export default {
       });
     },
     onSearch () {
-      var searchText = this.searchText;
-      if (searchText) {
+      if (this.searchText) {
         this.getListSearch()
       }
     },
@@ -143,8 +141,9 @@ export default {
     async getListSearch () {
       var token = this.$store.state.token
       var loginmark = this.$store.state.user
-
-      await this.$http.get("/scenicareaaround/getlistforsearch/searchText", {
+      var keyword = this.searchText
+      console.log(keyword)
+      await this.$http.get("/scenicareaaround/getlistforsearch/" + keyword, {
         params: {
           token: token,
           loginMark: loginmark

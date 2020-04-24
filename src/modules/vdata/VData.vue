@@ -2,7 +2,8 @@
   <div class="vdata">
     <div class="weather_div">
       <v-weather></v-weather>
-      <router-link to="/datadetails" class="more">
+      <router-link to="/datadetails"
+                   class="more">
         <p>查看更多</p>
         <van-icon name="arrow-down" />
       </router-link>
@@ -10,21 +11,23 @@
     <div class="list_div">
       <div class="top">
         <span>停车场数据</span>
-        <router-link to="/packdata">
-          <img src="../../assets/images/more.png" alt />
+        <router-link :to="{name:'packData',params:{cheliang:packData.cheliang,shengyu:packData.shengyu}}">
+          <img src="../../assets/images/more.png"
+               alt />
         </router-link>
       </div>
       <div class="row_Div packData">
-        <van-row type="flex" justify="space-around">
+        <van-row type="flex"
+                 justify="space-around">
           <van-col>
-            <p class="data2">10472</p>
+            <p class="data2">{{packData.cheliang}}</p>
             <p class="name">车辆统计</p>
           </van-col>
           <van-col>
-            <v-circle></v-circle>
+            <v-circle :shiyonglv="packData.shiyonglv"></v-circle>
           </van-col>
           <van-col>
-            <p class="data2">10472</p>
+            <p class="data2">{{packData.shengyu}}</p>
             <p class="name">剩余车位数</p>
           </van-col>
         </van-row>
@@ -34,12 +37,15 @@
       <div class="top">
         <span>票务数据</span>
         <router-link :to="{name:'ticketData'}">
-          <img src="../../assets/images/more.png" alt />
+          <img src="../../assets/images/more.png"
+               alt />
         </router-link>
       </div>
       <div class="row_Div">
-        <van-row type="flex" justify="space-around">
-          <van-col v-for="(data,index) in ticketData" :key="index">
+        <van-row type="flex"
+                 justify="space-around">
+          <van-col v-for="(data,index) in ticketData"
+                   :key="index">
             <p class="data2">{{data.data}}</p>
             <p class="name">{{data.name}}</p>
           </van-col>
@@ -51,12 +57,15 @@
       <div class="top">
         <span>环境监测</span>
         <router-link :to="{name:'monitors'}">
-          <img src="../../assets/images/more.png" alt />
+          <img src="../../assets/images/more.png"
+               alt />
         </router-link>
       </div>
       <div class="row_Div">
-        <van-row type="flex" justify="space-around">
-          <van-col v-for="(item,index) in monitors" :key="index">
+        <van-row type="flex"
+                 justify="space-around">
+          <van-col v-for="(item,index) in monitors"
+                   :key="index">
             <p class="data3">{{item.data}}</p>
             <p class="name">{{item.name}}</p>
           </van-col>
@@ -76,8 +85,13 @@ import { Col, Row, Icon } from "vant";
 
 export default {
   name: "vdata",
-  data() {
+  data () {
     return {
+      packData: {
+        cheliang: 0,
+        shengyu: 0,
+        shiyonglv: 0
+      },
       ticketData: [
         {
           data: 2222,
@@ -118,8 +132,21 @@ export default {
     };
   },
   computed: {
-    text() {
+    text () {
       return this.currentRate.toFixed(0) + "%";
+    }
+  },
+  created () {
+    this.packDatas()
+  },
+  methods: {
+    async packDatas () {
+      await this.$http.get('http://119.3.248.197:8086/api/mobile/TingCheChangShuJu').then(res => {
+        console.log(res)
+        this.packData.cheliang = res.data.data.CheLiang
+        this.packData.shengyu = res.data.data.ShengYu
+        this.packData.shiyonglv = res.data.data.ShiYongLv
+      })
     }
   },
   components: {

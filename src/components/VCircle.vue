@@ -1,6 +1,7 @@
 <template>
   <div class="content-item">
-    <div id="chart" style="width:120px;height:120px"></div>
+    <div id="chart"
+         style="width:120px;height:120px"></div>
   </div>
 </template>
 <script>
@@ -10,10 +11,15 @@ import { getAnnulusOption } from "../utils/options.js";
 import echarts from "Echarts";
 export default {
   name: "vcircle",
-  mounted() {
+  props: ["shiyonglv"],
+  mounted () {
     this.$nextTick(() => {
-      this.renderChart("chart", 450, 1000);
+      this.renderChart("chart", 35, 100);
     });
+
+  },
+  computed: {
+
   },
   methods: {
     /*
@@ -24,7 +30,8 @@ export default {
     //id,
     //dividend
     //divisor
-    renderChart(id, dividend, divisor) {
+    renderChart (id, dividend, divisor) {
+      console.log(dividend)
       echarts.dispose(document.getElementById(id));
       const data = [dividend, divisor - dividend];
       const colors = ["#00d4c1", "#dcf8fc"];
@@ -51,7 +58,7 @@ export default {
      * @param {Number} digits 保留小数位数
      * @param {bool} returnStr 返回值是字符串（如果保留位数那么返回是一个string）
      */
-    formatValue(value, digits, returnStr = false) {
+    formatValue (value, digits, returnStr = false) {
       if (digits < 0) {
         console.log("小数点后位数不能为负数");
         value = 0;

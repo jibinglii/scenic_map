@@ -11,9 +11,7 @@
                  alt="">解说</div>
         </div>
         <div class="audioTest">
-          <div style="width: 100%">
-            <aplayer :music="videoUpload.music"></aplayer>
-          </div>
+          <audio-play></audio-play>
         </div>
       </div>
       <div class="intro_text">
@@ -29,7 +27,7 @@
 </template>
 <script>
 
-import aplayer from "vue-aplayer";
+import AudioPlay from "../../components/AudioPlay.vue";
 
 export default {
   name: 'scenicDetails',
@@ -40,29 +38,21 @@ export default {
       intro: '',
       address: '',
       openTime: '',
-      videoUpload: {
-        progress: false,
-        progressPercent: 0,
-        successPercent: 0,
-        music: {
-          title: '',
-          author: '',
-          url: require('../../assets/images/audio.mp3'),
-          lrc: '[00:00.00]lrc here\n[00:01.00]aplayer'
-        }
-      }
+
     }
   },
   components: {
-    //别忘了引入组件
-    aplayer: aplayer
+    "audio-play": AudioPlay
   },
   created () {
     this.scenicList()
-    this.oauthToken()
+
   },
   methods: {
     async scenicList () {
+      this.$toast.loading({
+        message: '加载中...',
+      });
       var token = this.$store.state.token
       var loginmark = this.$store.state.user
       await this.$http.get('/gisscenicarea/getinfo/' + this.$route.query.id, {
@@ -72,23 +62,14 @@ export default {
         }
       }).then(res => {
         console.log(res)
+        this.$toast.clear()
         this.title = res.data.data.F_Name
         this.intro = res.data.data.F_Remarks
         this.address = res.data.data.F_Address
         this.openTime = res.data.data.F_OpenHours
       })
     },
-    async oauthToken () {
-      await this.$http.post('https://openapi.baidu.com/oauth/2.0/token', {
-        "data": JSON.stringify({
-          client_id: 'kVcnfD9iW2XVZSMaLMrtLYIz',
-          client_secret: 'O9o1O213UgG5LFn0bDGNtoRN3VWl2du6',
-          grant_type: 'client_credentials'
-        })
-      }).then(res => {
-        console.log(res)
-      })
-    }
+
   }
 }
 </script>

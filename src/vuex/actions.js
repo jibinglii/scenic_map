@@ -20,3 +20,8 @@ export const setfId = ({
 }, data) => {
   commit('setfId', data)
 }
+export const setAudiotype = ({
+  commit
+}, data) => {
+  commit('setAudiotype', data)
+}

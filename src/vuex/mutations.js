@@ -11,3 +11,6 @@ export const setToken = (state, data) => {
 export const setfId = (state, data) => {
   state.fId = data
 }
+export const setAudiotype = (state, data) => {
+  state.audiotype = data
+}

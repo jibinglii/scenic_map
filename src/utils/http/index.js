@@ -3,7 +3,6 @@ import interceptors from './interceptors'
 
 // allow use http client without Vue instance
 const http = axios.create({
-  // baseURL: process.env.VUE_APP_API_URL,
   baseURL: 'http://119.3.248.197:8084/api',
   timeout: 30000
 })
