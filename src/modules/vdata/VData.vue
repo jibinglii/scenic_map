@@ -36,7 +36,7 @@
     <div class="list_div">
       <div class="top">
         <span>票务数据</span>
-        <router-link :to="{name:'ticketData'}">
+        <router-link :to="{name:'ticketData',params:{ShiShiShouPiao:ticketData.ShiShiShouPiao,ShiShiJianPiao:ticketData.ShiShiJianPiao,ZaiYuanCount:ticketData.ZaiYuanCount}}">
           <img src="../../assets/images/more.png"
                alt />
         </router-link>
@@ -44,10 +44,21 @@
       <div class="row_Div">
         <van-row type="flex"
                  justify="space-around">
-          <van-col v-for="(data,index) in ticketData"
-                   :key="index">
-            <p class="data2">{{data.data}}</p>
-            <p class="name">{{data.name}}</p>
+          <van-col>
+            <p class="data2">{{ticketData.ShiShiShouPiao}}</p>
+            <p class="name">实时售票数</p>
+          </van-col>
+          <van-col>
+            <p class="data2">{{ticketData.ShiShiJianPiao}}</p>
+            <p class="name">实时检票数</p>
+          </van-col>
+          <van-col>
+            <p class="data2">{{ticketData.RuYuanCount}}</p>
+            <p class="name">入园游客</p>
+          </van-col>
+          <van-col>
+            <p class="data2">{{ticketData.ZaiYuanCount}}</p>
+            <p class="name">在园游客</p>
           </van-col>
         </van-row>
       </div>
@@ -64,10 +75,21 @@
       <div class="row_Div">
         <van-row type="flex"
                  justify="space-around">
-          <van-col v-for="(item,index) in monitors"
-                   :key="index">
-            <p class="data3">{{item.data}}</p>
-            <p class="name">{{item.name}}</p>
+          <van-col>
+            <p class="data3">{{monitor.qlty}}</p>
+            <p class="name">空气质量</p>
+          </van-col>
+          <van-col>
+            <p class="data3">{{monitor.main}}</p>
+            <p class="name">主要污染物</p>
+          </van-col>
+          <van-col>
+            <p class="data3">{{monitor.pm10}}</p>
+            <p class="name">pm10</p>
+          </van-col>
+          <van-col>
+            <p class="data3">{{monitor.so2}}</p>
+            <p class="name">SO2浓度</p>
           </van-col>
         </van-row>
       </div>
@@ -80,7 +102,9 @@
 <script>
 import tabbar from "../../components/tabbar.vue";
 import vcircle from "../../components/vcircle.vue";
-import weather from "../../components/weather.vue";
+// import weather from "../../components/weather.vue";
+import VWeather from "../../components/VWeather.vue";
+
 import { Col, Row, Icon } from "vant";
 
 export default {
@@ -92,52 +116,26 @@ export default {
         shengyu: 0,
         shiyonglv: 0
       },
-      ticketData: [
-        {
-          data: 2222,
-          name: "实时售票数"
-        },
-        {
-          data: 2222,
-          name: "实时售票数"
-        },
-        {
-          data: 2222,
-          name: "实时售票数"
-        },
-        {
-          data: 2222,
-          name: "实时售票数"
-        }
-      ],
-      monitors: [
-        {
-          data: "良好",
-          name: "空气质量"
-        },
-        {
-          data: "良好",
-          name: "空气质量"
-        },
-        {
-          data: "良好",
-          name: "空气质量"
-        },
-        {
-          data: "良好",
-          name: "空气质量"
-        }
-      ],
-      currentRate: 0
+      ticketData: {
+        ShiShiShouPiao: '',
+        ShiShiJianPiao: '',
+        RuYuanCount: '',
+        ZaiYuanCount: '',
+      },
+      monitor: {
+        qlty: '',
+        main: '',
+        pm10: '',
+        so2: ''
+      },
     };
   },
   computed: {
-    text () {
-      return this.currentRate.toFixed(0) + "%";
-    }
   },
   created () {
     this.packDatas()
+    this.ticketDatas()
+    this.monitors()
   },
   methods: {
     async packDatas () {
@@ -146,13 +144,33 @@ export default {
         this.packData.cheliang = res.data.data.CheLiang
         this.packData.shengyu = res.data.data.ShengYu
         this.packData.shiyonglv = res.data.data.ShiYongLv
+        this.$store.dispatch('setshiyonglv', res.data.data.ShiYongLv)
       })
-    }
+    },
+    async ticketDatas () {
+      await this.$http.get('http://119.3.248.197:8086/api/mobile/PiaoWuShuJu').then(res => {
+        console.log(res)
+        this.ticketData.ShiShiShouPiao = res.data.data.ShiShiShouPiao
+        this.ticketData.ShiShiJianPiao = res.data.data.ShiShiJianPiao
+        this.ticketData.RuYuanCount = res.data.data.RuYuanCount
+        this.ticketData.ZaiYuanCount = res.data.data.ZaiYuanCount
+      })
+    },
+    async  monitors () {
+      await this.$http.get('http://119.3.248.197:8086/api/mobile/HuanJiangJianCe').then(res => {
+        console.log(res)
+        this.monitor.qlty = res.data.data.qlty
+        this.monitor.main = res.data.data.main
+        this.monitor.pm10 = res.data.data.pm10
+        this.monitor.so2 = res.data.data.so2
+      })
+    },
   },
   components: {
     tabbar: tabbar,
     "v-circle": vcircle,
-    "v-weather": weather,
+    // "v-weather": weather,
+    "v-weather": VWeather,
     "van-col": Col,
     "van-row": Row,
     "van-icon": Icon
@@ -169,10 +187,11 @@ export default {
       display: block;
       font-size: 0.24rem;
       padding: 0.2rem 0 0.1rem;
-      background: #e3f6fe;
-      color: #808080;
+      background: #4689f1;
+      color: #fff;
+      margin: -10px 0;
       p {
-        color: #808080;
+        color: #fff;
       }
     }
   }

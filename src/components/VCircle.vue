@@ -11,14 +11,14 @@ import { getAnnulusOption } from "../utils/options.js";
 import echarts from "Echarts";
 export default {
   name: "vcircle",
-  props: ["shiyonglv"],
+  // props: {
+  //   shiyonglv: Number
+  // },
   mounted () {
     this.$nextTick(() => {
-      this.renderChart("chart", 35, 100);
+      var shiyonglv = this.$store.state.shiyonglv
+      this.renderChart("chart", shiyonglv, 100);
     });
-
-  },
-  computed: {
 
   },
   methods: {

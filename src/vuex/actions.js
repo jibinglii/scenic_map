@@ -25,3 +25,8 @@ export const setAudiotype = ({
 }, data) => {
   commit('setAudiotype', data)
 }
+export const setshiyonglv = ({
+  commit
+}, data) => {
+  commit('setshiyonglv', data)
+}

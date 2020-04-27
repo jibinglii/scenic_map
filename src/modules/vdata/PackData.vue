@@ -28,10 +28,10 @@
           <van-tab v-for="(item,index) in tabs"
                    :key="index"
                    :title="item.title">
-            <div id="myChart"
-                 :style="{width: '100%', height: '300px'}"></div>
-          </van-tab>
 
+          </van-tab>
+          <div id="myChart"
+               :style="{width: '100%', height: '300px'}"></div>
         </van-tabs>
 
       </div>
@@ -54,7 +54,7 @@ export default {
     return {
       waveBg: require("../../assets/images/wave.png"),
       weavs: [],
-      active: 1,
+      active: 0,
       tabs: [
         {
           title: "周",
@@ -92,7 +92,7 @@ export default {
           type: type
         }
       }).then(res => {
-        console.log(res)
+        console.log(res.data.data)
         this.$toast.clear()
         // 绘制图表
         myChart.setOption({
@@ -115,7 +115,7 @@ export default {
             textStyle: {
               color: "#9c9e9e" //---所有图例的字体颜色
             },
-            data: ["停车数量", "环比（上周）"]
+            data: ["停车数量", "环比"]
           },
 
           xAxis: {
@@ -148,7 +148,7 @@ export default {
               data: res.data.data.shuliang
             },
             {
-              name: "环比（上周）",
+              name: "环比",
               type: "line",
               stack: "",
               smooth: true,

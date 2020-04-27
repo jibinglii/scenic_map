@@ -3,5 +3,6 @@ export default {
   isLogin: false,
   token: null,
   fId: 0,
-  audiotype: 0
+  audiotype: 0,
+  shiyonglv: 0
 }

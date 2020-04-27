@@ -14,3 +14,6 @@ export const setfId = (state, data) => {
 export const setAudiotype = (state, data) => {
   state.audiotype = data
 }
+export const setshiyonglv = (state, data) => {
+  state.shiyonglv = data
+}

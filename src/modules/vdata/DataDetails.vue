@@ -1,13 +1,14 @@
 <template>
   <div class="weather_div">
-    <v-weather></v-weather>
-    <div class="chart">
+    <v-weather-all></v-weather-all>
+    <!-- <div class="chart">
       <van-tabs v-model="active">
         <van-tab :title="item.title" v-for="(item,index) in times" :key="index"></van-tab>
         <div id="myChart" :style="{width: '90%', height: '300px'}"></div>
       </van-tabs>
-    </div>
-    <router-link to="/vData" class="pack">
+    </div> -->
+    <router-link to="/vData"
+                 class="pack">
       <p>收起</p>
       <van-icon name="arrow-up" />
     </router-link>
@@ -15,7 +16,7 @@
 </template>
 
 <script>
-import weather from "../../components/weather.vue";
+import VweatherAll from "../../components/VweatherAll.vue";
 import { Col, Row, Tab, Tabs, Icon } from "vant";
 // 引入基本模板
 let echarts = require("echarts/lib/echarts");
@@ -25,7 +26,7 @@ require("echarts/lib/component/legend");
 
 export default {
   name: "dataDetails",
-  data() {
+  data () {
     return {
       active: 0,
       times: [
@@ -41,13 +42,13 @@ export default {
       ]
     };
   },
-  mounted() {
+  mounted () {
     this.$nextTick(() => {
       this.drawLine();
     });
   },
   methods: {
-    drawLine() {
+    drawLine () {
       // 基于准备好的dom，初始化echarts实例
       let myChart = echarts.init(document.getElementById("myChart"));
       // 绘制图表
@@ -160,7 +161,7 @@ export default {
     }
   },
   components: {
-    "v-weather": weather,
+    "v-weather-all": VweatherAll,
     "van-col": Col,
     "van-row": Row,
     "van-tab": Tab,
@@ -177,24 +178,24 @@ export default {
   position: fixed;
   width: 100%;
   height: 100%;
-  overflow-y: scroll;
-  .chart {
-        padding: 0 0 .5rem 0;
-    #myChart {
-      margin: 20px auto;
-    }
-    .pack {
-      display: block;
-      position: fixed;
-      left: 0;
-      right: 0;
-      bottom: 0.2rem;
-      color: #808080;
-      p {
-        font-size: 0.26rem;
-         color: #808080;
-      }
+  // overflow-y: scroll;
+  // .chart {
+  //   padding: 0 0 0.5rem 0;
+  //   #myChart {
+  //     margin: 20px auto;
+  //   }
+  .pack {
+    display: block;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 2.2rem;
+    color: #fff;
+    p {
+      font-size: 0.26rem;
+      color: #fff;
     }
   }
+  // }
 }
 </style>

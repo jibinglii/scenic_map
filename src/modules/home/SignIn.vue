@@ -14,7 +14,7 @@
     <div class="bottom">
       <p>
         已连续
-        <span>签到5天</span>，获得15积分，
+        <span>签到{{days}}天</span>，获得{{Integrals}}积分，
         <br />坚持打卡签到也是考验一个人的毅力的一种表现哦！
       </p>
       <div class="steps">
@@ -22,7 +22,7 @@
              v-for="(item,index) in steps"
              :key="index">
           <div class="left">
-            <img v-if="isIntegral"
+            <img v-if="item.isIntegral"
                  :src="item.img"
                  alt
                  class="integral_img" />
@@ -31,12 +31,12 @@
                  alt
                  class="integral_img" />
 
-            <div :class="[day_click_able?'day_clicked':'day']">{{item.day}}</div>
+            <div :class="[item.day_click_able?'day_clicked':'day']">{{item.day}}</div>
 
-            <span>{{item.number}}</span>
+            <span :class="[item.inte_click?'inte_clicked':'inte']">{{item.number}}</span>
           </div>
 
-          <img v-if="isLine"
+          <img v-if="item.isLine"
                :src="item.line"
                alt
                class="line" />
@@ -46,6 +46,7 @@
                class="line" />
         </div>
       </div>
+
     </div>
   </div>
 </template>
@@ -58,9 +59,12 @@ export default {
       integralBg: require("../../assets/images/bg-integral.png"),
       waveBg: require("../../assets/images/wave2.png"),
       active: 0,
-      day_click_able: false,
-      isIntegral: true,
-      isLine: true,
+      // day_click_able: false,
+      // inte_click: false,
+      // isIntegral: true,
+      // isLine: true,
+      days: 0,
+      Integrals: 0,
       steps: [
         {
           img: require("../../assets/images/integral_h.png"),
@@ -68,7 +72,11 @@ export default {
           day: 1,
           number: "+5",
           line: require("../../assets/images/line_h.png"),
-          activeLine: require("../../assets/images/line.png")
+          activeLine: require("../../assets/images/line.png"),
+          day_click_able: false,
+          inte_click: false,
+          isIntegral: true,
+          isLine: true,
         },
         {
           img: require("../../assets/images/integral_h.png"),
@@ -76,7 +84,11 @@ export default {
           day: 2,
           number: "+5",
           line: require("../../assets/images/line_h.png"),
-          activeLine: require("../../assets/images/line.png")
+          activeLine: require("../../assets/images/line.png"),
+          day_click_able: false,
+          inte_click: false,
+          isIntegral: true,
+          isLine: true,
         },
         {
           img: require("../../assets/images/integral_h.png"),
@@ -84,7 +96,11 @@ export default {
           day: 3,
           number: "+5",
           line: require("../../assets/images/line_h.png"),
-          activeLine: require("../../assets/images/line.png")
+          activeLine: require("../../assets/images/line.png"),
+          day_click_able: false,
+          inte_click: false,
+          isIntegral: true,
+          isLine: true,
         },
         {
           img: require("../../assets/images/integral_h.png"),
@@ -92,7 +108,11 @@ export default {
           day: 4,
           number: "+5",
           line: require("../../assets/images/line2_h.png"),
-          activeLine: require("../../assets/images/line2.png")
+          activeLine: require("../../assets/images/line2.png"),
+          day_click_able: false,
+          inte_click: false,
+          isIntegral: true,
+          isLine: true,
         },
         {
           img: require("../../assets/images/integral_h.png"),
@@ -100,7 +120,11 @@ export default {
           day: 5,
           number: "+10",
           line: require("../../assets/images/line_h.png"),
-          activeLine: require("../../assets/images/line.png")
+          activeLine: require("../../assets/images/line.png"),
+          day_click_able: false,
+          inte_click: false,
+          isIntegral: true,
+          isLine: true,
         },
         {
           img: require("../../assets/images/integral_h.png"),
@@ -108,7 +132,11 @@ export default {
           day: 6,
           number: "+5",
           line: require("../../assets/images/line_h.png"),
-          activeLine: require("../../assets/images/line.png")
+          activeLine: require("../../assets/images/line.png"),
+          day_click_able: false,
+          inte_click: false,
+          isIntegral: true,
+          isLine: true,
         },
         {
           img: require("../../assets/images/integral_h.png"),
@@ -116,7 +144,11 @@ export default {
           day: 7,
           number: "+5",
           line: require("../../assets/images/line2_h.png"),
-          activeLine: require("../../assets/images/line2.png")
+          activeLine: require("../../assets/images/line2.png"),
+          day_click_able: false,
+          inte_click: false,
+          isIntegral: true,
+          isLine: true,
         },
         {
           img: require("../../assets/images/integral_h.png"),
@@ -124,7 +156,11 @@ export default {
           day: 8,
           number: "+5",
           line: require("../../assets/images/line_h.png"),
-          activeLine: require("../../assets/images/line.png")
+          activeLine: require("../../assets/images/line.png"),
+          day_click_able: false,
+          inte_click: false,
+          isIntegral: true,
+          isLine: true,
         },
         {
           img: require("../../assets/images/integral_h.png"),
@@ -132,7 +168,11 @@ export default {
           day: 9,
           number: "+5",
           line: require("../../assets/images/line_h.png"),
-          activeLine: require("../../assets/images/line.png")
+          activeLine: require("../../assets/images/line.png"),
+          day_click_able: false,
+          inte_click: false,
+          isIntegral: true,
+          isLine: true,
         },
         {
           img: require("../../assets/images/integral_h.png"),
@@ -140,7 +180,11 @@ export default {
           day: 10,
           number: "+50",
           line: require("../../assets/images/line_h.png"),
-          activeLine: require("../../assets/images/line.png")
+          activeLine: require("../../assets/images/line.png"),
+          day_click_able: false,
+          inte_click: false,
+          isIntegral: true,
+          isLine: true,
         },
         {
           img: "",
@@ -149,10 +193,34 @@ export default {
           line: ""
         }
       ],
+      integral: 10,
       signText: '签到'
     };
   },
+  created () {
+    this.signinifobymonth()
+  },
   methods: {
+    async signinifobymonth () {
+      var token = this.$store.state.token
+      var loginmark = this.$store.state.user
+      await this.$http.get('/userinfo/signinifobymonth', {
+        params: {
+          token: token,
+          loginMark: loginmark,
+        }
+      }).then(res => {
+        console.log(res)
+        this.days = res.data.data.length
+        for (var i = 0; i < res.data.data.length; i++) {
+          this.Integrals += res.data.data[i].F_Integral
+          this.steps[i].isIntegral = false
+          this.steps[i].isLine = false
+          this.steps[i].day_click_able = true
+          this.steps[i].inte_click = true
+        }
+      })
+    },
     signInClick () {
       this.signIn()
     },
@@ -277,9 +345,20 @@ $fontColor: #0088ff;
           }
           .day_clicked {
             background: $activeBgColor;
+            width: 0.4rem;
+            height: 0.4rem;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 0.4rem;
+            color: #fff;
+            margin: 5px 0;
+            z-index: 9;
           }
-          span {
+          span.inte {
             color: #666;
+          }
+          span.inte_clicked {
+            color: #0088ff;
           }
         }
         img.line {
