@@ -17,3 +17,6 @@ export const setAudiotype = (state, data) => {
 export const setshiyonglv = (state, data) => {
   state.shiyonglv = data
 }
+export const setItem_Id = (state, data) => {
+  state.item_Id = data
+}

@@ -4,8 +4,8 @@
          v-for="(item,index) in videoList"
          :key="index"
          :style="{backgroundImage:'url('+item.F_DefaultImage+')'}">
-      <router-link :to="{name:'videoDetails',query:{id:item.F_Id}}">
-        <span class="title">{{item.F_Name}}-{{item.F_Remarks}}</span>
+      <router-link :to="{name:'videoDetails',params:{id:item.F_Id,videoUrl:item.F_Video,defaultImg:item.F_DefaultImage,remarks:item.F_Remarks}}">
+        <span class="title">{{item.F_Name}}</span>
         <img src="../../assets/images/play.png"
              alt
              class="play" />
@@ -23,7 +23,7 @@ export default {
   name: "videoList",
   data () {
     return {
-      videoList: []
+      videoList: [],
     };
   },
   created () {
@@ -36,7 +36,7 @@ export default {
       });
       var token = this.$store.state.token
       var loginmark = this.$store.state.user
-      var fId = this.$route.params.id
+      var fId = this.$store.state.item_Id
       console.log(fId)
       await this.$http.get('gisscenicarea/getvideolist/' + fId, {
         params: {
@@ -47,7 +47,6 @@ export default {
         console.log(res)
         this.$toast.clear()
         this.videoList = res.data.data
-
       })
     }
   }

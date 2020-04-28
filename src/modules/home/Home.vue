@@ -40,15 +40,15 @@
     <div class="video">
       <div class="top">
         <span>实时视频展示</span>
-        <router-link :to="{name:'videoList',params:{id:item_Id}}">
+        <!-- <router-link :to="{name:'videoList',params:{id:item_Id}}">
           <img src="../../assets/images/more.png"
                alt />
-        </router-link>
+        </router-link> -->
       </div>
       <div class="list">
         <div v-for="(item,index) in list"
              :key="index">
-          <router-link :to="{path:'/videodetails',query:{id:item.F_Id}}">
+          <router-link :to="{name:'videoList',params:{id:item.F_Id}}">
             <div class="item"
                  :style="{'backgroundImage':'url('+item.F_Image+')'}">
               <p>{{item.F_Name}}</p>
@@ -115,18 +115,7 @@ export default {
           name: "饭店"
         }
       ],
-      list: [
-        // {
-        //   id: 1,
-        //   bg: require("../../assets/images/hqc.jpg"),
-        //   title: "华清池"
-        // },
-        // {
-        //   id: 2,
-        //   bg: require("../../assets/images/bmy.jpg"),
-        //   title: "秦岭兵马俑"
-        // }
-      ],
+      list: [],
       item_Id: 0
     };
   },
@@ -152,7 +141,6 @@ export default {
         console.log(res)
         this.$toast.clear()
         let result = res.data.data
-        console.log(res.data.data)
         this.fId = result.F_Id
         this.$store.dispatch('setfId', this.fId)
         this.scenicList()
@@ -177,6 +165,7 @@ export default {
       var token = this.$store.state.token
       var loginmark = this.$store.state.user
       var id = this.item_Id
+      this.$store.dispatch('setItem_Id', this.item_Id)
       await this.$http.get("/gisscenicarea/getimageslist/" + id, {
         params: {
           token: token,
@@ -186,7 +175,8 @@ export default {
         console.log(res)
         this.list = res.data.data
       });
-    }
+    },
+
   },
 
   components: {

@@ -43,9 +43,9 @@ export default {
     };
   },
   mounted () {
-    this.$nextTick(() => {
-      this.drawLine();
-    });
+    // this.$nextTick(() => {
+    //   this.drawLine();
+    // });
   },
   methods: {
     drawLine () {

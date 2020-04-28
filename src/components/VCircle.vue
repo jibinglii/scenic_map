@@ -11,9 +11,6 @@ import { getAnnulusOption } from "../utils/options.js";
 import echarts from "Echarts";
 export default {
   name: "vcircle",
-  // props: {
-  //   shiyonglv: Number
-  // },
   mounted () {
     this.$nextTick(() => {
       var shiyonglv = this.$store.state.shiyonglv
@@ -31,7 +28,6 @@ export default {
     //dividend
     //divisor
     renderChart (id, dividend, divisor) {
-      console.log(dividend)
       echarts.dispose(document.getElementById(id));
       const data = [dividend, divisor - dividend];
       const colors = ["#00d4c1", "#dcf8fc"];

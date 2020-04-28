@@ -16,15 +16,17 @@
               </router-link>
             </h4>
             <h4 v-else>{{username}}</h4>
-            <router-link :to="{name:'userupdata'}"
-                         v-if="!$store.state.isLogin">
-              <p>简介：{{introDefault}}</p>
+            <router-link :to="{name:'userupdata'}">
+              <p v-if="!$store.state.isLogin">简介：{{introDefault}}</p>
+              <p v-else>简介：{{introduce}}</p>
             </router-link>
-            <p v-else>简介：{{introduce}}</p>
+
           </div>
         </div>
         <div class="user_right">
-          <div class="sign">每日签到</div>
+          <router-link :to="{name:'signIn'}">
+            <div class="sign">每日签到</div>
+          </router-link>
         </div>
       </div>
       <div class="user_bg"
@@ -229,6 +231,7 @@ export default {
       .sign {
         border: solid 1px white;
         padding: 0.1rem;
+        color: #fff;
       }
     }
   }

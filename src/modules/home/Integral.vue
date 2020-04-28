@@ -1,152 +1,106 @@
 <template>
   <div class="_div">
-    <div class="main-bg" :style="{'background-image':'url('+integralBg+')'}">
+    <div class="main-bg"
+         :style="{'background-image':'url('+integralBg+')'}">
       <div class="intrgral-info">
         <div>
-          <h3>{{integralNumber}}</h3>
+          <h3>{{Integrals}}</h3>
           <p>当前可用积分</p>
         </div>
       </div>
-      <div class="integral_bg" :style="{'backgroundImage':'url('+waveBg+')'}"></div>
+      <div class="integral_bg"
+           :style="{'backgroundImage':'url('+waveBg+')'}"></div>
     </div>
-    <van-tabs v-model="active">
-      <van-tab title="全部">
-        <v-integral :msg="allPoints"></v-integral>
+    <van-tabs v-model="active"
+              @click="tabsClick(active)">
+      <van-tab :title="item.title"
+               v-for="(item,index) in integralLIst"
+               :key="index">
       </van-tab>
-      <van-tab title="获取">
-        <v-integral :msg="getPoints"></v-integral>
-      </van-tab>
-      <van-tab title="使用">
-        <v-integral :msg="usePoints"></v-integral>
-      </van-tab>
+      <van-cell v-for="(item, index) in filterMsg"
+                :key="index"
+                :value="item.F_Integral">
+        <template slot="title">
+          <div>
+            <h4>{{item.F_Source}}</h4>
+            <p>{{item.F_Date}}</p>
+          </div>
+        </template>
+      </van-cell>
     </van-tabs>
   </div>
 </template>
 
 <script>
-import { Button, Tab, Tabs } from "vant";
-import Integral from "../../components/Points";
+import { Button, Tab, Tabs, Cell } from "vant";
 export default {
   name: "integral",
-  data() {
+  data () {
     return {
       integralBg: require("../../assets/images/bg-integral.png"),
       waveBg: require("../../assets/images/wave2.png"),
-      integralNumber: 5662552, //当前可用积分
+      Integrals: 0, //当前可用积分
       active: 0,
-      allPoints: [
+      integralLIst: [
         {
-          name: "签到",
-          date: "2020-02-20 12:12:12",
-          point: "+10"
+          title: '全部'
         },
         {
-          name: "使用",
-          date: "2020-02-20 12:12:12",
-          point: "-10"
+          title: '获取'
         },
         {
-          name: "签到",
-          date: "2020-02-20 12:12:12",
-          point: "+10"
+          title: '使用'
         },
-        {
-          name: "使用",
-          date: "2020-02-20 12:12:12",
-          point: "-10"
-        },
-        {
-          name: "签到",
-          date: "2020-02-20 12:12:12",
-          point: "+10"
-        }
-      ], //所有数据
-      getPoints: [
-        {
-          name: "签到",
-          date: "2020-02-20 12:12:12",
-          point: "+10"
-        },
-        {
-          name: "签到",
-          date: "2020-02-20 12:12:12",
-          point: "+10"
-        },
-        {
-          name: "签到",
-          date: "2020-02-20 12:12:12",
-          point: "+10"
-        },
-        {
-          name: "签到",
-          date: "2020-02-20 12:12:12",
-          point: "+10"
-        },
-        {
-          name: "签到",
-          date: "2020-02-20 12:12:12",
-          point: "+10"
-        },
-        {
-          name: "签到",
-          date: "2020-02-20 12:12:12",
-          point: "+10"
-        },
-        {
-          name: "签到",
-          date: "2020-02-20 12:12:12",
-          point: "+10"
-        },
-        {
-          name: "签到",
-          date: "2020-02-20 12:12:12",
-          point: "+10"
-        },
-        {
-          name: "签到",
-          date: "2020-02-20 12:12:12",
-          point: "+10"
-        },
-        {
-          name: "签到",
-          date: "2020-02-20 12:12:12",
-          point: "+10"
-        }
-      ], //获取
-      usePoints: [
-        {
-          name: "使用",
-          date: "2020-02-20 12:12:12",
-          point: "-10"
-        },
-        {
-          name: "使用",
-          date: "2020-02-20 12:12:12",
-          point: "-10"
-        },
-        {
-          name: "使用",
-          date: "2020-02-20 12:12:12",
-          point: "-10"
-        },
-        {
-          name: "使用",
-          date: "2020-02-20 12:12:12",
-          point: "-10"
-        },
-        {
-          name: "使用",
-          date: "2020-02-20 12:12:12",
-          point: "-10"
-        }
-      ] //使用
+      ],
+      msg: [],
+      filterMsg: []
     };
+  },
+  created () {
+    this.signinifobymonth()
+  },
+  methods: {
+    tabsClick (index) {
+      if (index === 1) {
+        return this.filterMsg = this.msg.filter(function (e) {
+          return e.F_Source === '签到';
+        })
+      }
+      if (index === 2) {
+        return this.filterMsg = this.msg.filter(function (e) {
+          return e.F_Purpose === '使用';
+        })
+      }
+      if (index === 0) {
+        return this.filterMsg = this.msg
+      }
+    },
+    async signinifobymonth () {
+      this.$toast.loading({
+        message: '加载中...',
+      });
+      var token = this.$store.state.token
+      var loginmark = this.$store.state.user
+      await this.$http.get('/userinfo/signinifobymonth', {
+        params: {
+          token: token,
+          loginMark: loginmark,
+        }
+      }).then(res => {
+        this.$toast.clear()
+        for (var i = 0; i < res.data.data.length; i++) {
+          this.Integrals = res.data.data[i].F_AmountIntegral
+        }
+        this.msg = res.data.data;
+        this.filterMsg = this.msg
+      })
+    },
   },
   components: {
     "van-tabs": Tabs,
     "van-tab": Tab,
     "van-button": Button,
-    "v-integral": Integral
+    "van-cell": Cell
   }
 };
 </script>
@@ -165,10 +119,9 @@ $fontColor: #808080;
     justify-content: center;
     height: 5rem;
     h3 {
-       color: white;
+      color: white;
       font-size: 0.8rem;
       font-weight: 200;
-      margin-bottom: 13px;
     }
   }
   .integral_bg {
@@ -177,6 +130,13 @@ $fontColor: #808080;
     position: absolute;
     bottom: 0;
     background-size: 100%;
+  }
+}
+.van-cell {
+  align-items: center;
+  padding: 13px 30px;
+  .van-cell__title {
+    text-align: left;
   }
 }
 </style>

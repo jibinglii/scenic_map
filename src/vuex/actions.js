@@ -30,3 +30,8 @@ export const setshiyonglv = ({
 }, data) => {
   commit('setshiyonglv', data)
 }
+export const setItem_Id = ({
+  commit
+}, data) => {
+  commit('setItem_Id', data)
+}

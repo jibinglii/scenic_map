@@ -1,12 +1,10 @@
 <template>
   <!--在视频外面加一个容器-->
   <div class="input_video">
-    <video-player
-      class="video-player vjs-custom-skin"
-      ref="videoPlayer"
-      :playsinline="true"
-      :options="playerOptions"
-    ></video-player>
+    <video-player class="video-player vjs-custom-skin"
+                  ref="videoPlayer"
+                  :playsinline="true"
+                  :options="playerOptions"></video-player>
   </div>
 </template>
 <script>
@@ -19,7 +17,8 @@ import "video.js/dist/video-js.css";
 
 export default {
   name: "videoPlyer",
-  data() {
+  props: ['videoUrl', 'defaultImg'],
+  data () {
     return {
       // 视频播放
       playerOptions: {
@@ -34,11 +33,10 @@ export default {
         sources: [
           {
             type: "",
-            // src: "../assets/images/aaa.mp4"
-            src:"http://vfx.mtime.cn/Video/2019/03/19/mp4/190319222227698228.mp4" //url地址
+            src: this.videoUrl//url地址
           }
         ],
-        poster: "http://pic37.nipic.com/20140113/8800276_184927469000_2.png", //你的封面地址
+        poster: this.defaultImg, //你的封面地址
         // width: document.documentElement.clientWidth,
         // notSupportedMessage: "此视频暂无法播放，请稍后再试", //允许覆盖Video.js无法播放媒体源时显示的默认信息。
         controlBar: {

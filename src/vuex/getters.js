@@ -4,3 +4,4 @@ export const authToken = state => state.token
 export const fId = state => state.fId
 export const audiotype = state => state.audiotype
 export const shiyonglv = state => state.shiyonglv
+export const item_Id = state => state.item_Id

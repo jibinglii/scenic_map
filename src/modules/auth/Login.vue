@@ -24,7 +24,7 @@
                 loading-text="登录...">登录</van-button>
 
     <div class="pwd_text">
-      <router-link to>忘记密码?</router-link>
+      <!-- <router-link to>忘记密码?</router-link> -->
     </div>
     <div class="row_div">
       <van-divider :style="{ color: '#78D2F7', borderColor: '#78D2F7', padding: '0 16px' }">第三方登录</van-divider>

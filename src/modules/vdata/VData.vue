@@ -144,6 +144,7 @@ export default {
         this.packData.cheliang = res.data.data.CheLiang
         this.packData.shengyu = res.data.data.ShengYu
         this.packData.shiyonglv = res.data.data.ShiYongLv
+        console.log(this.packData.shiyonglv)
         this.$store.dispatch('setshiyonglv', res.data.data.ShiYongLv)
       })
     },
