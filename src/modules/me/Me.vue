@@ -61,7 +61,7 @@ export default {
     return {
       username: "",
       introDefault: "点击添加简介",
-      introduce: "",
+      introduce: "点击添加简介",
       defaultAvatar: require("../../assets/images/me/user.jpg"),
       userImg: '',
       waveBg: require("../../assets/images/wave.png"),

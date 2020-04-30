@@ -56,10 +56,10 @@ export default {
   name: "register",
   data () {
     return {
-      tel: "15706086571",
+      tel: "",
       sms: "456231",
-      pwd: "123456",
-      confirmPwd: "123456",
+      pwd: "",
+      confirmPwd: "",
       zhud: false,
       loading: false,
       buttonmsg: '发送验证码',
@@ -137,8 +137,8 @@ export default {
     async reallR () {
       this.zhud = true;
       await this.$http.post('/userinfo/register', {
-        "username": "15706086571",
-        "password": "123456"
+        "username": this.tel,
+        "password": this.pwd
       }).then(res => {
         this.zhud = false
         this.loading = false

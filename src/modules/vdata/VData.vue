@@ -188,11 +188,11 @@ export default {
       display: block;
       font-size: 0.24rem;
       padding: 0.2rem 0 0.1rem;
-      background: #4689f1;
-      color: #fff;
+      background: #fff;
+      color: #000;
       margin: -10px 0;
       p {
-        color: #fff;
+        color: #000;
       }
     }
   }

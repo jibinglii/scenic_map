@@ -27,9 +27,9 @@ export default {
   name: 'userupdata',
   data () {
     return {
-      username: '张三三',
-      encode: '610525198804322120',
-      intro: '生活不止眼前的苟且，还有诗和远方的狂野~'
+      username: '',
+      encode: '',
+      intro: ''
     }
   },
   methods: {

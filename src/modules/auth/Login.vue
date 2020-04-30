@@ -63,8 +63,8 @@ export default {
   name: "login",
   data () {
     return {
-      tel: "15706086571",
-      pwd: "123456",
+      tel: "",
+      pwd: "",
       loading: false,
       userImg: require("../../assets/images/user.png"),
       pwdImg: require("../../assets/images/password.png")
