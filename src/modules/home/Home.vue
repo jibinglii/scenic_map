@@ -30,8 +30,8 @@
           <van-col v-for="(mear,index) in nearLists"
                    :key="index">
             <router-link :to="{name:'scenicSpot'}">
-              <img :src="mear.imgUrl" />
-              <p>{{mear.name}}</p>
+              <img :src="mear.F_HighlightImage" />
+              <p>{{mear.F_Name}}</p>
             </router-link>
           </van-col>
         </van-row>
@@ -40,20 +40,19 @@
     <div class="video">
       <div class="top">
         <span>实时视频展示</span>
-        <!-- <router-link :to="{name:'videoList',params:{id:item_Id}}">
+        <router-link :to="{name:'moreList',params:{getimageslists:getimageslists}}">
           <img src="../../assets/images/more.png"
                alt />
-        </router-link> -->
+        </router-link>
       </div>
       <div class="list">
-        <div v-for="(item,index) in list"
+        <div v-for="(item,index) in getimageslists.slice(0,2)"
              :key="index">
-          <router-link :to="{name:'videoList',params:{id:item.F_Id}}">
-            <div class="item"
-                 :style="{'backgroundImage':'url('+item.F_Image+')'}">
-              <p>{{item.F_Name}}</p>
-            </div>
-          </router-link>
+          <div class="item"
+               @click="videoListClick(item.F_Id)"
+               :style="{'backgroundImage':'url('+item.F_Image+')'}">
+            <p>{{item.F_Name}}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -97,32 +96,14 @@ export default {
           name: "signIn"
         }
       ],
-      nearLists: [
-        {
-          imgUrl: require("../../assets/images/cs.png"),
-          name: "厕所 "
-        },
-        {
-          imgUrl: require("../../assets/images/cz.png"),
-          name: "车站"
-        },
-        {
-          imgUrl: require("../../assets/images/jd.png"),
-          name: "酒店"
-        },
-        {
-          imgUrl: require("../../assets/images/fd.png"),
-          name: "饭店"
-        }
-      ],
-      list: [],
+      nearLists: [],
+      getimageslists: [],
       item_Id: 0
     };
   },
   created () {
     this.gissetting2d()
-    // this.scenicList()
-    // this.videolist()
+    this.gettypelist()
   },
   methods: {
     async gissetting2d () {
@@ -138,12 +119,28 @@ export default {
         }
 
       }).then(res => {
-        console.log(res)
         this.$toast.clear()
         let result = res.data.data
         this.fId = result.F_Id
         this.$store.dispatch('setfId', this.fId)
         this.scenicList()
+      })
+    },
+    async gettypelist () {
+      var token = this.$store.state.token
+      var loginmark = this.$store.state.user
+      await this.$http.get('/scenicareaaround/gettypelist', {
+        params: {
+          token: token,
+          loginMark: loginmark
+        }
+      }).then(res => {
+        this.nearLists = res.data.data
+        var nearList = []
+        for (var i = 0; i < this.nearLists.length; i++) {
+          nearList.push(this.nearLists[i].F_Name)
+          this.$store.dispatch('setF_Name', nearList)
+        }
       })
     },
     async scenicList () {
@@ -155,28 +152,19 @@ export default {
           loginMark: loginmark
         }
       }).then(res => {
-        console.log(res)
-        this.item_Id = res.data.data[0].F_Id
-        console.log(this.item_Id)
-        this.videolist()
+        this.getimageslists = res.data.data
+        this.$store.dispatch('setimageslists', this.getimageslists)
       })
     },
-    async videolist () {
-      var token = this.$store.state.token
-      var loginmark = this.$store.state.user
-      var id = this.item_Id
-      this.$store.dispatch('setItem_Id', this.item_Id)
-      await this.$http.get("/gisscenicarea/getimageslist/" + id, {
+    videoListClick (id) {
+      this.$store.dispatch('setItem_Id', id)
+      this.$router.push({
+        name: 'videoList',
         params: {
-          token: token,
-          loginMark: loginmark
+          id: id
         }
-      }).then(res => {
-        console.log(res)
-        this.list = res.data.data
-      });
-    },
-
+      })
+    }
   },
 
   components: {
@@ -253,11 +241,11 @@ export default {
     height: 2.3rem;
     background-size: 100% 100%;
     margin: 15px auto;
-    padding: 20px;
     p {
       text-align: left;
       color: #fff;
       font-size: 0.32rem;
+      padding: 10px 15px;
     }
   }
 }

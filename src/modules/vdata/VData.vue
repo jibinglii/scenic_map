@@ -24,7 +24,7 @@
             <p class="name">车辆统计</p>
           </van-col>
           <van-col>
-            <v-circle :shiyonglv="packData.shiyonglv"></v-circle>
+            <v-circle></v-circle>
           </van-col>
           <van-col>
             <p class="data2">{{packData.shengyu}}</p>
@@ -144,7 +144,7 @@ export default {
         this.packData.cheliang = res.data.data.CheLiang
         this.packData.shengyu = res.data.data.ShengYu
         this.packData.shiyonglv = res.data.data.ShiYongLv
-        console.log(this.packData.shiyonglv)
+        // console.log(this.packData.shiyonglv)
         this.$store.dispatch('setshiyonglv', res.data.data.ShiYongLv)
       })
     },

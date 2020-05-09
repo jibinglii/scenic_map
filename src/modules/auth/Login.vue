@@ -123,10 +123,11 @@ export default {
           this.$store.dispatch('setUser', res.data.data.loginMark)
           this.$store.dispatch('setToken', res.data.data.token)
           this.$store.dispatch('loginAction', true)
-          this.$router.back()
+          this.$router.push({
+            name: 'me'
+          })
         } else {
           this.$toast(res.data.info)
-
         }
       })
     },

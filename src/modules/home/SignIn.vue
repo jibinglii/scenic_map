@@ -196,28 +196,6 @@ export default {
   created () {
     this.signinifobymonth()
   },
-  computed: {
-    async signinifobymonths () {
-      var token = this.$store.state.token
-      var loginmark = this.$store.state.user
-      await this.$http.get('/userinfo/signinifobymonth', {
-        params: {
-          token: token,
-          loginMark: loginmark,
-        }
-      }).then(res => {
-        console.log(res)
-        this.days = res.data.data.length
-        for (var i = 0; i < res.data.data.length; i++) {
-          this.Integrals += res.data.data[i].F_Integral
-          this.steps[i].isIntegral = false
-          this.steps[i].isLine = false
-          this.steps[i].day_click_able = true
-          this.steps[i].inte_click = true
-        }
-      })
-    },
-  },
   methods: {
     async signinifobymonth () {
       var token = this.$store.state.token
@@ -252,6 +230,7 @@ export default {
         integral: 10
       }).then(res => {
         console.log(res)
+        this.signinifobymonth()
         this.$toast.success(res.data.info)
       })
     }

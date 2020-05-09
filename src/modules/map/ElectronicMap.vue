@@ -46,8 +46,8 @@
             </div>
           </router-link>
         </div>
-        <router-link :to="{}"
-                     class="more">查看更多</router-link>
+        <!-- <router-link :to="{}"
+                     class="more">查看更多</router-link> -->
       </div>
     </van-popup>
     <van-popup v-model="show2"
@@ -71,8 +71,8 @@
             </div>
           </router-link>
         </div>
-        <router-link :to="{}"
-                     class="more">查看更多</router-link>
+        <!-- <router-link :to="{}"
+                     class="more">查看更多</router-link> -->
       </div>
     </van-popup>
     <van-popup v-model="show3"
@@ -120,7 +120,7 @@ export default {
           active: require("../../assets/images/lx.png")
         },
         {
-          text: "景区列表",
+          text: "景点列表",
           normal: require("../../assets/images/jq_h.png"),
           active: require("../../assets/images/jq.png")
         },
@@ -130,23 +130,7 @@ export default {
           active: require("../../assets/images/yy.png")
         }
       ],
-      shopList: [
-        {
-          name: "1.5小时推荐路线",
-          intro: "大明宫-革命公园-广仁寺-清真寺-鼓楼-钟楼- 阿房宫-大雁塔",
-          btnText: "自动导览"
-        },
-        {
-          name: "2小时推荐路线",
-          intro: "大明宫-革命公园-广仁寺-清真寺-鼓楼-钟楼- 阿房宫-大雁塔",
-          btnText: "自动导览"
-        },
-        {
-          name: "2.5小时推荐路线",
-          intro: "大明宫-革命公园-广仁寺-清真寺-鼓楼-钟楼- 阿房宫-大雁塔",
-          btnText: "自动导览"
-        }
-      ],
+      shopList: [],
       scenicList: [],
       audiotypes: [
         {
@@ -159,21 +143,22 @@ export default {
           name: '度博文',
           audiotype: 106
         },
-      ]
+      ],
     };
   },
+  created () {
+
+  },
   methods: {
+
     tabClick (index) {
       console.log(index);
       var token = this.$store.state.token
       var loginmark = this.$store.state.user
       if (index === 0) {
-        this.show = !this.show;
+        // this.show = !this.show;
       }
       if (index === 1) {
-        this.$toast.loading({
-          message: '加载中...',
-        });
         var fId = this.$store.state.fId
         this.$http.get('/gisscenicarea/getlist/' + fId, {
           params: {
@@ -181,7 +166,6 @@ export default {
             loginMark: loginmark
           }
         }).then(res => {
-          this.$toast.clear()
           console.log(res)
           this.scenicList = res.data.data
         })
@@ -191,6 +175,7 @@ export default {
         this.show3 = !this.show3;
       }
     },
+
     selectClick (audiotype) {
       console.log(audiotype)
       this.$store.dispatch('setAudiotype', audiotype)
@@ -246,6 +231,8 @@ export default {
         }
         span {
           font-size: 0.26rem;
+          padding: 10px 0 5px 0;
+          display: block;
         }
       }
       .right {

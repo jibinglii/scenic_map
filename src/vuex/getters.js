@@ -5,3 +5,5 @@ export const fId = state => state.fId
 export const audiotype = state => state.audiotype
 export const shiyonglv = state => state.shiyonglv
 export const item_Id = state => state.item_Id
+export const F_Name = state => state.F_Name
+export const imageslists = state => state.imageslists

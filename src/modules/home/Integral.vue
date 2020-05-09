@@ -87,9 +87,10 @@ export default {
           loginMark: loginmark,
         }
       }).then(res => {
+        console.log(res)
         this.$toast.clear()
         for (var i = 0; i < res.data.data.length; i++) {
-          this.Integrals = res.data.data[i].F_AmountIntegral
+          this.Integrals += res.data.data[i].F_Integral
         }
         this.msg = res.data.data;
         this.filterMsg = this.msg

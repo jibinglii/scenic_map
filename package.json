@@ -10,7 +10,8 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "@supermap/vue-iclient-leaflet": "^10.0.1",
+    "@supermap/iclient-leaflet": "^10.0.1",
+    "leaflet": "^1.6.0",
     "axios": "^0.19.2",
     "echarts": "^4.7.0",
     "vant": "^2.5.7",

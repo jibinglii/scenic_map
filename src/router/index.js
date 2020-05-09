@@ -38,7 +38,6 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  console.log(to)
   if (to.meta.requiresAuth === true) {
     let token = sessionStorage.getItem('setToken');
     // var token = this.$store.state.token

@@ -1,11 +1,11 @@
 <template>
   <div>
     <v-search></v-search>
-    <v-map></v-map>
+    <v-map-sur></v-map-sur>
     <ul class="lists">
       <li v-for="(item,index) in lists"
           :key="index">
-        <router-link :to="{}">{{item.F_Name}}</router-link>
+        <router-link :to="{name:'searchList'}">{{item.F_Name}}</router-link>
       </li>
     </ul>
     <div class="dw_div">
@@ -24,7 +24,7 @@
                 active-color="#00c8b0">
       <van-tabbar-item v-for="(item,index) in tabs"
                        :key="index"
-                       @click="tabClick(index)">
+                       @click="tabClick(item.F_Name)">
         <img slot="icon"
              slot-scope="props"
              :src="props.active ? item.F_HighlightImage : item.F_Image" />
@@ -35,10 +35,10 @@
                position="bottom"
                :style="{ height: '53%' }">
       <div class="content">
-        <div v-for="(item, index) in shopList"
+        <div v-for="(item, index) in searchList"
              :key="index"
              class="list_item">
-          <router-link :to="{name:'navigation'}">
+          <router-link :to="{name:''}">
             <div class="search_title">
               <div class="left">
                 <h3>{{(index+1)+"." +item.F_Name}}</h3>
@@ -54,15 +54,15 @@
             </div>
           </router-link>
         </div>
-        <router-link :to="{}"
-                     class="more">查看更多</router-link>
+        <!-- <router-link :to="{}"
+                     class="more">查看更多</router-link> -->
       </div>
     </van-popup>
   </div>
 </template>
 
 <script>
-import VMap from "../../components/VMap";
+import VMapSur from "../../components/VMapSur";
 import Search from "../../components/Search";
 import { Tabbar, TabbarItem, Popup, Rate } from "vant";
 export default {
@@ -73,34 +73,13 @@ export default {
       show: false,
       lists: [],
       tabs: [],
-      shopList: [
-        // {
-        //   name: "西安国际大酒店",
-        //   intro: "高档型·西安市新城区东新街319号",
-        //   rateNum: 4,
-        //   score: 9.4,
-        //   distance: 1999
-        // },
-        // {
-        //   name: "西安国际大酒店",
-        //   intro: "高档型·西安市新城区东新街319号",
-        //   rateNum: 4,
-        //   score: 9.4,
-        //   distance: 1999
-        // },
-        // {
-        //   name: "西安国际大酒店",
-        //   intro: "高档型·西安市新城区东新街319号",
-        //   rateNum: 4,
-        //   score: 9.4,
-        //   distance: 1999
-        // }
-      ],
+      searchList: [],
       Fid: 0
     };
   },
   created () {
     this.tabList()
+    this.getListSearch()
   },
   methods: {
     async tabList () {
@@ -115,32 +94,29 @@ export default {
         console.log(res)
         this.tabs = res.data.data
         this.lists = res.data.data
-        this.Fid = res.data.data[0].F_Id
-        console.log(this.Fid)
-
       });
     },
-    tabClick (index) {
+    tabClick (F_Name) {
+      console.log(F_Name)
       this.show = !this.show;
-      this.getTypeList()
+      this.getListSearch(F_Name)
     },
-    async getTypeList () {
+    async getListSearch (F_Name) {
       var token = this.$store.state.token
       var loginmark = this.$store.state.user
-      console.log(this.Fid)
-      await this.$http.get("/scenicareaaround/getlist/" + this.Fid, {
+      var keyword = F_Name
+      await this.$http.get("/scenicareaaround/getlistforsearch/" + keyword, {
         params: {
           token: token,
           loginMark: loginmark
         }
       }).then(res => {
-        console.log(res)
-        this.shopList = res.data.data
+        this.searchList = res.data.data
       });
-    },
+    }
   },
   components: {
-    "v-map": VMap,
+    "v-map-sur": VMapSur,
     "v-search": Search,
     "van-tabbar": Tabbar,
     "van-tabbar-item": TabbarItem,
@@ -223,6 +199,7 @@ export default {
         text-align: left;
         p {
           font-size: 0.24rem;
+          line-height: 30px;
         }
         span {
           font-size: 0.26rem;

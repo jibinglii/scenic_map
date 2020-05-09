@@ -14,9 +14,15 @@ export const setfId = (state, data) => {
 export const setAudiotype = (state, data) => {
   state.audiotype = data
 }
-export const setshiyonglv = (state, data) => {
+export const changeShiyonglv = (state, data) => {
   state.shiyonglv = data
 }
 export const setItem_Id = (state, data) => {
   state.item_Id = data
+}
+export const changeF_Name = (state, data) => {
+  state.F_Name = data
+}
+export const changeImageslists = (state, data) => {
+  state.imageslists = data
 }

@@ -44,7 +44,6 @@ export default {
           loginMark: loginmark
         }
       }).then(res => {
-        console.log(res)
         this.$toast.clear()
         this.videoList = res.data.data
       })
@@ -62,29 +61,31 @@ export default {
     background-size: 100%;
     background-repeat: no-repeat;
     margin-bottom: 0.1rem;
-    padding: 3%;
-    span.title {
-      display: block;
-      text-align: left;
-      color: #fff;
-    }
-    .play {
-      width: 1.2rem;
-      height: 1.2rem;
-      margin: 12% auto 7%;
-    }
-    .viewed {
-      text-align: right;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      img {
-        width: 0.4rem;
-        padding-right: 5px;
-      }
-      span {
+    a {
+      padding: 3%;
+      span.title {
+        display: block;
+        text-align: left;
         color: #fff;
-        padding-top: 3px;
+      }
+      .play {
+        width: 1.2rem;
+        height: 1.2rem;
+        margin: 10% auto 8%;
+      }
+      .viewed {
+        text-align: right;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        img {
+          width: 0.4rem;
+          padding-right: 5px;
+        }
+        span {
+          color: #fff;
+          padding-top: 3px;
+        }
       }
     }
   }

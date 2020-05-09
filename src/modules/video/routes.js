@@ -1,5 +1,4 @@
-export default [
-  {
+export default [{
     path: 'videoList',
     name: 'videoList',
     component: () => import('./VideoList')
@@ -8,5 +7,10 @@ export default [
     path: 'videoDetails',
     name: 'videoDetails',
     component: () => import('./videoDetails')
+  },
+  {
+    path: 'moreList',
+    name: 'moreList',
+    component: () => import('./moreList')
   },
 ]

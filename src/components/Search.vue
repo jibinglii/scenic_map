@@ -2,7 +2,10 @@
   <div class="search">
     <div class="search_input">
       <form action="/">
-        <van-search v-model="searchText" :placeholder="placeText" :right-icon="rightIcon"></van-search>
+        <van-search v-model="searchText"
+                    :placeholder="placeText"
+                    :right-icon="rightIcon"
+                    @focus="onfocus"></van-search>
       </form>
     </div>
   </div>
@@ -12,12 +15,19 @@
 import { Search } from "vant";
 export default {
   name: "search",
-  data() {
+  data () {
     return {
       searchText: "",
-      placeText:'搜索',
+      placeText: '搜索',
       rightIcon: require("../assets/images/mike.png")
     };
+  },
+  methods: {
+    onfocus () {
+      this.$router.push({
+        name: 'searchList'
+      })
+    }
   },
   components: {
     "van-search": Search

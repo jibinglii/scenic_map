@@ -28,10 +28,20 @@ export const setAudiotype = ({
 export const setshiyonglv = ({
   commit
 }, data) => {
-  commit('setshiyonglv', data)
+  commit('changeShiyonglv', data)
 }
 export const setItem_Id = ({
   commit
 }, data) => {
   commit('setItem_Id', data)
+}
+export const setF_Name = ({
+  commit
+}, data) => {
+  commit('changeF_Name', data)
+}
+export const setimageslists = ({
+  commit
+}, data) => {
+  commit('changeImageslists', data)
 }

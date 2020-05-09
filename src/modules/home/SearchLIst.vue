@@ -208,7 +208,7 @@ $boxSpace: #f3f3f5;
         .line {
           position: absolute;
           right: 0px;
-          top: 0;
+          top: 10px;
         }
       }
       button:nth-last-of-type(1) {

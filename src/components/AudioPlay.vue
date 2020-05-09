@@ -65,12 +65,13 @@ export default {
       var token = this.$store.state.token
       var loginmark = this.$store.state.user
       var audiotype = this.$store.state.audiotype
+      var id = this.$route.query.id
       console.log(audiotype)
       await this.$http.get('/gisscenicarea/audioplay', {
         params: {
           token: token,
           loginMark: loginmark,
-          gisscenicareaid: "295b3173-ff28-4721-816f-ca8567e91712",
+          gisscenicareaid: id,
           audiotype: audiotype
         }
       }).then(res => {

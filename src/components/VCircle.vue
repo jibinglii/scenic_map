@@ -12,13 +12,24 @@ import echarts from "Echarts";
 export default {
   name: "vcircle",
   mounted () {
-    this.$nextTick(() => {
-      var shiyonglv = this.$store.state.shiyonglv
-      this.renderChart("chart", shiyonglv, 100);
-    });
+    // this.$nextTick(() => {
+    // var shiyonglv = this.$store.state.shiyonglv
+    // console.log(this.shiyonglv)
+    // this.renderChart("chart", this.shiyonglv, 100);
+    // });
 
   },
+  created () {
+    this.packDatas()
+  },
   methods: {
+    async packDatas () {
+      await this.$http.get('http://119.3.248.197:8086/api/mobile/TingCheChangShuJu').then(res => {
+        this.shiyonglv = res.data.data.ShiYongLv
+        this.renderChart("chart", this.shiyonglv, 100);
+      })
+    },
+
     /*
      * @param {String} id  获取HTML div元素的 ID,
      * @param {Number} dividend  数值1 ，（成功个数）
