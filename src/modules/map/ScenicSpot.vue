@@ -4,8 +4,9 @@
     <v-map-sur></v-map-sur>
     <ul class="lists">
       <li v-for="(item,index) in lists"
-          :key="index">
-        <router-link :to="{name:'searchList'}">{{item.F_Name}}</router-link>
+          :key="index"
+          @click="listRightBtn(index)">
+        <router-link :to="{name:''}">{{item.F_Name}}</router-link>
       </li>
     </ul>
     <div class="dw_div">
@@ -24,7 +25,7 @@
                 active-color="#00c8b0">
       <van-tabbar-item v-for="(item,index) in tabs"
                        :key="index"
-                       @click="tabClick(item.F_Name)">
+                       @click="tabClick(item.F_Id)">
         <img slot="icon"
              slot-scope="props"
              :src="props.active ? item.F_HighlightImage : item.F_Image" />
@@ -96,21 +97,30 @@ export default {
         this.lists = res.data.data
       });
     },
-    tabClick (F_Name) {
-      console.log(F_Name)
-      this.show = !this.show;
-      this.getListSearch(F_Name)
+    listRightBtn (index) {
+      if (index == 0) {
+        console.log(999999)
+        this.$store.dispatch('setfdList', '')
+      }
     },
-    async getListSearch (F_Name) {
+    tabClick (F_Id) {
+      console.log(F_Id)
+      this.show = true;
+      this.getListSearch(F_Id)
+    },
+    async getListSearch (F_Id) {
+      this.$toast.loading({
+        message: '加载中...',
+      });
       var token = this.$store.state.token
       var loginmark = this.$store.state.user
-      var keyword = F_Name
-      await this.$http.get("/scenicareaaround/getlistforsearch/" + keyword, {
+      await this.$http.get("/scenicareaaround/getlist/" + F_Id, {
         params: {
           token: token,
           loginMark: loginmark
         }
       }).then(res => {
+        this.$toast.clear()
         this.searchList = res.data.data
       });
     }

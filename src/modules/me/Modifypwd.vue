@@ -44,9 +44,9 @@ export default {
   data () {
     return {
       title: "修改密码",
-      tel: '15706086571',
-      oldPwd: '1234567',
-      newPwd: '123456',
+      tel: '',
+      oldPwd: '',
+      newPwd: '',
       phoneImg: require("../../assets/images/phone.png"),
       pwdImg: require("../../assets/images/pwd.png")
     };

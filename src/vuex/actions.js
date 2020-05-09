@@ -35,10 +35,10 @@ export const setItem_Id = ({
 }, data) => {
   commit('setItem_Id', data)
 }
-export const setF_Name = ({
+export const setF_Id = ({
   commit
 }, data) => {
-  commit('changeF_Name', data)
+  commit('changeF_Id', data)
 }
 export const setimageslists = ({
   commit

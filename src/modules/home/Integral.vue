@@ -23,7 +23,8 @@
         <template slot="title">
           <div>
             <h4>{{item.F_Source}}</h4>
-            <p>{{item.F_Date}}</p>
+            <p v-text="item.F_Date.substring(0,10)">
+            </p>
           </div>
         </template>
       </van-cell>
@@ -53,7 +54,7 @@ export default {
         },
       ],
       msg: [],
-      filterMsg: []
+      filterMsg: [],
     };
   },
   created () {
@@ -94,6 +95,7 @@ export default {
         }
         this.msg = res.data.data;
         this.filterMsg = this.msg
+
       })
     },
   },

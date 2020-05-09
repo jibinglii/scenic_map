@@ -6,6 +6,6 @@ export default {
   audiotype: 0,
   shiyonglv: 0,
   item_Id: 0,
-  F_Name: [],
+  F_Id: [],
   imageslists: []
 }

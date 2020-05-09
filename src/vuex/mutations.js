@@ -20,8 +20,8 @@ export const changeShiyonglv = (state, data) => {
 export const setItem_Id = (state, data) => {
   state.item_Id = data
 }
-export const changeF_Name = (state, data) => {
-  state.F_Name = data
+export const changeF_Id = (state, data) => {
+  state.F_Id = data
 }
 export const changeImageslists = (state, data) => {
   state.imageslists = data

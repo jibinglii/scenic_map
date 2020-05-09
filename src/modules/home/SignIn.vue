@@ -380,7 +380,7 @@ $fontColor: #0088ff;
         img.line {
           position: absolute;
           left: -77%;
-          top: 37%;
+          top: 43%;
         }
       }
       .step:nth-of-type(6) {
@@ -390,7 +390,7 @@ $fontColor: #0088ff;
         img.line {
           position: absolute;
           left: -77%;
-          top: 37%;
+          top: 43%;
         }
       }
       .step:nth-of-type(7) {
@@ -401,7 +401,7 @@ $fontColor: #0088ff;
           width: 100%;
           position: absolute;
           left: -88%;
-          top: 37%;
+          top: 43%;
           transform: rotateY(-180deg);
         }
       }

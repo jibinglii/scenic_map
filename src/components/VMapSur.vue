@@ -14,6 +14,10 @@ export default {
       zxList: [],
       wifiList: [],
       fdList: [],
+      marker0List: [],
+      marker1List: [],
+      marker2List: [],
+      marker3List: [],
     };
   },
   created () {
@@ -53,30 +57,32 @@ export default {
     async getListCs (map) {
       var token = this.$store.state.token
       var loginmark = this.$store.state.user
-      var keyword = this.$store.state.F_Name[0]
-      await this.$http.get('/scenicareaaround/getlistforsearch/' + keyword, {
+      var keyword = this.$store.state.F_Id[0]
+      await this.$http.get('/scenicareaaround/getlist/' + keyword, {
         params: {
           token: token,
           loginMark: loginmark
         }
       }).then(res => {
         this.csList = res.data.data
+
         for (var i = 0; i < this.csList.length; i++) {
           var latlng = L.latLng(this.csList[i].F_XPoint * 1, this.csList[i].F_YPoint * 1)
-          var marker = L.marker(latlng, {
+          var marker0 = L.marker(latlng, {
             icon: L.icon({
               iconUrl: require("../assets/images/cs.png"),
               iconSize: [30, 38],
             }),
           }).addTo(map).bindPopup(this.csList[i].F_Name)
+          this.marker0List.push(marker0)
         }
       });
     },
     async getListZx (map) {
       var token = this.$store.state.token
       var loginmark = this.$store.state.user
-      var keyword = this.$store.state.F_Name[1]
-      await this.$http.get('/scenicareaaround/getlistforsearch/' + keyword, {
+      var keyword = this.$store.state.F_Id[1]
+      await this.$http.get('/scenicareaaround/getlist/' + keyword, {
         params: {
           token: token,
           loginMark: loginmark
@@ -85,42 +91,48 @@ export default {
         this.zxList = res.data.data
         for (var i = 0; i < this.zxList.length; i++) {
           var latlng = L.latLng(this.zxList[i].F_XPoint * 1, this.zxList[i].F_YPoint * 1)
-          var marker = L.marker(latlng, {
+          var marker1 = L.marker(latlng, {
             icon: L.icon({
               iconUrl: require("../assets/images/zx.png"),
               iconSize: [30, 38],
             }),
           }).addTo(map).bindPopup(this.zxList[i].F_Name)
+          // map.removeLayer(marker1)
+          this.marker1List.push(marker1)
         }
       });
     },
     async getListWIFI (map) {
       var token = this.$store.state.token
       var loginmark = this.$store.state.user
-      var keyword = this.$store.state.F_Name[2]
-      await this.$http.get('/scenicareaaround/getlistforsearch/' + keyword, {
+      var keyword = this.$store.state.F_Id[2]
+      await this.$http.get('/scenicareaaround/getlist/' + keyword, {
         params: {
           token: token,
           loginMark: loginmark
         }
       }).then(res => {
         this.wifiList = res.data.data
+
         for (var i = 0; i < this.wifiList.length; i++) {
           var latlng = L.latLng(this.wifiList[i].F_XPoint * 1, this.wifiList[i].F_YPoint * 1)
-          var marker = L.marker(latlng, {
+          var marker2 = L.marker(latlng, {
             icon: L.icon({
               iconUrl: require("../assets/images/wifi.png"),
               iconSize: [30, 38],
             }),
           }).addTo(map).bindPopup(this.wifiList[i].F_Name)
+          // map.removeLayer(marker2)
+          this.marker2List.push(marker2)
         }
+        console.log(this.marker2List)
       });
     },
     async getListFd (map) {
       var token = this.$store.state.token
       var loginmark = this.$store.state.user
-      var keyword = this.$store.state.F_Name[3]
-      await this.$http.get('/scenicareaaround/getlistforsearch/' + keyword, {
+      var keyword = this.$store.state.F_Id[3]
+      await this.$http.get('/scenicareaaround/getlist/' + keyword, {
         params: {
           token: token,
           loginMark: loginmark
@@ -129,13 +141,15 @@ export default {
         this.fdList = res.data.data
         for (var i = 0; i < this.fdList.length; i++) {
           var latlng = L.latLng(this.fdList[i].F_XPoint * 1, this.fdList[i].F_YPoint * 1)
-          var marker = L.marker(latlng, {
+          var marker3 = L.marker(latlng, {
             icon: L.icon({
               iconUrl: require("../assets/images/fd.png"),
               iconSize: [30, 38],
             }),
           }).addTo(map).bindPopup(this.fdList[i].F_Name)
+          this.marker3List.push(marker3)
         }
+        console.log(this.marker3List)
       });
     }
   }

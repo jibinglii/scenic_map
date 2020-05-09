@@ -138,8 +138,8 @@ export default {
         this.nearLists = res.data.data
         var nearList = []
         for (var i = 0; i < this.nearLists.length; i++) {
-          nearList.push(this.nearLists[i].F_Name)
-          this.$store.dispatch('setF_Name', nearList)
+          nearList.push(this.nearLists[i].F_Id)
+          this.$store.dispatch('setF_Id', nearList)
         }
       })
     },

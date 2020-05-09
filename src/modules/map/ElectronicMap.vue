@@ -169,10 +169,14 @@ export default {
           console.log(res)
           this.scenicList = res.data.data
         })
-        this.show2 = !this.show2;
+        this.show2 = true;
+        this.show3 = false;
+        this.show1 = false;
       }
       if (index === 2) {
-        this.show3 = !this.show3;
+        this.show3 = true;
+        this.show2 = false;
+        this.show1 = false;
       }
     },
 

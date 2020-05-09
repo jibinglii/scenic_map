@@ -46,7 +46,7 @@
                     <span>{{item.F_Hours}}</span>
                   </p>
                   <p>
-                    酒店地址:
+                    地址:
                     <span>{{item.F_Address}}</span>
                   </p>
                   <p>
@@ -134,7 +134,6 @@ export default {
       }
     },
     tabClick (F_Name) {
-      console.log(F_Name)
       this.searchText = F_Name
       this.getListSearch()
     },
