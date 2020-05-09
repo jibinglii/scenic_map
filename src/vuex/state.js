@@ -7,5 +7,9 @@ export default {
   shiyonglv: 0,
   item_Id: 0,
   F_Id: [],
-  imageslists: []
+  imageslists: [],
+  markercsList: [],
+  markerzxList: [],
+  markerwifiList: [],
+  markerfdList: [],
 }

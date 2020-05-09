@@ -45,3 +45,23 @@ export const setimageslists = ({
 }, data) => {
   commit('changeImageslists', data)
 }
+export const setmarkercsList = ({
+  commit
+}, data) => {
+  commit('changemarkercsList', data)
+}
+export const setmarkerzxList = ({
+  commit
+}, data) => {
+  commit('changemarkerzxList', data)
+}
+export const setmarkerwifiList = ({
+  commit
+}, data) => {
+  commit('changemarkerwifiList', data)
+}
+export const setmarkerfdList = ({
+  commit
+}, data) => {
+  commit('changemarkerfdList', data)
+}

@@ -7,3 +7,7 @@ export const shiyonglv = state => state.shiyonglv
 export const item_Id = state => state.item_Id
 export const F_Id = state => state.F_Id
 export const imageslists = state => state.imageslists
+export const markercsList = state => state.markercsList
+export const markerzxList = state => state.markerzxList
+export const markerwifiList = state => state.markerwifiList
+export const markerfdList = state => state.markerfdList

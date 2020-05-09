@@ -99,8 +99,13 @@ export default {
     },
     listRightBtn (index) {
       if (index == 0) {
-        console.log(999999)
-        this.$store.dispatch('setfdList', '')
+        var arr = []
+        var markercsList = this.$store.state.markercsList
+        var markerzxList = this.$store.state.markerzxList
+        var markerwifiList = this.$store.state.markerwifiList
+        var markerfdList = this.$store.state.markerfdList
+        arr = markercsList.concat(markerzxList).concat(markerwifiList).concat(markerfdList)
+        console.log(arr)
       }
     },
     tabClick (F_Id) {

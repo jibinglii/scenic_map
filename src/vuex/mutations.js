@@ -26,3 +26,15 @@ export const changeF_Id = (state, data) => {
 export const changeImageslists = (state, data) => {
   state.imageslists = data
 }
+export const changemarkercsList = (state, data) => {
+  state.markercsList = data
+}
+export const changemarkerzxList = (state, data) => {
+  state.markerzxList = data
+}
+export const changemarkerwifiList = (state, data) => {
+  state.markerwifiList = data
+}
+export const changemarkerfdList = (state, data) => {
+  state.markerfdList = data
+}

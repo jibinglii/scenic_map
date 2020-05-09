@@ -14,10 +14,10 @@ export default {
       zxList: [],
       wifiList: [],
       fdList: [],
-      marker0List: [],
-      marker1List: [],
-      marker2List: [],
-      marker3List: [],
+      markercsList: [],
+      markerzxList: [],
+      markerwifiList: [],
+      markerfdList: [],
     };
   },
   created () {
@@ -74,8 +74,9 @@ export default {
               iconSize: [30, 38],
             }),
           }).addTo(map).bindPopup(this.csList[i].F_Name)
-          this.marker0List.push(marker0)
+          this.markercsList.push(marker0)
         }
+        this.$store.dispatch('setmarkercsList', this.markercsList)
       });
     },
     async getListZx (map) {
@@ -98,8 +99,9 @@ export default {
             }),
           }).addTo(map).bindPopup(this.zxList[i].F_Name)
           // map.removeLayer(marker1)
-          this.marker1List.push(marker1)
+          this.markerzxList.push(marker1)
         }
+        this.$store.dispatch('setmarkerzxList', this.markerzxList)
       });
     },
     async getListWIFI (map) {
@@ -123,9 +125,9 @@ export default {
             }),
           }).addTo(map).bindPopup(this.wifiList[i].F_Name)
           // map.removeLayer(marker2)
-          this.marker2List.push(marker2)
+          this.markerwifiList.push(marker2)
         }
-        console.log(this.marker2List)
+        this.$store.dispatch('setmarkerwifiList', this.markerwifiList)
       });
     },
     async getListFd (map) {
@@ -147,8 +149,9 @@ export default {
               iconSize: [30, 38],
             }),
           }).addTo(map).bindPopup(this.fdList[i].F_Name)
-          this.marker3List.push(marker3)
+          this.markerfdList.push(marker3)
         }
+        this.$store.dispatch('setmarkerfdList', this.markerfdList)
         console.log(this.marker3List)
       });
     }
