@@ -11,3 +11,4 @@ export const markercsList = state => state.markercsList
 export const markerzxList = state => state.markerzxList
 export const markerwifiList = state => state.markerwifiList
 export const markerfdList = state => state.markerfdList
+export const map = state => state.map

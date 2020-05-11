@@ -65,3 +65,8 @@ export const setmarkerfdList = ({
 }, data) => {
   commit('changemarkerfdList', data)
 }
+export const setmap = ({
+  commit
+}, data) => {
+  commit('changemap', data)
+}

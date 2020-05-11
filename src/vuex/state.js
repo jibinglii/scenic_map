@@ -12,4 +12,5 @@ export default {
   markerzxList: [],
   markerwifiList: [],
   markerfdList: [],
+  map: {}
 }

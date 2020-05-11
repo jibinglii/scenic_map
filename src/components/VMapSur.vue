@@ -14,10 +14,15 @@ export default {
       zxList: [],
       wifiList: [],
       fdList: [],
+      map: null,
       markercsList: [],
       markerzxList: [],
       markerwifiList: [],
       markerfdList: [],
+      markercsgroup: null,
+      markerzxgroup: null,
+      markerwifigroup: null,
+      markerfdgroup: null,
     };
   },
   created () {
@@ -37,17 +42,23 @@ export default {
 
       }).then(res => {
         let result = res.data.data
+        var center = [0, 0];
+        if (result.F_Center && result.F_Center.indexOf(',') > -1) {
+          center = result.F_Center.split(',');
+        }
         var map = L.map("map", {
           crs: L.CRS.EPSG4326,
-          center: [39.94, 116.31],
-          maxZoom: 24,
-          zoom: 18,
-          minZoom: 0,
+          center: [center[1], center[0]],
+          maxZoom: result.F_MaxZoom,
+          zoom: result.F_Zoom,
+          minZoom: result.F_MinZoom,
           attributionControl: true
         });
         L.supermap.tiledMapLayer(
           result.F_URL
         ).addTo(map);
+        this.map = map
+        this.$store.dispatch('setmap', this.map)
         this.getListCs(map)
         this.getListZx(map)
         this.getListWIFI(map)
@@ -65,7 +76,6 @@ export default {
         }
       }).then(res => {
         this.csList = res.data.data
-
         for (var i = 0; i < this.csList.length; i++) {
           var latlng = L.latLng(this.csList[i].F_XPoint * 1, this.csList[i].F_YPoint * 1)
           var marker0 = L.marker(latlng, {
@@ -76,7 +86,9 @@ export default {
           }).addTo(map).bindPopup(this.csList[i].F_Name)
           this.markercsList.push(marker0)
         }
-        this.$store.dispatch('setmarkercsList', this.markercsList)
+        this.markercsgroup = L.layerGroup(this.markercsList);
+        this.map.addLayer(this.markercsgroup);
+        this.$store.dispatch('setmarkercsList', this.markercsgroup)
       });
     },
     async getListZx (map) {
@@ -98,10 +110,11 @@ export default {
               iconSize: [30, 38],
             }),
           }).addTo(map).bindPopup(this.zxList[i].F_Name)
-          // map.removeLayer(marker1)
           this.markerzxList.push(marker1)
         }
-        this.$store.dispatch('setmarkerzxList', this.markerzxList)
+        this.markerzxgroup = L.layerGroup(this.markerzxList);
+        this.map.addLayer(this.markerzxgroup);
+        this.$store.dispatch('setmarkerzxList', this.markerzxgroup)
       });
     },
     async getListWIFI (map) {
@@ -124,10 +137,11 @@ export default {
               iconSize: [30, 38],
             }),
           }).addTo(map).bindPopup(this.wifiList[i].F_Name)
-          // map.removeLayer(marker2)
           this.markerwifiList.push(marker2)
         }
-        this.$store.dispatch('setmarkerwifiList', this.markerwifiList)
+        this.markerwifigroup = L.layerGroup(this.markerwifiList);
+        this.map.addLayer(this.markerwifigroup);
+        this.$store.dispatch('setmarkerwifiList', this.markerwifigroup)
       });
     },
     async getListFd (map) {
@@ -151,8 +165,9 @@ export default {
           }).addTo(map).bindPopup(this.fdList[i].F_Name)
           this.markerfdList.push(marker3)
         }
-        this.$store.dispatch('setmarkerfdList', this.markerfdList)
-        console.log(this.marker3List)
+        this.markerfdgroup = L.layerGroup(this.markerfdList);
+        this.map.addLayer(this.markerfdgroup);
+        this.$store.dispatch('setmarkerfdList', this.markerfdgroup)
       });
     }
   }

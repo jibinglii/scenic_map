@@ -38,3 +38,6 @@ export const changemarkerwifiList = (state, data) => {
 export const changemarkerfdList = (state, data) => {
   state.markerfdList = data
 }
+export const changemap = (state, data) => {
+  state.map = data
+}

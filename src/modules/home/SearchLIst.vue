@@ -25,7 +25,7 @@
       <div v-for="(item, index) in searchList"
            :key="index"
            v-show="searchText">
-        <router-link :to="{name: item.url}">
+        <router-link :to="{name: 'hotelDetails',params:{id:item.id,items:item}}">
           <div class="search_title">
             <h3>{{(index+1)+"." +item.F_Name}}</h3>
             <van-rate v-model="item.F_Score"
@@ -124,7 +124,7 @@ export default {
           loginMark: loginmark
         }
       }).then(res => {
-        console.log(res)
+        // console.log(res)
         this.tabs = res.data.data
       });
     },
@@ -141,14 +141,14 @@ export default {
       var token = this.$store.state.token
       var loginmark = this.$store.state.user
       var keyword = this.searchText
-      console.log(keyword)
+      // console.log(keyword)
       await this.$http.get("/scenicareaaround/getlistforsearch/" + keyword, {
         params: {
           token: token,
           loginMark: loginmark
         }
       }).then(res => {
-        console.log(res)
+        // console.log(res)
         this.searchList = res.data.data
         if (res.data.data.length === 0) {
           this.isShow = true
@@ -224,7 +224,7 @@ $boxSpace: #f3f3f5;
   .search_title {
     padding: 0.3rem 0.3rem 0.5rem;
     border-bottom: solid 2px $boxSpace;
-    height: 0.5rem;
+    // height: 0.5rem;
 
     h3,
     span,
@@ -264,7 +264,7 @@ $boxSpace: #f3f3f5;
   .card_info {
     text-align: left;
     font-size: 14px;
-    line-height: 0.65rem;
+    line-height: 0.6rem;
     span {
       color: #969799;
     }

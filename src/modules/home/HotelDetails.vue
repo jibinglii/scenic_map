@@ -2,70 +2,70 @@
   <div class="shop_info">
     <!-- 顶部轮播 -->
     <van-swipe @change="onChange">
-      <van-swipe-item v-for="(item, index) in swipeData" :key="index">
-        <img :src="item.images" />
+      <van-swipe-item>
+        <img :src="imageUrl" />
         <div class="layer_bottom">
           <div class="layer_con">
-            <h3>{{item.name}}</h3>
-            <p>{{item.xj}}</p>
+            <h3>{{$route.params.items.F_Name}}</h3>
+            <p>{{$route.params.items.F_Hours}}</p>
           </div>
         </div>
       </van-swipe-item>
       <template #indicator>
         <div class="custom-indicator">
-          <span>{{ current + 1 }}</span>
-          /{{swipeData.length}}
+          <!-- <span>{{ current + 1 }}</span> -->
+          <!-- /{{swipeData.length}} -->
         </div>
       </template>
     </van-swipe>
     <div class="shop_content">
-      <div class="score_info">评分:{{score}}</div>
-      <div class="address_info">{{address}}</div>
+      <div class="score_info">评分：{{score}}</div>
+      <div class="address_info">地址：{{address}}</div>
       <div class="introduce_info">
-        <div class="intro_title">酒店简介</div>
+        <div class="intro_title">简介：</div>
         <div class="intro_con">{{content}}</div>
       </div>
     </div>
     <!-- 底部按钮 -->
     <div class="btn_groups">
-      <van-button type="default" icon="location-o" url>查看路线</van-button>|
-      <van-button type="default" icon="phone-o" url>联系电话</van-button>
+      <a>
+        <van-icon name="location-o" /> 查看路线</a>|
+      <a :href="'tel:' +phone">
+        <van-icon name="phone-o" />联系电话</a>
     </div>
   </div>
 </template>
 <script>
-import { Swipe, SwipeItem, Button } from "vant";
+import { Swipe, SwipeItem, Button, Icon } from "vant";
 
 export default {
   name: "hotelDetails",
-  data() {
+  data () {
     return {
-      score: 9.4,
-      address: "西安市新城区东新街139号",
-      content:
-        "嘉兴富悦大酒店按照豪华五星级酒店标准建造，位于嘉兴市中环西路28号。酒店毗邻沪杭高速、乍嘉苏高速公路，交通便利，地理位置优越。紧邻南湖风景区、西塘、乌镇等风景名胜区。嘉兴富悦大酒店总面积7.4万平方米，拥有各类豪华客房450间套，宽敞豪华的大开间、通透舒适的落地大玻璃窗、风格时尚的卫浴设计、细心周到的贴身管家、无微不至的用心服务。豪华温馨的客房设施，将带给您品位非凡的享受。嘉兴富悦大酒店拥有极其完善和现代的会议场所及设施，配有两个层高7.5米、面积1500平方米的无柱多功能厅、宴会厅，10个不同规格的会议室，是目前浙江省同类酒店中规模最大、设施最完善的会议中心之一。气势恢宏的宴会设施、细致入微的会议团队、“一站式”会议服务专家，满足您高档会议的一切所需。",
+      score: 0,
+      address: "",
+      content: "",
       current: 0,
-      swipeData: [
-        {
-          images: require("../../assets/images/shop_img.jpg"),
-          name: "西安国际大酒店",
-          xj: "5星级"
-        },
-        {
-          images: require("../../assets/images/shop_img.jpg"),
-          name: "西安国际大酒店",
-          xj: "5星级"
-        }
-      ]
+      imageUrl: '',
+      phone: ''
     };
   },
   components: {
     "van-swipe": Swipe,
     "van-swipe-item": SwipeItem,
-    "van-button": Button
+    "van-button": Button,
+    "van-icon": Icon
+  },
+  mounted () {
+    var item = this.$route.params.items
+    this.address = item.F_Address
+    this.score = item.F_Score
+    this.content = item.F_Remarks
+    this.imageUrl = item.F_Image
+    this.phone = item.F_Phone
   },
   methods: {
-    onChange(index) {
+    onChange (index) {
       this.current = index;
     }
   }
@@ -151,10 +151,16 @@ export default {
     color: #808080;
     font-size: 16px;
     background: #fff;
-    button {
+    padding: 15px 0;
+    display: flex;
+    a {
       width: 48%;
       border: none;
       letter-spacing: 3px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 }

@@ -25,15 +25,18 @@ export default {
           token: token,
           loginMark: loginmark
         }
-
       }).then(res => {
         let result = res.data.data
+        var center = [0, 0];
+        if (result.F_Center && result.F_Center.indexOf(',') > -1) {
+          center = result.F_Center.split(',');
+        }
         var map = L.map("map", {
           crs: L.CRS.EPSG4326,
-          center: [39.94, 116.31],
-          maxZoom: 24,
-          zoom: 18,
-          minZoom: 0,
+          center: [center[1], center[0]],
+          maxZoom: result.F_MaxZoom,
+          zoom: result.F_Zoom,
+          minZoom: result.F_MinZoom,
           attributionControl: true
         });
         L.supermap.tiledMapLayer(
