@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="../../assets/images/scenic_img.jpg"
+    <img :src="default_img"
          alt=""
          class="scenic_img">
     <div class="intro">
@@ -38,7 +38,7 @@ export default {
       intro: '',
       address: '',
       openTime: '',
-
+      default_img: ''
     }
   },
   components: {
@@ -67,6 +67,7 @@ export default {
         this.intro = res.data.data.F_Remarks
         this.address = res.data.data.F_Address
         this.openTime = res.data.data.F_OpenHours
+        this.default_img = res.data.data.F_Image
       })
     },
 
